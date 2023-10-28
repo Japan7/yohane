@@ -1,13 +1,21 @@
+import logging
+from importlib.resources import as_file, files
 from pathlib import Path
 from typing import cast
 
 import torch
 import torchaudio
+import vocal_remover.models
 from torchaudio.pipelines import MMS_FA as bundle
+from vocal_remover.inference import Separator
+from vocal_remover.lib import nets, spec_utils
+
+logger = logging.getLogger(__name__)
 
 
-def load_audio(audio_file: str | Path):
+def prepare_audio(audio_file: str | Path):
     waveform, sample_rate = torchaudio.load(audio_file)  # type: ignore
+    waveform = separate_vocals(waveform)
     waveform = waveform.mean(0, keepdim=True)
     waveform = torchaudio.functional.resample(
         waveform, sample_rate, int(bundle.sample_rate)
@@ -15,9 +23,32 @@ def load_audio(audio_file: str | Path):
     return waveform
 
 
+def separate_vocals(waveform: torch.Tensor):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    logger.info(f"Using {device=}")
+
+    state_resource = files(vocal_remover.models) / "baseline.pth"
+    with as_file(state_resource) as path:
+        state = torch.load(path, map_location=device)
+
+    separator_model = nets.CascadedNet(2048, 32, 128)
+    separator_model.load_state_dict(state)
+    separator_model.to(device)
+
+    if waveform.ndim == 1:
+        waveform = waveform.repeat(2, 1)
+    waveform_spec = spec_utils.wave_to_spectrogram(waveform, 1024, 2048)
+
+    sp = Separator(separator_model, device, 4, 256)
+    _, vocals_spec = sp.separate(waveform_spec)
+
+    vocals = spec_utils.spectrogram_to_wave(vocals_spec)
+    return torch.Tensor(vocals)
+
+
 def compute_alignments(waveform: torch.Tensor, transcript: list[str]):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"Using {device=}")
+    logger.info(f"Using {device=}")
 
     model = bundle.get_model()
     model.to(device)
