@@ -25,7 +25,7 @@ def main(lyrics_file: TextIOWrapper, audio_file: Path, extract_vocals: bool):
     logger.info("Forced alignment...")
     emission, token_spans = compute_alignments(waveform, lyrics_txt.transcript)
 
-    logger.info("Making ASS...")
+    logger.info("Generating ASS...")
     subs = make_ass(lyrics_txt, waveform, emission, token_spans)
     subs_file = audio_file.with_suffix(".ass")
     subs.save(subs_file.as_posix())
