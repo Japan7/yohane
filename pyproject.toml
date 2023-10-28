@@ -9,6 +9,7 @@ readme = "README.md"
 python = "~3.11"
 torchaudio = "^2.1.0"
 numpy = "^1.26.1"
+vocal-remover = {git = "https://github.com/Japan7/vocal-remover.git", rev = "00537bfe94f1575e9bae584a9e97220058b2ca9c"}
 pysubs2 = "^1.6.1"
 click = "^8.1.7"
 
