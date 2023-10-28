@@ -71,4 +71,9 @@ def make_ass(
         event.text += rf"{{\k{round((k_end - k_start) * 100)}}}{curr_syllable}"
         event.end = int(t_end * 1000)
 
+    # Last line
+    event.text = event.text.strip()
+    if event.text:
+        subs.append(event)
+
     return subs
