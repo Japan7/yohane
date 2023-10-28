@@ -34,19 +34,19 @@ class Line:
         normalized = normalize_uroman(raw)
         if not normalized:
             return None
-        words = [Word.from_raw(word) for word in normalized.split()]
+        words = [Word.from_value(word) for word in normalized.split()]
         return cls(raw, normalized, words)
 
 
 @dataclass
 class Word:
-    raw: str
+    value: str
     syllables: list[str]
 
     @classmethod
-    def from_raw(cls, raw: str):
-        syllables = split_romaji_word(raw)
-        return cls(raw, syllables)
+    def from_value(cls, value: str):
+        syllables = split_romaji_word(value)
+        return cls(value, syllables)
 
 
 def normalize_uroman(text: str):

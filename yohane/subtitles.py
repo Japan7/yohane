@@ -4,7 +4,7 @@ from pysubs2 import SSAEvent, SSAFile
 from torch import Tensor
 from torchaudio.functional import TokenSpan
 
-from yohane.force_alignment import bundle
+from yohane.audio_processing import bundle
 from yohane.text_processing import Line, Text, Word
 
 
@@ -63,8 +63,8 @@ def make_ass(
                     if event.text:
                         subs.append(event)
                     event = SSAEvent(int(t_start * 1000))
-                except StopIteration:
-                    raise RuntimeError("???")
+                except StopIteration as e:
+                    raise RuntimeError("should not happen") from e
 
         k_start = t_start
         k_end = next_t_start if next_t_start is not None else t_end

@@ -3,7 +3,7 @@ from pathlib import Path
 
 import click
 
-from yohane.force_alignment import compute_alignments, load_audio
+from yohane.audio_processing import compute_alignments, load_audio
 from yohane.subtitles import make_ass
 from yohane.text_processing import Text
 
