@@ -45,7 +45,6 @@ def make_ass(
 
         # k tag logic:
         # snap the token end time to the next token start time
-        # if it is not the last in the line
         if i < len(token_spans) - 1:
             next_x0 = ratio * token_spans[i + 1][0].start
             next_t_start = next_x0 / sample_rate
