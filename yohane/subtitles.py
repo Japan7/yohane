@@ -1,11 +1,9 @@
-from typing import Iterator
-
 from pysubs2 import SSAEvent, SSAFile
 from torch import Tensor
 from torchaudio.functional import TokenSpan
 
 from yohane.audio_processing import bundle
-from yohane.text_processing import Line, Text, Word
+from yohane.text_processing import Text
 
 
 def make_ass(
@@ -19,14 +17,14 @@ def make_ass(
     sample_rate = bundle.sample_rate
 
     subs = SSAFile()
-    event = SSAEvent()
+    event = SSAEvent(-1)
 
     lines_iter = iter(lyrics_txt.lines)
-    curr_line: Line
-    words_iter: Iterator[Word] = iter(())
-    curr_word: Word
-    syllables_iter: Iterator[str] = iter(())
-    curr_syllable: str
+    curr_line = next(lines_iter)
+    words_iter = iter(curr_line.words)
+    curr_word = next(words_iter)
+    syllables_iter = iter(curr_word.syllables)
+    curr_syllable = next(syllables_iter)
 
     for i, spans in enumerate(token_spans):
         x0 = ratio * spans[0].start
@@ -44,27 +42,33 @@ def make_ass(
             curr_syllable = next(syllables_iter)
         except StopIteration:
             try:
+                event.text += " "
+
                 # New word
                 curr_word = next(words_iter)
                 syllables_iter = iter(curr_word.syllables)
                 curr_syllable = next(syllables_iter)
-
-                event.text += " "
             except StopIteration:
                 try:
+                    comment = SSAEvent(
+                        event.start, event.end, curr_line.raw, type="Comment"
+                    )
+                    subs.append(comment)
+                    event.text = event.text.strip()
+                    subs.append(event)
+                    event = SSAEvent(-1)
+
                     # New line
                     curr_line = next(lines_iter)
                     words_iter = iter(curr_line.words)
                     curr_word = next(words_iter)
                     syllables_iter = iter(curr_word.syllables)
                     curr_syllable = next(syllables_iter)
-
-                    event.text = event.text.strip()
-                    if event.text:
-                        subs.append(event)
-                    event = SSAEvent(int(t_start * 1000))
                 except StopIteration as e:
                     raise RuntimeError("should not happen") from e
+
+        if event.start == -1:
+            event.start = int(t_start * 1000)
 
         k_start = t_start
         k_end = next_t_start if next_t_start is not None else t_end
@@ -72,8 +76,9 @@ def make_ass(
         event.end = int(t_end * 1000)
 
     # Last line
+    comment = SSAEvent(event.start, event.end, curr_line.raw, type="Comment")
+    subs.append(comment)
     event.text = event.text.strip()
-    if event.text:
-        subs.append(event)
+    subs.append(event)
 
     return subs
