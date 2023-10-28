@@ -13,10 +13,11 @@ from vocal_remover.lib import nets, spec_utils
 logger = logging.getLogger(__name__)
 
 
-def prepare_audio(audio_file: str | Path):
+def prepare_audio(audio_file: str | Path, extract_vocals: bool):
     waveform, sample_rate = torchaudio.load(audio_file, backend="ffmpeg")  # type: ignore
-    waveform = separate_vocals(waveform)
-    torchaudio.save(audio_file.with_suffix(".vocals.wav"), waveform, sample_rate)  # type: ignore
+    if extract_vocals:
+        waveform = separate_vocals(waveform)
+        torchaudio.save(audio_file.with_suffix(".vocals.wav"), waveform, sample_rate)  # type: ignore
     waveform = waveform.mean(0, keepdim=True)
     waveform = torchaudio.functional.resample(
         waveform, sample_rate, int(bundle.sample_rate)
