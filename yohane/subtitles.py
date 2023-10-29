@@ -1,9 +1,14 @@
+from importlib.metadata import metadata
+
 from pysubs2 import SSAEvent, SSAFile
 from torch import Tensor
 from torchaudio.functional import TokenSpan
 
 from yohane.audio import bundle
 from yohane.lyrics import Lyrics
+
+PKG_META = metadata(__package__)
+IDENTIFIER = f"{PKG_META['Name']} {PKG_META['Version']} ({PKG_META['Home-page']})"
 
 
 def make_ass(
@@ -19,6 +24,8 @@ def make_ass(
     tokenizer = bundle.get_tokenizer()
 
     subs = SSAFile()
+    subs.info["Original Timing"] = IDENTIFIER
+
     token_spans_iter = iter(token_spans)
 
     for line in lyrics.lines:

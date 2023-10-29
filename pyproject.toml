@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "yohane"
-version = "0.1.0"
+version = "0.1.0-dev"
 description = ""
 authors = ["NextFire <git@yuru.moe>", "Voltini <slimen3@hotmail.fr>"]
 readme = "README.md"
+repository = "https://github.com/Japan7/yohane"
 
 [tool.poetry.scripts]
 yohane = "yohane.__main__:main"
@@ -25,3 +26,6 @@ ipykernel = "^6.26.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+target-version = "py311"
