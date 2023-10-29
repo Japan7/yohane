@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 def prepare_audio(audio_file: str | Path, extract_vocals: bool):
-    waveform, sample_rate = torchaudio.load(audio_file, backend="ffmpeg")  # type: ignore
+    waveform, sample_rate = torchaudio.load(audio_file)  # type: ignore
     if extract_vocals:
         waveform = separate_vocals(waveform)
         torchaudio.save(audio_file.with_suffix(".vocals.wav"), waveform, sample_rate)  # type: ignore
