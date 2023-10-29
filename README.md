@@ -13,7 +13,9 @@ This script is optimized for Japanese songs.
 - [FFmpeg](https://ffmpeg.org)
 
 ```sh
-poetry install
+git clone https://github.com/Japan7/yohane.git
+cd yohane/
+poetry install --only main
 poetry run yohane
 ```
 
