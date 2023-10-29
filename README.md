@@ -17,6 +17,8 @@ poetry install --only main
 poetry run yohane
 ```
 
+<!-- Tagged releases are also available on PyPI (`pip install yohane`). -->
+
 For a ~4 min song, on a MacBook Pro 2018 (i5-8259U), CPU only:
 
 - Vocals extraction takes ~5 min
