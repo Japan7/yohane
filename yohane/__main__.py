@@ -13,15 +13,15 @@ logger = logging.getLogger(__name__)
 
 
 @click.command()
-@click.argument("lyrics_file", type=click.File())
 @click.argument("audio_file", type=click.Path(exists=True, path_type=Path))
+@click.argument("lyrics_file", type=click.File())
 @click.argument("extract_vocals", default=True)
-def main(lyrics_file: TextIOWrapper, audio_file: Path, extract_vocals: bool):
-    logger.info("Preparing lyrics...")
-    lyrics = Lyrics(lyrics_file.read())
-
+def main(audio_file: Path, lyrics_file: TextIOWrapper, extract_vocals: bool):
     logger.info("Preparing audio...")
     waveform = prepare_audio(audio_file, extract_vocals)
+
+    logger.info("Preparing lyrics...")
+    lyrics = Lyrics(lyrics_file.read())
 
     logger.info("Computing forced alignment...")
     emission, token_spans = compute_alignments(waveform, lyrics.transcript)
