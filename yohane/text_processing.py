@@ -35,7 +35,7 @@ class Line(Text):
 class Word(Text):
     @cached_property
     def syllables(self):
-        return syllables_splitter(self.normalized)
+        return auto_split(self.normalized)
 
 
 def normalize_uroman(text: str):
@@ -48,13 +48,13 @@ def normalize_uroman(text: str):
 
 
 # https://docs.karaokes.moe/aegisub/auto-split.lua
-MUGEN_RE = re.compile(
+AUTO_SPLIT_RE = re.compile(
     r"(?i)(?:(?<=[^sc])(?=h))|(?:(?<=[^kstnhfmrwpbdgzcj])(?=y))|(?:(?<=[^t])(?=s))|(?:(?=[ktnfmrwpbdgzcj]))|(?:(?<=[aeiou]|[^[:alnum:]])(?=[aeiou]))"
 )
 
 
-def syllables_splitter(word: str):
-    splitter_str, _ = MUGEN_RE.subn("#@", word)
-    syllabes = re.split("#@", splitter_str, flags=re.MULTILINE)
-    syllabes = list(filter(None, syllabes))
-    return syllabes
+def auto_split(word: str):
+    splitter_str, _ = AUTO_SPLIT_RE.subn("#@", word)
+    syllables = re.split("#@", splitter_str, flags=re.MULTILINE)
+    syllables = list(filter(None, syllables))
+    return syllables
