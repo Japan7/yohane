@@ -7,7 +7,7 @@ import click
 
 from yohane.audio_processing import compute_alignments, prepare_audio
 from yohane.subtitles import make_ass
-from yohane.text_processing import Text
+from yohane.text_processing import Lyrics
 
 logger = logging.getLogger(__name__)
 
@@ -18,16 +18,16 @@ logger = logging.getLogger(__name__)
 @click.argument("extract_vocals", default=True)
 def main(lyrics_file: TextIOWrapper, audio_file: Path, extract_vocals: bool):
     logger.info("Preparing lyrics...")
-    lyrics_txt = Text.from_raw(lyrics_file.read())
+    lyrics = Lyrics(lyrics_file.read())
 
     logger.info("Preparing audio...")
     waveform = prepare_audio(audio_file, extract_vocals)
 
     logger.info("Computing forced alignment...")
-    emission, token_spans = compute_alignments(waveform, lyrics_txt.transcript)
+    emission, token_spans = compute_alignments(waveform, lyrics.transcript)
 
     logger.info("Generating ASS...")
-    subs = make_ass(lyrics_txt, waveform, emission, token_spans)
+    subs = make_ass(lyrics, waveform, emission, token_spans)
     subs_file = audio_file.with_suffix(".ass")
     subs.save(subs_file.as_posix())
     logger.info(f"Saved to '{subs_file.as_posix()}'")

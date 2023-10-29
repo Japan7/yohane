@@ -7,47 +7,35 @@ import regex as re
 @dataclass
 class Text:
     raw: str
-    lines: list["Line"]
+
+    @cached_property
+    def normalized(self):
+        return normalize_uroman(self.raw)
 
     @cached_property
     def transcript(self):
-        return [syllable for line in self.lines for syllable in line.transcript]
-
-    @classmethod
-    def from_raw(cls, raw: str):
-        lines = [Line.from_raw(line) for line in raw.splitlines()]
-        lines = list(filter(None, lines))
-        return cls(raw, lines)
+        return self.normalized.split()
 
 
 @dataclass
-class Line:
-    raw: str
-    normalized: str
-    words: list["Word"]
-
+class Lyrics(Text):
     @cached_property
-    def transcript(self):
-        return [syllable for word in self.words for syllable in word.syllables]
-
-    @classmethod
-    def from_raw(cls, raw: str):
-        normalized = normalize_uroman(raw)
-        if not normalized:
-            return None
-        words = [Word.from_value(word) for word in normalized.split()]
-        return cls(raw, normalized, words)
+    def lines(self):
+        return [Line(line) for line in filter(None, self.raw.splitlines())]
 
 
 @dataclass
-class Word:
-    value: str
-    syllables: list[str]
+class Line(Text):
+    @cached_property
+    def words(self):
+        return [Word(word) for word in filter(None, self.transcript)]
 
-    @classmethod
-    def from_value(cls, value: str):
-        syllables = split_word(value)
-        return cls(value, syllables)
+
+@dataclass
+class Word(Text):
+    @cached_property
+    def syllables(self):
+        return syllables_splitter(self.normalized)
 
 
 def normalize_uroman(text: str):
@@ -65,7 +53,7 @@ MUGEN_RE = re.compile(
 )
 
 
-def split_word(word: str):
+def syllables_splitter(word: str):
     splitter_str, _ = MUGEN_RE.subn("#@", word)
     syllabes = re.split("#@", splitter_str, flags=re.MULTILINE)
     syllabes = list(filter(None, syllabes))
