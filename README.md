@@ -2,8 +2,6 @@
 
 Takes a song and its lyrics, extracts the vocals, splits the syllables and computes a forced alignment to generate a karaoke in an [Aegisub](https://aegisub.org) subtitles file (.ass).
 
-This script is optimized for Japanese songs.
-
 ## Getting Started
 
 **Requirements:**
@@ -23,6 +21,12 @@ For a ~4 min song, on a MacBook Pro 2018 (i5-8259U), CPU only:
 
 - Vocals extraction takes ~5 min
 - Forced alignment takes 5-10 min
+
+## Caveats
+
+- This script is optimized for Japanese songs
+- Torchaudio ffmpeg backend is not available on Windows: convert your song file to .wav before using yohane with `ffmpeg -i <src> <out>.wav`
+- It is not fully accurate, you should still check and edit the result!
 
 ## Sample
 
