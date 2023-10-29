@@ -17,16 +17,18 @@ logger = logging.getLogger(__name__)
 @click.argument("lyrics_file", type=click.File())
 @click.argument("extract_vocals", default=True)
 def main(audio_file: Path, lyrics_file: TextIOWrapper, extract_vocals: bool):
-    logger.info("Preparing audio...")
+    logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO").upper())
+
+    logger.info("Preparing audio")
     waveform = prepare_audio(audio_file, extract_vocals)
 
-    logger.info("Preparing lyrics...")
+    logger.info("Preparing lyrics")
     lyrics = Lyrics(lyrics_file.read())
 
-    logger.info("Computing forced alignment...")
+    logger.info("Computing forced alignment")
     emission, token_spans = compute_alignments(waveform, lyrics.transcript)
 
-    logger.info("Generating ASS...")
+    logger.info("Generating .ass")
     subs = make_ass(lyrics, waveform, emission, token_spans)
     subs_file = audio_file.with_suffix(".ass")
     subs.save(subs_file.as_posix())
@@ -34,5 +36,4 @@ def main(audio_file: Path, lyrics_file: TextIOWrapper, extract_vocals: bool):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO").upper())
     main()

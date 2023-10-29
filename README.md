@@ -14,13 +14,13 @@ This script is optimized for Japanese songs.
 
 ```sh
 poetry install
-poetry run python3 -m yohane
+poetry run yohane
 ```
 
 For a ~4 min song, on a MacBook Pro 2018 (i5-8259U), CPU only:
 
 - Vocals extraction takes ~5 min
-- Forced alignment takes ~10 min
+- Forced alignment takes 5-10 min
 
 ## Sample
 
