@@ -61,7 +61,8 @@ def compute_alignments(waveform: torch.Tensor, transcript: list[str]):
     with torch.inference_mode():
         emission, _ = model(waveform.to(device))
         emission = cast(torch.Tensor, emission)
-        tokens = cast(list[list[int]], tokenizer(transcript))
+        tokens = tokenizer(transcript)
+        tokens = cast(list[list[int]], tokens)
         token_spans = aligner(emission[0], tokens)
 
     return emission, token_spans

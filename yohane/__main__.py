@@ -5,9 +5,9 @@ from pathlib import Path
 
 import click
 
-from yohane.audio_processing import compute_alignments, prepare_audio
+from yohane.audio import compute_alignments, prepare_audio
+from yohane.lyrics import Lyrics
 from yohane.subtitles import make_ass
-from yohane.text_processing import Lyrics
 
 logger = logging.getLogger(__name__)
 

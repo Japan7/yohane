@@ -5,7 +5,7 @@ import regex as re
 
 
 @dataclass
-class Text:
+class _Text:
     raw: str
 
     @cached_property
@@ -18,21 +18,21 @@ class Text:
 
 
 @dataclass
-class Lyrics(Text):
+class Lyrics(_Text):
     @cached_property
     def lines(self):
         return [Line(line) for line in filter(None, self.raw.splitlines())]
 
 
 @dataclass
-class Line(Text):
+class Line(_Text):
     @cached_property
     def words(self):
         return [Word(word) for word in filter(None, self.transcript)]
 
 
 @dataclass
-class Word(Text):
+class Word(_Text):
     @cached_property
     def syllables(self):
         return auto_split(self.normalized)
