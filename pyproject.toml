@@ -10,7 +10,7 @@ repository = "https://github.com/Japan7/yohane"
 yohane = "yohane.__main__:main"
 
 [tool.poetry.dependencies]
-python = "~3.11"
+python = ">=3.10,<3.12"
 torch = "^2.1.0"
 torchaudio = "^2.1.0"
 vocal-remover = {git = "https://github.com/Japan7/vocal-remover.git", rev = "00537bfe94f1575e9bae584a9e97220058b2ca9c"}
@@ -27,5 +27,8 @@ ipykernel = "^6.26.0"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.pyright]
+pythonVersion = "3.10"
+
 [tool.ruff]
-target-version = "py311"
+target-version = "py310"

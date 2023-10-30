@@ -1,12 +1,16 @@
 # yohane
 
+<a target="_blank" href="https://colab.research.google.com/github/Japan7/yohane/blob/main/notebook/yohane.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
 Takes a song and its lyrics, extracts the vocals, splits the syllables and computes a forced alignment to generate a karaoke in an [Aegisub](https://aegisub.org) subtitles file (.ass).
 
 ## Getting Started
 
 **Requirements:**
 
-- [Python 3.11](https://www.python.org)
+- [Python 3.10 or 3.11](https://www.python.org)
 - [Poetry](https://python-poetry.org)
 - [FFmpeg](https://ffmpeg.org)
 
