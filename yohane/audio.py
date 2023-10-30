@@ -155,9 +155,3 @@ class HybridDemucsVocalsExtractor(VocalsExtractor):
         audios = dict(zip(sources_list, sources))
 
         return audios["vocals"], sample_rate
-
-
-VOCALS_EXTRACTORS: dict[str, type[VocalsExtractor]] = {
-    "VocalRemover": VocalRemoverVocalsExtractor,
-    "HybridDemucs": HybridDemucsVocalsExtractor,
-}
