@@ -1,6 +1,7 @@
 import logging
 from abc import ABC, abstractmethod
 from importlib.resources import as_file, files
+from pathlib import Path
 from typing import cast
 
 import torch
@@ -59,23 +60,52 @@ class VocalRemoverVocalsExtractor(VocalsExtractor):
     https://github.com/tsurumeso/vocal-remover
     """
 
+    def __init__(
+        self,
+        pretrained_model: Path | None = None,
+        n_fft: int = 2048,
+        hop_length: int = 1024,
+        batchsize: int = 4,
+        cropsize: int = 256,
+        postprocess: bool = False,
+    ):
+        super().__init__()
+        self.n_fft = n_fft
+        self.hop_length = hop_length
+        self.batchsize = batchsize
+        self.cropsize = cropsize
+        self.postprocess = postprocess
+
+        if pretrained_model is not None:
+            self.pretrained_model = pretrained_model
+        else:
+            state_resource = files(vocal_remover.models) / "baseline.pth"
+            with as_file(state_resource) as path:
+                self.pretrained_model = path
+
     def __call__(self, waveform: torch.Tensor, sample_rate: int):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         logger.info(f"Using {device=}")
 
-        state_resource = files(vocal_remover.models) / "baseline.pth"
-        with as_file(state_resource) as path:
-            state = torch.load(path, map_location=device)
+        state = torch.load(self.pretrained_model, map_location=device)
 
-        separator_model = nets.CascadedNet(2048, 32, 128)
+        separator_model = nets.CascadedNet(self.n_fft, 32, 128)
         separator_model.load_state_dict(state)
         separator_model.to(device)
 
         waveform = waveform.repeat(2, 1) if waveform.ndim == 1 else waveform
 
-        waveform_spec = spec_utils.wave_to_spectrogram(waveform, 1024, 2048)
+        waveform_spec = spec_utils.wave_to_spectrogram(
+            waveform, self.hop_length, self.n_fft
+        )
 
-        sp = Separator(separator_model, device, 4, 256)
+        sp = Separator(
+            separator_model,
+            device,
+            self.batchsize,
+            self.cropsize,
+            self.postprocess,
+        )
         _, vocals_spec = sp.separate(waveform_spec)
 
         vocals = spec_utils.spectrogram_to_wave(vocals_spec)
@@ -89,6 +119,7 @@ class HybridDemucsVocalsExtractor(VocalsExtractor):
     """
 
     def __init__(self, segment=10.0, overlap=0.1):
+        super().__init__()
         self.bundle = HDEMUCS_HIGH_MUSDB_PLUS
         self.segment = segment
         self.overlap = overlap
