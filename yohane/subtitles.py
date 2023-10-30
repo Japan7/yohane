@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from functools import partial
-from importlib.metadata import metadata
 
 from pysubs2 import SSAEvent, SSAFile
 from torch import Tensor
@@ -9,9 +8,7 @@ from torchaudio.pipelines import Wav2Vec2FABundle
 
 from yohane.audio import fa_bundle
 from yohane.lyrics import Lyrics
-
-PKG_META = metadata(__package__)
-IDENTIFIER = f"{PKG_META['Name']} {PKG_META['Version']} ({PKG_META['Home-page']})"
+from yohane.utils import get_identifier
 
 
 @dataclass
@@ -37,7 +34,7 @@ def make_ass(
     )
 
     subs = SSAFile()
-    subs.info["Original Timing"] = IDENTIFIER
+    subs.info["Original Timing"] = get_identifier()
 
     for line, syllables in zip(lyrics.lines, all_line_syllables):
         start_syl = syllables[0]
