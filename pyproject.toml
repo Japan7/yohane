@@ -10,7 +10,7 @@ repository = "https://github.com/Japan7/yohane"
 yohane = "yohane.__main__:main"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.12"
+python = ">=3.12,<3.13"
 torch = "^2.1.0"
 torchaudio = "^2.1.0"
 vocal-remover = {git = "https://github.com/Japan7/vocal-remover.git", rev = "00537bfe94f1575e9bae584a9e97220058b2ca9c"}
