@@ -69,6 +69,7 @@ def main(song_file: Path, lyrics_str: str, vocals_extractor: VocalsExtractor | N
     if vocals_extractor is not None:
         logger.info(f"Extracting vocals with {vocals_extractor=}")
         waveform, sample_rate = vocals_extractor(waveform, sample_rate)
+        waveform = waveform.to("cpu")  # required for torchaudio.save
         torchaudio.save(song_file.with_suffix(".vocals.wav"), waveform, sample_rate)  # type: ignore
 
     logger.info("Preparing lyrics")

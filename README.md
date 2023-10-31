@@ -1,4 +1,4 @@
-# yohane
+# yohane <img src="https://hikari.butaishoujo.moe/p/cff31d42/715459361677508609.png" height="24px" width="24px" style="display:inline;object-fit:contain;vertical-align:middle" >
 
 Takes a song and its lyrics, extracts the vocals, splits the syllables and computes a forced alignment to generate a karaoke in an [Aegisub](https://aegisub.org) subtitles file (.ass).
 
