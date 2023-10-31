@@ -44,12 +44,12 @@ poetry run yohane
 
 In Aegisub:
 
-3. Load the .ass and the video
-4. Replace the _Default_ style with your own
-5. Due to the normalization during the process, lines are lowercased and special characters have been removed: use the original lines in comments to fix the timed lines
-6. Subtitle > Select Lines… > check _Comments_ and _Set selection_ > OK and delete the selected lines
-7. Listen to each line and fix their End time
-8. Watch each line with the video and fix/merge syllable timings in karaoke mode if necessary
+1. Load the .ass and the video
+2. Replace the _Default_ style with your own
+3. Due to the normalization during the process, lines are lowercased and special characters have been removed: use the original lines in comments to fix the timed lines
+4. Subtitle > Select Lines… > check _Comments_ and _Set selection_ > OK and delete the selected lines
+5. Listen to each line and fix their End time
+6. Iterate over each line in karaoke mode and merge/fix syllable timings
 
 You're quite done here. Maybe try further styling?
 
