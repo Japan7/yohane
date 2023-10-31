@@ -12,6 +12,8 @@ Open the [notebook](notebook/yohane.ipynb) in Google Colab to use their offered 
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
+The karaoke generation will take less than a minute in their environment.
+
 ### Local environment
 
 **Requirements:**
@@ -27,13 +29,6 @@ poetry install --only main
 poetry run yohane
 ```
 
-<!-- Tagged releases are also available on PyPI (`pip install yohane`). -->
-
-For a ~4.5 min song, on a MacBook Pro 2018 (i5-8259U), CPU only:
-
-- Vocals extraction takes ~5 min with vocal-remover
-- Forced alignment takes 5-10 min
-
 ## Caveats
 
 - This script is optimized for Japanese songs
@@ -42,9 +37,25 @@ For a ~4.5 min song, on a MacBook Pro 2018 (i5-8259U), CPU only:
 - Forced alignment can't deal with overlapping vocals
 - It is not fully accurate, you should still check and edit the result!
 
+## Recommended workflow
+
+1. Get the song and its lyrics
+2. Use the yohane notebook or the CLI locally to generate the karaoke file
+
+In Aegisub:
+
+3. Load the .ass and the video
+4. Replace the _Default_ style with your own
+5. Due to the normalization during the process, lines are lowercased and special characters have been removed: use the original lines in comments to fix the timed lines
+6. Subtitle > Select Lines… > check _Comments_ and _Set selection_ > OK and delete the selected lines
+7. Listen to each line and fix their End time
+8. Watch each line with the video and fix/merge syllable timings in karaoke mode if necessary
+
+You're quite done here. Maybe try further styling?
+
 ## Sample
 
-[Aqours - PV - HAPPY PARTY TRAIN](https://hikari.butaishoujo.moe/v/9a11c0b1/Aqours%20-%20PV%20-%20HAPPY%20PARTY%20TRAIN.mp4) (hardsub extract, rev. [c43742c](https://github.com/Japan7/yohane/commit/c43742c1eb2ce9a86089a8d1b5fdc1fad458a91e))
+[Aqours - PV - HAPPY PARTY TRAIN](https://hikari.butaishoujo.moe/v/9a11c0b1/Aqours%20-%20PV%20-%20HAPPY%20PARTY%20TRAIN.mp4) (unedited hardsub extract, rev. [c43742c](https://github.com/Japan7/yohane/commit/c43742c1eb2ce9a86089a8d1b5fdc1fad458a91e))
 
 ## References
 
