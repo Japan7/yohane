@@ -28,8 +28,6 @@ jobs:
           pip install poetry
           poetry install
       - run: poetry run pyright
-        env:
-          PYRIGHT_PYTHON_FORCE_VERSION: latest
       - run: poetry run ruff check yohane/
         if: always()
 
