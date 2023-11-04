@@ -7,9 +7,10 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
-  check:
+  bump:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -44,7 +45,7 @@ jobs:
       - name: Commit new dev version
         run: |
           git checkout main
-          NEW_PATCH=$(git tag | grep -c $MINOR)
+          NEW_PATCH=$(git tag | grep $MINOR | wc -l)
           VERSION=${MINOR}.${NEW_PATCH}-dev
           poetry version $VERSION
           git commit -am $VERSION
