@@ -1,0 +1,51 @@
+name: Calendar Versioning
+
+on:
+  schedule:
+    - cron: "30 23 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Check for new commits
+        id: check
+        run: |
+          LAST_TAG=$(git tag --sort -v:refname | head -n1)
+          echo NB_COMMITS=$(git rev-list $LAST_TAG..main --count) >> $GITHUB_OUTPUT
+      - uses: andymckay/cancel-action@0.3
+        if: steps.check.outputs.NB_COMMITS <= 1
+      - name: Prepare
+        id: prepare
+        run: |
+          pip install poetry
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          echo MINOR=$(date +%Y.%m) >> $GITHUB_ENV
+      - name: Tag new version
+        run: |
+          git checkout -b release
+          NEW_PATCH=$(git tag | grep $MINOR | wc -l)
+          VERSION=${MINOR}.${NEW_PATCH}
+          poetry version $VERSION
+          git commit -am $VERSION
+          git tag $VERSION
+          git push --tags origin $VERSION
+      - name: Commit new dev version
+        run: |
+          git checkout main
+          NEW_PATCH=$(git tag | grep -c $MINOR)
+          VERSION=${MINOR}.${NEW_PATCH}-dev
+          poetry version $VERSION
+          git commit -am $VERSION
+          git push origin main

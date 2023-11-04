@@ -53,6 +53,7 @@ jobs:
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
       - uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: dist
           path: dist/
