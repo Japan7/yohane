@@ -32,11 +32,11 @@ CLI_VOCALS_EXTRACTORS_OPTS: dict[str, type[VocalsExtractor] | None] = {
 )
 @click.argument(
     "song_file",
-    type=click.File(),
+    type=click.Path(exists=True, path_type=Path),
 )
 @click.argument(
     "lyrics_file",
-    type=click.Path(exists=True, path_type=Path),
+    type=click.File(),
 )
 @click.option(
     "-e",
