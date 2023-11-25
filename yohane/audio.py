@@ -67,14 +67,12 @@ class VocalRemoverVocalsExtractor(VocalsExtractor):
         hop_length: int = 1024,
         batchsize: int = 4,
         cropsize: int = 256,
-        postprocess: bool = False,
     ):
         super().__init__()
         self.n_fft = n_fft
         self.hop_length = hop_length
         self.batchsize = batchsize
         self.cropsize = cropsize
-        self.postprocess = postprocess
 
         if pretrained_model is not None:
             self.pretrained_model = pretrained_model
@@ -87,28 +85,27 @@ class VocalRemoverVocalsExtractor(VocalsExtractor):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         logger.info(f"Using {device=}")
 
-        state = torch.load(self.pretrained_model, map_location=device)
-
-        separator_model = nets.CascadedNet(self.n_fft, 32, 128)
-        separator_model.load_state_dict(state)
-        separator_model.to(device)
+        model = nets.CascadedNet(self.n_fft, self.hop_length, 32, 128)
+        model.load_state_dict(
+            torch.load(self.pretrained_model, map_location=torch.device("cpu"))
+        )
+        model.to(device)
 
         waveform = waveform.repeat(2, 1) if waveform.ndim == 1 else waveform
 
         waveform_spec = spec_utils.wave_to_spectrogram(
-            waveform, self.hop_length, self.n_fft
+            waveform.numpy(), self.hop_length, self.n_fft
         )
 
         sp = Separator(
-            separator_model,
+            model,
             device,
             self.batchsize,
             self.cropsize,
-            self.postprocess,
         )
         _, vocals_spec = sp.separate(waveform_spec)
 
-        vocals = spec_utils.spectrogram_to_wave(vocals_spec)
+        vocals = spec_utils.spectrogram_to_wave(vocals_spec, hop_length=self.hop_length)
 
         return torch.Tensor(vocals), sample_rate
 

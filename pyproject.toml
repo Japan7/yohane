@@ -13,7 +13,7 @@ yohane = "yohane.__main__:cli"
 python = ">=3.10,<3.12"
 torch = "^2.1.0"
 torchaudio = "^2.1.0"
-vocal-remover = {git = "https://github.com/Japan7/vocal-remover.git", rev = "00537bfe94f1575e9bae584a9e97220058b2ca9c"}
+vocal-remover = {git = "https://github.com/Japan7/vocal-remover.git", rev = "c3d25ebb4bd9da64792f4ad22205e69fed3698f5"}
 pysubs2 = "^1.6.1"
 regex = "^2023.10.3"
 click = "^8.1.7"
