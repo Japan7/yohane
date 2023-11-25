@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "yohane"
-version = "2023.11.8-dev"
+version = "2023.11.8"
 description = ""
 authors = ["NextFire <git@yuru.moe>", "Voltini <slimen3@hotmail.fr>"]
 readme = "README.md"
