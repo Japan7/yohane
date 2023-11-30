@@ -85,7 +85,7 @@ class VocalRemoverVocalsExtractor(VocalsExtractor):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         logger.info(f"Using {device=}")
 
-        model = nets.CascadedNet(self.n_fft, self.hop_length, 32, 128)
+        model = nets.CascadedNet(self.n_fft, self.hop_length, 32, 128, True)
         model.load_state_dict(
             torch.load(self.pretrained_model, map_location=torch.device("cpu"))
         )
