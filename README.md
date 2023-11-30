@@ -1,4 +1,4 @@
-# yohane <img src="https://hikari.butaishoujo.moe/p/cff31d42/715459361677508609.png" height="24px" width="24px" style="display:inline;object-fit:contain;vertical-align:middle" >
+# yohane <img src="https://hikari.butaishoujo.moe/p/06bfbaf3/680954239740411973.png" height="24px" width="24px" style="display:inline;object-fit:contain;vertical-align:middle" >
 
 Takes a song and its lyrics, extracts the vocals, splits the syllables and computes a forced alignment to generate a karaoke in an [Aegisub](https://aegisub.org) subtitles file (.ass).
 
@@ -12,7 +12,7 @@ Open the [notebook](notebook/yohane.ipynb) in Google Colab to use their offered 
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-The karaoke generation will take less than a minute in their environment.
+The full pipeline will be completed in less than a minute in their environment.
 
 ### Local environment
 
@@ -31,8 +31,8 @@ poetry run yohane
 
 ## Caveats
 
-- This script is optimized for Japanese songs
-- Torchaudio ffmpeg backend is not available on Windows: convert your song file to .wav before using yohane with `ffmpeg -i <src> <out>.wav`
+- Yohane's syllable splitting is optimized for Japanese lyrics
+- Torchaudio ffmpeg backend is not available on Windows: convert your song file to .wav beforehand with `ffmpeg -i <src> <out>.wav`
 - Long syllables at end of lines will often be truncated
 - Forced alignment can't deal with overlapping vocals
 - It is not fully accurate, you should still check and edit the result!
@@ -51,11 +51,9 @@ In Aegisub:
 5. Listen to each line and fix their End time
 6. Iterate over each line in karaoke mode and merge/fix syllable timings
 
-You're quite done here. Maybe try further styling?
-
 ## Sample
 
-[Aqours - PV - HAPPY PARTY TRAIN](https://hikari.butaishoujo.moe/v/9a11c0b1/Aqours%20-%20PV%20-%20HAPPY%20PARTY%20TRAIN.mp4) (unedited hardsub extract, rev. [c43742c](https://github.com/Japan7/yohane/commit/c43742c1eb2ce9a86089a8d1b5fdc1fad458a91e))
+[Aqours - PV - HAPPY PARTY TRAIN](https://hikari.butaishoujo.moe/v/9a11c0b1/Aqours%20-%20PV%20-%20HAPPY%20PARTY%20TRAIN.mp4) (rev. [c43742c](https://github.com/Japan7/yohane/commit/c43742c1eb2ce9a86089a8d1b5fdc1fad458a91e))
 
 ## References
 
