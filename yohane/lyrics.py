@@ -2,12 +2,12 @@ from dataclasses import dataclass
 from functools import cached_property
 
 import regex as re
-
+import pyphen
 
 @dataclass
 class _Text:
     raw: str
-
+    language: str
     @cached_property
     def normalized(self):
         return normalize_uroman(self.raw)
@@ -21,21 +21,33 @@ class _Text:
 class Lyrics(_Text):
     @cached_property
     def lines(self):
-        return [Line(line) for line in filter(None, self.raw.splitlines())]
+        return [Line(line, self.language) for line in filter(None, self.raw.splitlines())]
 
 
 @dataclass
 class Line(_Text):
     @cached_property
     def words(self):
-        return [Word(word) for word in filter(None, self.transcript)]
+        return [Word(word, self.language) for word in filter(None, self.transcript)]
 
 
 @dataclass
 class Word(_Text):
     @cached_property
     def syllables(self):
-        return auto_split(self.normalized)
+        res = self.normalized
+        if self.language == 'jp':
+            res = auto_split(res)
+        else:
+            if self.language == 'en':
+                dic = pyphen.Pyphen(lang="en_EN")
+            elif self.language == 'fr':
+                dic = pyphen.Pyphen(lang="fr_FR")
+            else:
+                raise ValueError(f"Unsupported language {self.language}")
+            res = dic.inserted(res)
+            res = res.split("-")
+        return res
 
 
 def normalize_uroman(text: str):

@@ -46,7 +46,14 @@ CLI_VOCALS_EXTRACTORS_OPTS: dict[str, type[VocalsExtractor] | None] = {
     show_default=True,
     help="Vocals extractor to use. 'None' to disable.",
 )
-def cli(song_file: Path, lyrics_file: TextIOWrapper, vocals_extractor: str):
+@click.option(
+    "-l",
+    "--language",
+    type=click.STRING,
+    default="jp",
+    help="Language of the lyrics in ISO 639-1 norm. Default is Japanese (jp)."
+)
+def cli(song_file: Path, lyrics_file: TextIOWrapper, vocals_extractor: str, language: str):
     logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO").upper())
 
     extractor_cls = CLI_VOCALS_EXTRACTORS_OPTS[vocals_extractor]
@@ -55,7 +62,7 @@ def cli(song_file: Path, lyrics_file: TextIOWrapper, vocals_extractor: str):
     yohane = Yohane(extractor)
 
     yohane.load_song(song_file)
-    yohane.load_lyrics(lyrics_file.read())
+    yohane.load_lyrics(lyrics_file.read(), language)
 
     yohane.extract_vocals()
     if yohane.vocals is not None:
