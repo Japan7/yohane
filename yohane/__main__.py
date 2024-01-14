@@ -5,6 +5,7 @@ from pathlib import Path
 
 import click
 import torchaudio
+from pyphen import LANGUAGES
 
 from yohane.audio import (
     HybridDemucsVocalsExtractor,
@@ -49,7 +50,7 @@ CLI_VOCALS_EXTRACTORS_OPTS: dict[str, type[VocalsExtractor] | None] = {
 @click.option(
     "-l",
     "--language",
-    type=click.STRING,
+    type=click.Choice(list(LANGUAGES.keys()) + ["jp"], case_sensitive=False),
     default="jp",
     help="Language of the lyrics in ISO 639-1 norm. Default is Japanese (jp)."
 )

@@ -39,12 +39,7 @@ class Word(_Text):
         if self.language == 'jp':
             res = auto_split(res)
         else:
-            if self.language == 'en':
-                dic = pyphen.Pyphen(lang="en_EN")
-            elif self.language == 'fr':
-                dic = pyphen.Pyphen(lang="fr_FR")
-            else:
-                raise ValueError(f"Unsupported language {self.language}")
+            dic = pyphen.Pyphen(lang=self.language)
             res = dic.inserted(res)
             res = res.split("-")
         return res
