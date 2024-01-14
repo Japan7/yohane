@@ -8,6 +8,7 @@ import pyphen
 class _Text:
     raw: str
     language: str
+
     @cached_property
     def normalized(self):
         return normalize_uroman(self.raw)
