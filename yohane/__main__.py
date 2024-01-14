@@ -52,7 +52,7 @@ CLI_VOCALS_EXTRACTORS_OPTS: dict[str, type[VocalsExtractor] | None] = {
     "--language",
     type=click.Choice(list(LANGUAGES.keys()) + ["jp"], case_sensitive=False),
     default="jp",
-    help="Language of the lyrics in ISO 639-1 norm. Default is Japanese (jp)."
+    help="Language of the lyrics from the available LibreOffice dictionaries. Default is Japanese (jp)."
 )
 def cli(song_file: Path, lyrics_file: TextIOWrapper, vocals_extractor: str, language: str):
     logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO").upper())
