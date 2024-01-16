@@ -48,5 +48,5 @@ jobs:
           NEW_PATCH=$(git tag | grep $MINOR | wc -l)
           VERSION=${MINOR}.${NEW_PATCH}-dev
           poetry version $VERSION
-          git commit -am $VERSION
+          git commit -am $VERSION -m '[skip ci]'
           git push origin main
