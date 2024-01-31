@@ -34,9 +34,9 @@ class Yohane:
             assert self.song
             self.vocals = self.vocals_extractor(*self.song)
 
-    def load_lyrics(self, lyrics_str: str):
+    def load_lyrics(self, lyrics_str: str, language: str):
         logger.info("Loading lyrics")
-        self.lyrics = Lyrics(lyrics_str)
+        self.lyrics = Lyrics(lyrics_str, language)
 
     def force_align(self):
         logger.info("Computing forced alignment")
