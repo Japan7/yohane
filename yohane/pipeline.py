@@ -26,7 +26,7 @@ class Yohane:
 
     def load_song(self, song_file: Path):
         logger.info("Loading song")
-        self.song = torchaudio.load(song_file)  # type: ignore
+        self.song = torchaudio.load(song_file)
 
     def extract_vocals(self):
         if self.vocals_extractor is not None:
