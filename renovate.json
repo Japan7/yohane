@@ -14,5 +14,9 @@
       "automergeType": "branch",
       "excludePackageNames": ["python"]
     }
-  ]
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  }
 }
