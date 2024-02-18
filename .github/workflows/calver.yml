@@ -13,10 +13,10 @@ jobs:
   bump:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5
         with:
           python-version: "3.10"
       - name: Check for new commits
@@ -24,7 +24,7 @@ jobs:
         run: |
           LAST_TAG=$(git tag --sort -v:refname | head -n1)
           echo NB_COMMITS=$(git rev-list $LAST_TAG..main --count) >> $GITHUB_OUTPUT
-      - uses: andymckay/cancel-action@0.4
+      - uses: andymckay/cancel-action@271cfbfa11ca9222f7be99a47e8f929574549e0a # 0.4
         if: steps.check.outputs.NB_COMMITS <= 1
       - name: Prepare
         id: prepare
