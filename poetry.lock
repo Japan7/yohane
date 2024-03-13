@@ -1117,6 +1117,7 @@ description = "Nvidia JIT LTO Library"
 optional = true
 python-versions = ">=3"
 files = [
+    {file = "nvidia_nvjitlink_cu12-12.4.99-py3-none-manylinux2014_aarch64.whl", hash = "sha256:75d6498c96d9adb9435f2bbdbddb479805ddfb97b5c1b32395c694185c20ca57"},
     {file = "nvidia_nvjitlink_cu12-12.4.99-py3-none-manylinux2014_x86_64.whl", hash = "sha256:c6428836d20fe7e327191c175791d38570e10762edc588fb46749217cd444c74"},
     {file = "nvidia_nvjitlink_cu12-12.4.99-py3-none-win_amd64.whl", hash = "sha256:991905ffa2144cb603d8ca7962d75c35334ae82bf92820b6ba78157277da1ad2"},
 ]
@@ -1329,13 +1330,13 @@ diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
 name = "pyright"
-version = "1.1.353"
+version = "1.1.354"
 description = "Command line wrapper for pyright"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyright-1.1.353-py3-none-any.whl", hash = "sha256:8d7e6719d0be4fd9f4a37f010237c6a74d91ec1e7c81de634c2f3f9965f8ab43"},
-    {file = "pyright-1.1.353.tar.gz", hash = "sha256:24343bbc2a4f997563f966b6244a2e863473f1d85af6d24abcb366fcbb4abca9"},
+    {file = "pyright-1.1.354-py3-none-any.whl", hash = "sha256:f28d61ae8ae035fc52ded1070e8d9e786051a26a4127bbd7a4ba0399b81b37b5"},
+    {file = "pyright-1.1.354.tar.gz", hash = "sha256:b1070dc774ff2e79eb0523fe87f4ba9a90550de7e4b030a2bc9e031864029a1f"},
 ]
 
 [package.dependencies]
