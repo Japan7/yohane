@@ -1995,4 +1995,4 @@ torch = ["torch", "torchaudio"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.12"
-content-hash = "70bf20ed9d8bc37504996fb792712c94aa4a9ab5023db0f3c7a12cb3314b345d"
+content-hash = "8dd5e30dcc1659a2ab1a4bfea81cb1d32cad8b8af6a446de4209552e8e014b8d"
