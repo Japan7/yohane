@@ -23,7 +23,7 @@ typer = { version = "0.10.0", extras = ["all"] }
 torch = ["torch", "torchaudio"]
 
 [tool.poetry.group.dev.dependencies]
-pyright = "1.1.355"
+pyright = "1.1.356"
 ruff = "0.3.4"
 
 [build-system]
