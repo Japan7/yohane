@@ -12,7 +12,7 @@ yohane = "yohane:app"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
-torch = { version = "2.2.1", optional = true }
+torch = { version = "2.2.2", optional = true }
 torchaudio = { version = "2.2.1", optional = true }
 vocal-remover = { git = "https://github.com/Japan7/vocal-remover.git", rev = "24f34d7e0b92e0e8170acbbe3ef8e64b98b29f2b" }
 pysubs2 = "1.6.1"
