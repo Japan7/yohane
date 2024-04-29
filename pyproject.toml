@@ -11,10 +11,10 @@ repository = "https://github.com/Japan7/yohane"
 yohane = "yohane:app"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.12"
+python = "^3.10"
 torch = { version = "2.3.0", optional = true }
 torchaudio = { version = "2.3.0", optional = true }
-vocal-remover = { git = "https://github.com/Japan7/vocal-remover.git", rev = "24f34d7e0b92e0e8170acbbe3ef8e64b98b29f2b" }
+vocal-remover = { git = "https://github.com/Japan7/vocal-remover.git", rev = "32f21722eeb59b6e125941bfff646b8e453707ee" }
 pysubs2 = "1.6.1"
 regex = "2024.4.28"
 typer-slim = { version = "0.12.3", extras = ["standard"] }

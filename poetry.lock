@@ -1993,7 +1993,7 @@ name = "vocal-remover"
 version = "6.0.0b2"
 description = ""
 optional = false
-python-versions = ">=3.9,<3.12"
+python-versions = "^3.9"
 files = []
 develop = false
 
@@ -2010,13 +2010,13 @@ torch = ["torch (>=2.1.0,<2.2.0)"]
 [package.source]
 type = "git"
 url = "https://github.com/Japan7/vocal-remover.git"
-reference = "24f34d7e0b92e0e8170acbbe3ef8e64b98b29f2b"
-resolved_reference = "24f34d7e0b92e0e8170acbbe3ef8e64b98b29f2b"
+reference = "32f21722eeb59b6e125941bfff646b8e453707ee"
+resolved_reference = "32f21722eeb59b6e125941bfff646b8e453707ee"
 
 [extras]
 torch = ["torch", "torchaudio"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = ">=3.10,<3.12"
-content-hash = "56dd5b0c34cf74150a8efb9a31ed6950ad5751b0277af574f7d46a93b009e84c"
+python-versions = "^3.10"
+content-hash = "d82bc39a1ef085be5fdf88e79b4e6add57d7c30f1141756c7edeaedbb147a4aa"

@@ -18,7 +18,7 @@ The full pipeline will be completed in less than a minute in their environment.
 
 **Requirements:**
 
-- [Python 3.10 or 3.11](https://www.python.org)
+- [Python 3.10+](https://www.python.org)
 - [Poetry](https://python-poetry.org)
 - [PyTorch and Torchaudio](https://pytorch.org/get-started/locally/#start-locally)
 - [FFmpeg](https://ffmpeg.org)
