@@ -24,7 +24,7 @@ torch = ["torch", "torchaudio"]
 
 [tool.poetry.group.dev.dependencies]
 pyright = "1.1.362"
-ruff = "0.4.3"
+ruff = "0.4.4"
 
 [build-system]
 requires = ["poetry-core"]
