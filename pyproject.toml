@@ -12,8 +12,8 @@ yohane = "yohane:app"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-torch = { version = "2.3.0", optional = true }
-torchaudio = { version = "2.3.0", optional = true }
+torch = { version = "*", optional = true }
+torchaudio = { version = "*", optional = true }
 vocal-remover = { git = "https://github.com/Japan7/vocal-remover.git", rev = "32f21722eeb59b6e125941bfff646b8e453707ee" }
 pysubs2 = "1.7.2"
 regex = "2024.5.15"
