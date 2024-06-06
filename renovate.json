@@ -4,5 +4,11 @@
     "github>Japan7/renovate-config",
     "github>Japan7/renovate-config:python",
     "github>Japan7/renovate-config:python-app"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["torch", "torchaudio"],
+      "enabled": false
+    }
   ]
 }
