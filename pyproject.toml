@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "yohane"
-version = "2024.07.10-dev"
+version = "2024.07.11-dev"
 description = ""
 authors = ["NextFire <git@yuru.moe>", "Voltini <slimen3@hotmail.fr>"]
 license = "MIT"
