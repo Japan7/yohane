@@ -1389,13 +1389,13 @@ diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
 name = "pyright"
-version = "1.1.372"
+version = "1.1.373"
 description = "Command line wrapper for pyright"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyright-1.1.372-py3-none-any.whl", hash = "sha256:25b15fb8967740f0949fd35b963777187f0a0404c0bd753cc966ec139f3eaa0b"},
-    {file = "pyright-1.1.372.tar.gz", hash = "sha256:a9f5e0daa955daaa17e3d1ef76d3623e75f8afd5e37b437d3ff84d5b38c15420"},
+    {file = "pyright-1.1.373-py3-none-any.whl", hash = "sha256:b805413227f2c209f27b14b55da27fe5e9fb84129c9f1eb27708a5d12f6f000e"},
+    {file = "pyright-1.1.373.tar.gz", hash = "sha256:f41bcfc8b9d1802b09921a394d6ae1ce19694957b628bc657629688daf8a83ff"},
 ]
 
 [package.dependencies]
@@ -2031,4 +2031,4 @@ torch = ["torch", "torchaudio"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "089b831ea4f8058eb2abc603d75674a0976f1ccbc82160024b690d6e664ccce5"
+content-hash = "e945e0513af7dcb703579e4daf04966abc6d38a9049bc012d3fe71c0a640bbac"
