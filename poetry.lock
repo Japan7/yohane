@@ -1407,13 +1407,13 @@ dev = ["twine (>=3.4.1)"]
 
 [[package]]
 name = "pysubs2"
-version = "1.7.2"
+version = "1.7.3"
 description = "A library for editing subtitle files"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pysubs2-1.7.2-py3-none-any.whl", hash = "sha256:f6de61539df485f8d4ad0c5b737f2dc1f2a9c65afcbe93177ebff25815163865"},
-    {file = "pysubs2-1.7.2.tar.gz", hash = "sha256:b708904269cb252dbc51de75a372e04ab00c368939bb8220f7b0f940d978725e"},
+    {file = "pysubs2-1.7.3-py3-none-any.whl", hash = "sha256:de438c868d2c656781c4a78f220ec3a6fd6d52be49266c81fe912d2527002d44"},
+    {file = "pysubs2-1.7.3.tar.gz", hash = "sha256:b0130f373390736754531be4e68a0fa521e825fa15cc8ff506e4f8ca2c17459a"},
 ]
 
 [[package]]
@@ -2031,4 +2031,4 @@ torch = ["torch", "torchaudio"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "a68ce3a53bd95a0e2af1f4c5f1e3c84ba317650b2edbab21a908107e01d330fb"
+content-hash = "7d64d2ec685f1745c06175388ec38d521476e3209a82bb938f71f4b7c696c609"
