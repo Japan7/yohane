@@ -23,7 +23,7 @@ typer-slim = { version = "0.12.3", extras = ["standard"] }
 torch = ["torch", "torchaudio"]
 
 [tool.poetry.group.dev.dependencies]
-pyright = "1.1.374"
+pyright = "1.1.375"
 ruff = "0.5.6"
 
 [build-system]
