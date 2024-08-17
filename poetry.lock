@@ -1919,13 +1919,13 @@ tutorials = ["matplotlib", "pandas", "tabulate"]
 
 [[package]]
 name = "typer-slim"
-version = "0.12.3"
+version = "0.12.4"
 description = "Typer, build great CLIs. Easy to code. Based on Python type hints."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "typer_slim-0.12.3-py3-none-any.whl", hash = "sha256:142c73d91ac1df79a49cec5a1c2210c00b1b4040a91014b539792af5ba81c65c"},
-    {file = "typer_slim-0.12.3.tar.gz", hash = "sha256:633965eb413074aa6c47549d1820832f229709e9a59857a4f57ee82b655602af"},
+    {file = "typer_slim-0.12.4-py3-none-any.whl", hash = "sha256:790a9cd6589494ce063a178473ccdad878fa36bc03f428710f5864670e988144"},
+    {file = "typer_slim-0.12.4.tar.gz", hash = "sha256:4629238b526feb8ea71ad663d058ae8370b1520bb40f48b2f8e0c67a551b399f"},
 ]
 
 [package.dependencies]
@@ -1996,4 +1996,4 @@ torch = ["torch", "torchaudio"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "362ec3cf4fa40d7de2b16e8f28dcf59adf79a692036386c69668362c0db7a400"
+content-hash = "b52c6c8815cc1fcf3ab620292a0bb5522fe773457b5f2885409003651f023d8f"
