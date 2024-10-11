@@ -20,6 +20,9 @@ dev-dependencies = ["pyright==1.1.384", "ruff==0.6.9"]
 [tool.uv.sources]
 vocal-remover = { git = "https://github.com/Japan7/vocal-remover.git", branch = "6.0.0b4" }
 
+[project.urls]
+Repository = "https://github.com/Japan7/yohane.git"
+
 [project.scripts]
 yohane = "yohane:app"
 
