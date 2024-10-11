@@ -85,7 +85,9 @@ class VocalRemoverVocalsExtractor(VocalsExtractor):
         logger.info(f"Using {device=}")
 
         model = nets.CascadedNet(self.n_fft, self.hop_length, 32, 128)
-        model.load_state_dict(torch.load(self.pretrained_model, map_location="cpu"))
+        model.load_state_dict(
+            torch.load(self.pretrained_model, map_location="cpu", weights_only=False)
+        )
         model.to(device)
 
         waveform = waveform.repeat(2, 1) if waveform.ndim == 1 else waveform
