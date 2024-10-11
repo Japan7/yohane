@@ -22,7 +22,7 @@ The full pipeline will be completed in less than a minute in their environment.
 - [FFmpeg](https://ffmpeg.org)
 
 ```sh
-uvx --from git+https://github.com/Japan7/yohane -p 3.11 yohane
+uvx --from git+https://github.com/Japan7/yohane yohane
 ```
 
 ## Caveats
