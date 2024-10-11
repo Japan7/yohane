@@ -34,7 +34,7 @@ jobs:
           git checkout -b release
           NEW_PATCH=$(git tag | grep $MINOR | wc -l)
           VERSION=${MINOR}.${NEW_PATCH}
-          sed -i '' "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+          sed -i "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
           git commit -am $VERSION
           git tag $VERSION
           git push --tags origin $VERSION
@@ -43,6 +43,6 @@ jobs:
           git checkout main
           NEW_PATCH=$(git tag | grep $MINOR | wc -l)
           VERSION=${MINOR}.${NEW_PATCH}-dev
-          sed -i '' "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+          sed -i "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
           git commit -am $VERSION
           git push origin main
