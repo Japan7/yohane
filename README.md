@@ -18,15 +18,11 @@ The full pipeline will be completed in less than a minute in their environment.
 
 **Requirements:**
 
-- [Python 3.10+](https://www.python.org)
 - [uv](https://github.com/astral-sh/uv)
-- [PyTorch and Torchaudio](https://pytorch.org/get-started/locally/#start-locally)
 - [FFmpeg](https://ffmpeg.org)
 
 ```sh
-git clone https://github.com/Japan7/yohane.git
-cd yohane/
-uv run yohane
+uvx --from git+https://github.com/Japan7/yohane -p 3.11 yohane
 ```
 
 ## Caveats
