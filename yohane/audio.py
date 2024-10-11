@@ -86,7 +86,7 @@ class VocalRemoverVocalsExtractor(VocalsExtractor):
 
         model = nets.CascadedNet(self.n_fft, self.hop_length, 32, 128)
         model.load_state_dict(
-            torch.load(self.pretrained_model, map_location="cpu", weights_only=False)
+            torch.load(self.pretrained_model, map_location="cpu", weights_only=True)
         )
         model.to(device)
 
