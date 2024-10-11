@@ -70,7 +70,7 @@ def generate(
     if yohane.vocals is not None:
         waveform, sample_rate = yohane.vocals
         waveform = waveform.to("cpu")
-        torchaudio.save(song_file.with_suffix(".vocals.wav"), waveform, sample_rate)
+        torchaudio.save(song_file.with_suffix(".vocals.wav"), waveform, sample_rate)  # type: ignore
 
     yohane.force_align()
 

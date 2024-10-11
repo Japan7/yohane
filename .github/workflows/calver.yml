@@ -16,9 +16,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
       - name: Check for new commits
         id: check
         run: |
@@ -29,7 +26,6 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          pip install poetry
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           echo MINOR=$(date +%Y.%m) >> $GITHUB_ENV
@@ -38,7 +34,7 @@ jobs:
           git checkout -b release
           NEW_PATCH=$(git tag | grep $MINOR | wc -l)
           VERSION=${MINOR}.${NEW_PATCH}
-          poetry version $VERSION
+          sed -i '' "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
           git commit -am $VERSION
           git tag $VERSION
           git push --tags origin $VERSION
@@ -47,6 +43,6 @@ jobs:
           git checkout main
           NEW_PATCH=$(git tag | grep $MINOR | wc -l)
           VERSION=${MINOR}.${NEW_PATCH}-dev
-          poetry version $VERSION
+          sed -i '' "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
           git commit -am $VERSION
           git push origin main

@@ -51,8 +51,7 @@ class VocalsExtractor(ABC):
     @abstractmethod
     def __call__(
         self, waveform: torch.Tensor, sample_rate: int
-    ) -> tuple[torch.Tensor, int]:
-        ...
+    ) -> tuple[torch.Tensor, int]: ...
 
 
 class VocalRemoverVocalsExtractor(VocalsExtractor):
@@ -85,10 +84,8 @@ class VocalRemoverVocalsExtractor(VocalsExtractor):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         logger.info(f"Using {device=}")
 
-        model = nets.CascadedNet(self.n_fft, self.hop_length, 32, 128, True)
-        model.load_state_dict(
-            torch.load(self.pretrained_model, map_location=torch.device("cpu"))
-        )
+        model = nets.CascadedNet(self.n_fft, self.hop_length, 32, 128)
+        model.load_state_dict(torch.load(self.pretrained_model, map_location="cpu"))
         model.to(device)
 
         waveform = waveform.repeat(2, 1) if waveform.ndim == 1 else waveform
