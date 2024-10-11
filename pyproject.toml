@@ -32,11 +32,10 @@ build-backend = "hatchling.build"
 
 [tool.pyright]
 pythonVersion = "3.10"
-ignore = ["vendor"]
 reportDeprecated = true
 
 [tool.ruff]
-exclude = ["notebook", "vendor"]
+exclude = ["notebook"]
 
 [tool.ruff.lint]
 extend-select = ["I"]
