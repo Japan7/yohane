@@ -1,13 +1,10 @@
 name: Calendar Versioning
 
 on:
-  schedule:
-    - cron: "30 23 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
-  actions: write
 
 jobs:
   bump:
@@ -21,8 +18,6 @@ jobs:
         run: |
           LAST_TAG=$(git tag --sort -v:refname | head -n1)
           echo NB_COMMITS=$(git rev-list $LAST_TAG..main --count) >> $GITHUB_OUTPUT
-      - uses: andymckay/cancel-action@0.5
-        if: steps.check.outputs.NB_COMMITS <= 1
       - name: Prepare
         id: prepare
         run: |
