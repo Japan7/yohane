@@ -38,6 +38,7 @@ jobs:
       # - run: uv publish
       - run: |
           gh release create ${{ github.ref_name }} dist/* \
+          --draft \
           --generate-notes \
           --notes-start-tag $(git tag --sort -v:refname | head -n2 | tail -n1)
         env:
