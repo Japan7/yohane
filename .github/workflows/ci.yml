@@ -20,3 +20,25 @@ jobs:
       - run: uv run --frozen pyright
       - run: uv run --frozen ruff check
         if: always()
+
+  release:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      # id-token: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+      - run: uv build
+      # - run: uv publish
+      - run: |
+          gh release create ${{ github.ref_name }} dist/* \
+          --generate-notes \
+          --notes-start-tag $(git tag --sort -v:refname | head -n2 | tail -n1)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
