@@ -8,6 +8,6 @@ def get_identifier():
     pkg_meta = metadata(__package__)
     identifier = f"{pkg_meta['Name']} {pkg_meta['Version']}"
     if urls := pkg_meta["Project-URL"]:
-        if parsed := re.search(r"Repository, (\S+)\b", urls):
+        if parsed := re.search(r"homepage, (\S+)\b", urls):
             identifier += f" ({parsed.group(1)})"
     return identifier
