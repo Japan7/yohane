@@ -69,8 +69,14 @@ def generate(
     yohane.extract_vocals()
     if yohane.vocals is not None:
         waveform, sample_rate = yohane.vocals
-        waveform = waveform.to("cpu")
-        torchaudio.save(song_file.with_suffix(".vocals.wav"), waveform, sample_rate)  # type: ignore
+        torchaudio.save(
+            song_file.with_suffix(".vocals.wav"), waveform.to("cpu"), sample_rate
+        )
+    if yohane.off_vocal is not None:
+        waveform, sample_rate = yohane.off_vocal
+        torchaudio.save(
+            song_file.with_suffix(".off_vocal.wav"), waveform.to("cpu"), sample_rate
+        )
 
     yohane.force_align()
 

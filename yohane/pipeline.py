@@ -24,9 +24,19 @@ class Yohane:
     def forced_aligned_audio(self):
         return self.vocals if self.vocals is not None else self.song
 
+    @property
+    def off_vocal(self):
+        if self.song is not None and self.vocals is not None:
+            song_waveform, song_sample_rate = self.song
+            vocals_waveform, vocals_sample_rate = self.vocals
+            vocals_waveform_resampled = torchaudio.functional.resample(
+                vocals_waveform, vocals_sample_rate, song_sample_rate
+            )
+            return song_waveform - vocals_waveform_resampled, song_sample_rate
+
     def load_song(self, song_file: Path):
         logger.info("Loading song")
-        self.song = torchaudio.load(song_file)  # type: ignore
+        self.song = torchaudio.load(song_file)
 
     def extract_vocals(self):
         if self.vocals_extractor is not None:
