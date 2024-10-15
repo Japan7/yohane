@@ -30,6 +30,9 @@ vocal-remover = { git = "https://github.com/Japan7/vocal-remover.git", branch = 
 [tool.uv.workspace]
 members = ["yohane-cli"]
 
+[project.scripts]
+yohane = "yohane.__main__:main"
+
 [project.urls]
 Homepage = "https://github.com/Japan7/yohane"
 

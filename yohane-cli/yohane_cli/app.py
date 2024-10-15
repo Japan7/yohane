@@ -8,11 +8,11 @@ import torchaudio
 import typer
 from rich import print
 
+from yohane import Yohane
 from yohane.audio import (
     HybridDemucsVocalsExtractor,
     VocalRemoverVocalsExtractor,
 )
-from yohane.pipeline import Yohane
 
 
 class VocalsExtractorChoice(str, Enum):
