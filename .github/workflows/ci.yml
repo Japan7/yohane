@@ -17,8 +17,8 @@ jobs:
       - uses: astral-sh/setup-uv@v3
         with:
           enable-cache: true
-      - run: uv run --frozen pyright
-      - run: uv run --frozen ruff check
+      - run: uv run --all-extras --frozen pyright
+      - run: uv run --all-extras --frozen ruff check
         if: always()
 
   release:
@@ -34,7 +34,7 @@ jobs:
       - uses: astral-sh/setup-uv@v3
         with:
           enable-cache: true
-      - run: uv build
+      - run: uv build --all
       # - run: uv publish
       - run: |
           gh release create ${{ github.ref_name }} dist/* \
