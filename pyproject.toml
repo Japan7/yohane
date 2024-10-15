@@ -1,6 +1,6 @@
 [project]
 name = "yohane"
-version = "2024.10.7-dev"
+version = "2024.10.7"
 description = "Forced alignment for karaokes"
 readme = "README.md"
 license = { file = "LICENSE" }
