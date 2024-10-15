@@ -8,7 +8,7 @@
   "packageRules": [
     {
       "matchPackageNames": ["torch", "torchaudio"],
-      "enabled": false
+      "rangeStrategy": "auto"
     }
   ]
 }
