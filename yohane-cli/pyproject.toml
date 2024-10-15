@@ -1,0 +1,16 @@
+[project]
+name = "yohane-cli"
+version = "0.1.0"
+authors = [{ name = "NextFire", email = "git@yuru.moe" }]
+requires-python = ">=3.10"
+dependencies = ["yohane", "typer-slim[standard]==0.12.5"]
+
+[tool.uv.sources]
+yohane = { workspace = true }
+
+[project.scripts]
+yohane = "yohane_cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

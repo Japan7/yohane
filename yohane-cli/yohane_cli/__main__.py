@@ -1,4 +1,4 @@
-from yohane.app import app
+from yohane_cli.app import app
 
 if __name__ == "__main__":
     app()
