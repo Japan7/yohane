@@ -1494,11 +1494,7 @@ version = "0.1.0"
 source = { editable = "yohane-cli" }
 dependencies = [
     { name = "typer-slim", extra = ["standard"] },
-    { name = "yohane" },
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "typer-slim", extras = ["standard"], specifier = "==0.12.5" },
-    { name = "yohane", editable = "." },
-]
+requires-dist = [{ name = "typer-slim", extras = ["standard"], specifier = "==0.12.5" }]
