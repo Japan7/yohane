@@ -22,7 +22,7 @@ class SeparatorChoice(str, Enum):
     Disable = "none"
 
 
-@app.command()
+@app.command(help="Generate a karaoke (full pipeline)")
 def generate(
     song_file: Annotated[
         Path,
@@ -65,7 +65,7 @@ def generate(
     logger.info(f"Result saved to '{subs_file.as_posix()}'")
 
 
-@app.command()
+@app.command(help="Seperate vocals and instrumental tracks")
 def separate(
     song_file: Annotated[
         Path,
