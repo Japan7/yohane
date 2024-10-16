@@ -5,7 +5,7 @@ import torch
 import torchaudio
 from torchaudio.functional import TokenSpan
 
-from yohane.audio import VocalsExtractor, compute_alignments
+from yohane.audio import Separator, compute_alignments
 from yohane.lyrics import Lyrics
 from yohane.subtitles import make_ass
 
@@ -13,8 +13,8 @@ logger = logging.getLogger(__name__)
 
 
 class Yohane:
-    def __init__(self, vocals_extractor: VocalsExtractor | None):
-        self.vocals_extractor = vocals_extractor
+    def __init__(self, separator: Separator | None):
+        self.separator = separator
         self.song: tuple[torch.Tensor, int] | None = None
         self.vocals: tuple[torch.Tensor, int] | None = None
         self.lyrics: Lyrics | None = None
@@ -39,10 +39,10 @@ class Yohane:
         self.song = torchaudio.load(song_file)
 
     def extract_vocals(self):
-        if self.vocals_extractor is not None:
-            logger.info(f"Extracting vocals with {self.vocals_extractor=}")
+        if self.separator is not None:
+            logger.info(f"Extracting vocals with {self.separator=}")
             assert self.song
-            self.vocals = self.vocals_extractor(*self.song)
+            self.vocals = self.separator(*self.song)
 
     def load_lyrics(self, lyrics_str: str):
         logger.info("Loading lyrics")

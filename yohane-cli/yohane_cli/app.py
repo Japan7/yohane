@@ -6,27 +6,20 @@ from typing import Annotated
 
 import torchaudio
 import typer
-from rich import print
 
 from yohane import Yohane
-from yohane.audio import (
-    HybridDemucsVocalsExtractor,
-    VocalRemoverVocalsExtractor,
-)
+from yohane.audio import HybridDemucsSeparator, VocalRemoverSeparator
 
-
-class VocalsExtractorChoice(str, Enum):
-    VocalRemover = "vocal-remover"
-    HybridDemucs = "hybrid-demucs"
-    none = "none"
-
-
-VOCALS_EXTRACTORS = {
-    VocalsExtractorChoice.VocalRemover: VocalRemoverVocalsExtractor,
-    VocalsExtractorChoice.HybridDemucs: HybridDemucsVocalsExtractor,
-}
+logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO").upper())
+logger = logging.getLogger(__name__)
 
 app = typer.Typer()
+
+
+class SeparatorChoice(str, Enum):
+    VocalRemover = "vocal-remover"
+    HybridDemucs = "hybrid-demucs"
+    Disable = "none"
 
 
 @app.command()
@@ -45,43 +38,51 @@ def generate(
             help="Text file which contains the lyrics.",
         ),
     ],
-    vocals_extractor: Annotated[
-        VocalsExtractorChoice,
+    separator_choice: Annotated[
+        SeparatorChoice,
         typer.Option(
-            "--vocals-extractor",
-            "-x",
-            help="Vocals extractor to use. 'none' to disable.",
+            "--separator",
+            "-s",
+            help="Source separator to use. 'none' to disable.",
         ),
-    ] = VocalsExtractorChoice.VocalRemover,
+    ] = SeparatorChoice.VocalRemover,
 ):
-    logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO").upper())
+    separator = get_separator(separator_choice)
 
-    extractor = None
-    if vocals_extractor is not VocalsExtractorChoice.none:
-        extractor_cls = VOCALS_EXTRACTORS[vocals_extractor]
-        extractor = extractor_cls()
-
-    yohane = Yohane(extractor)
+    yohane = Yohane(separator)
 
     yohane.load_song(song_file)
     yohane.load_lyrics(lyrics_file.read())
 
     yohane.extract_vocals()
-    if yohane.vocals is not None:
-        waveform, sample_rate = yohane.vocals
-        torchaudio.save(
-            song_file.with_suffix(".vocals.wav"), waveform.to("cpu"), sample_rate
-        )
-    if yohane.off_vocal is not None:
-        waveform, sample_rate = yohane.off_vocal
-        torchaudio.save(
-            song_file.with_suffix(".off_vocal.wav"), waveform.to("cpu"), sample_rate
-        )
+    save_separated_tracks(yohane, song_file)
 
     yohane.force_align()
 
     subs = yohane.make_subs()
-
     subs_file = song_file.with_suffix(".ass")
     subs.save(subs_file.as_posix())
-    print(f"Saved to '{subs_file.as_posix()}'")
+    logger.info(f"Result saved to '{subs_file.as_posix()}'")
+
+
+def get_separator(separator_choice: SeparatorChoice):
+    match separator_choice:
+        case SeparatorChoice.VocalRemover:
+            return VocalRemoverSeparator()
+        case SeparatorChoice.HybridDemucs:
+            return HybridDemucsSeparator()
+        case _:
+            return None
+
+
+def save_separated_tracks(yohane: Yohane, song_file: Path):
+    if yohane.vocals is not None:
+        waveform, sample_rate = yohane.vocals
+        filename = song_file.with_suffix(".vocals.wav")
+        logger.info(f"Saving vocals track to {filename}")
+        torchaudio.save(filename, waveform.to("cpu"), sample_rate)
+    if yohane.off_vocal is not None:
+        waveform, sample_rate = yohane.off_vocal
+        filename = song_file.with_suffix(".off_vocal.wav")
+        logger.info(f"Saving off vocal track to {filename}")
+        torchaudio.save(filename, waveform.to("cpu"), sample_rate)

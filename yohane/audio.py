@@ -10,7 +10,7 @@ import vocal_remover.models
 from torchaudio.pipelines import HDEMUCS_HIGH_MUSDB_PLUS
 from torchaudio.pipelines import MMS_FA as fa_bundle
 from torchaudio.transforms import Fade
-from vocal_remover.inference import Separator
+from vocal_remover.inference import Separator as VocalRemoverBaseSeparator
 from vocal_remover.lib import nets, spec_utils
 
 logger = logging.getLogger(__name__)
@@ -47,14 +47,14 @@ def compute_alignments(waveform: torch.Tensor, sample_rate: int, transcript: lis
     return emission, token_spans
 
 
-class VocalsExtractor(ABC):
+class Separator(ABC):
     @abstractmethod
     def __call__(
         self, waveform: torch.Tensor, sample_rate: int
     ) -> tuple[torch.Tensor, int]: ...
 
 
-class VocalRemoverVocalsExtractor(VocalsExtractor):
+class VocalRemoverSeparator(Separator):
     """
     https://github.com/tsurumeso/vocal-remover
     """
@@ -96,12 +96,7 @@ class VocalRemoverVocalsExtractor(VocalsExtractor):
             waveform.numpy(), self.hop_length, self.n_fft
         )
 
-        sp = Separator(
-            model,
-            device,
-            self.batchsize,
-            self.cropsize,
-        )
+        sp = VocalRemoverBaseSeparator(model, device, self.batchsize, self.cropsize)
         _, vocals_spec = sp.separate(waveform_spec)
 
         vocals = spec_utils.spectrogram_to_wave(vocals_spec, hop_length=self.hop_length)
@@ -109,7 +104,7 @@ class VocalRemoverVocalsExtractor(VocalsExtractor):
         return torch.Tensor(vocals), sample_rate
 
 
-class HybridDemucsVocalsExtractor(VocalsExtractor):
+class HybridDemucsSeparator(Separator):
     """
     https://pytorch.org/audio/2.1.0/tutorials/hybrid_demucs_tutorial.html
     """
