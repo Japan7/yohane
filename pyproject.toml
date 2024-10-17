@@ -1,9 +1,9 @@
 [project]
 name = "yohane"
-version = "2024.10.9-dev"
+dynamic = ["version"]
 description = "Forced alignment for karaokes"
 readme = "README.md"
-license = { file = "LICENSE" }
+license = "MIT"
 authors = [
     { name = "NextFire", email = "git@yuru.moe" },
     { name = "Voltini", email = "slimen3@hotmail.fr" },
@@ -34,11 +34,14 @@ members = ["yohane-cli"]
 yohane = "yohane.__main__:main"
 
 [project.urls]
-Homepage = "https://github.com/Japan7/yohane"
+homepage = "https://github.com/Japan7/yohane"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
 
 [tool.pyright]
 pythonVersion = "3.10"
