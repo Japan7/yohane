@@ -1,2 +1,6 @@
 __pycache__/
 /.venv/
+
+# pixi environments
+.pixi
+*.egg-info
