@@ -16,6 +16,8 @@ The full pipeline will be completed in less than a minute in their environment.
 
 ### Local environment
 
+#### With `uv`
+
 **Requirements:**
 
 - [uv](https://github.com/astral-sh/uv)
@@ -23,6 +25,16 @@ The full pipeline will be completed in less than a minute in their environment.
 
 ```sh
 uvx --from git+https://github.com/Japan7/yohane.git[cli] --python 3.11 yohane --help
+```
+
+#### With `pixi`
+
+**Requirement:** [pixi](https://prefix.dev)
+
+```sh
+git clone https://github.com/Japan7/yohane.git
+cd yohane/
+pixi run yohane --help
 ```
 
 ## Caveats
