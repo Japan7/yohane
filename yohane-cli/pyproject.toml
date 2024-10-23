@@ -2,7 +2,6 @@
 name = "yohane-cli"
 dynamic = ["version"]
 description = "Typer CLI for yohane"
-readme = "../README.md"
 license = "MIT"
 authors = [{ name = "NextFire", email = "git@yuru.moe" }]
 requires-python = ">=3.10"
