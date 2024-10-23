@@ -11,6 +11,3 @@ ffmpeg = ">=4.4,<7"
 yohane = { path = ".", extras = ["cli"], editable = true }
 yohane-cli = { path = "yohane-cli", editable = true }
 vocal-remover = { git = "https://github.com/Japan7/vocal-remover.git", branch = "6.0.0b4" }
-
-[tasks]
-yohane = "yohane"
