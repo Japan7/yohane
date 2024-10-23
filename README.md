@@ -21,7 +21,7 @@ The full pipeline will be completed in less than a minute in their environment.
 **Requirements:**
 
 - [`uv`](https://github.com/astral-sh/uv)
-- [FFmpeg](https://ffmpeg.org): optional, for better codecs support on macOS/Linux ([torchaudio only supports versions `>=4.4,<7`](https://pytorch.org/audio/main/installation.html#optional-dependencies))
+- [FFmpeg](https://ffmpeg.org)
 
 ```sh
 uvx --from git+https://github.com/Japan7/yohane.git[cli] --python 3.11 yohane --help
@@ -39,7 +39,6 @@ pixi run yohane --help
 
 ## Caveats
 
-- When torchaudio's ffmpeg backend is not available (e.g. on Windows), you need to convert your song/video to a .wav file before use (`ffmpeg -i <src> <out>.wav`)
 - Yohane's syllable splitting is only optimized for Japanese lyrics at the moment
 - Syllables at the end of lines are often shortened
 - Forced alignment can't deal with overlapping vocals
