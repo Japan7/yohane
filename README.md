@@ -20,8 +20,8 @@ The full pipeline will be completed in less than a minute in their environment.
 
 **Requirements:**
 
-- [uv](https://github.com/astral-sh/uv)
-- [FFmpeg](https://ffmpeg.org): optional, for better codecs support on macOS/Linux (only versions [>=4.4,<7 are supported by torchaudio](https://pytorch.org/audio/main/installation.html#optional-dependencies))
+- [`uv`](https://github.com/astral-sh/uv)
+- [FFmpeg](https://ffmpeg.org): optional, for better codecs support on macOS/Linux ([torchaudio only supports versions `>=4.4,<7`](https://pytorch.org/audio/main/installation.html#optional-dependencies))
 
 ```sh
 uvx --from git+https://github.com/Japan7/yohane.git[cli] --python 3.11 yohane --help
@@ -29,7 +29,7 @@ uvx --from git+https://github.com/Japan7/yohane.git[cli] --python 3.11 yohane --
 
 #### With `pixi`
 
-**Requirement:** [pixi](https://prefix.dev)
+**Requirement:** [`pixi`](https://prefix.dev)
 
 ```sh
 git clone https://github.com/Japan7/yohane.git
