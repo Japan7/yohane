@@ -1,5 +1,4 @@
 import logging
-import os
 from pathlib import Path
 from typing import Annotated
 
@@ -13,7 +12,6 @@ from yohane_cli.audio import (
     save_separated_tracks,
 )
 
-logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO").upper())
 logger = logging.getLogger(__name__)
 
 app = typer.Typer()
