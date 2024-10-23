@@ -11,6 +11,7 @@ from yohane_cli.audio import (
     parse_song_argument,
     save_separated_tracks,
 )
+from yohane_cli.lyrics import parse_lyrics_argument
 
 logger = logging.getLogger(__name__)
 
@@ -19,19 +20,18 @@ app = typer.Typer()
 
 @app.command(help="Generate a karaoke (full pipeline)")
 def generate(
-    song: Annotated[
-        Path,
+    song_file: Annotated[
+        str,
         typer.Argument(
-            parser=parse_song_argument,
             help="Video or audio file of the song. Can be an URL to download with yt-dlp.",
         ),
     ],
-    lyrics: Annotated[
-        typer.FileText,
+    lyrics_file: Annotated[
+        Path | None,
         typer.Argument(
-            help="Text file which contains the lyrics.",
+            help="Text file which contains the lyrics. (Optional: otherwise, a text editor will open.)",
         ),
-    ],
+    ] = None,
     separator_choice: Annotated[
         SeparatorChoice,
         typer.Option(
@@ -41,12 +41,14 @@ def generate(
         ),
     ] = SeparatorChoice.VocalRemover,
 ):
+    song = parse_song_argument(song_file)
+    lyrics = parse_lyrics_argument(lyrics_file)
     separator = get_separator(separator_choice)
 
     yohane = Yohane(separator)
 
     yohane.load_song(song)
-    yohane.load_lyrics(lyrics.read())
+    yohane.load_lyrics(lyrics)
 
     yohane.extract_vocals()
     save_separated_tracks(yohane, song)
@@ -61,10 +63,9 @@ def generate(
 
 @app.command(help="Seperate vocals and instrumental tracks")
 def separate(
-    song: Annotated[
-        Path,
+    song_file: Annotated[
+        str,
         typer.Argument(
-            parser=parse_song_argument,
             help="Video or audio file of the song. Can be an URL to download with yt-dlp.",
         ),
     ],
@@ -77,6 +78,7 @@ def separate(
         ),
     ] = SeparatorChoice.VocalRemover,
 ):
+    song = parse_song_argument(song_file)
     separator = get_separator(separator_choice)
     if separator is None:
         raise RuntimeError("No separator selected")

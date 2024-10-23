@@ -16,7 +16,7 @@ def parse_song_argument(value: str) -> Path:
     song_path = Path(value)
 
     if not song_path.is_file():
-        logger.info(f"Using yt-dlp as {value} is not an existing file")
+        logger.info("Song file not found, calling yt-dlp")
         song_path = ydl_download(value)
 
     if "ffmpeg" not in torchaudio.list_audio_backends():
