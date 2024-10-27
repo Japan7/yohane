@@ -175,7 +175,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/98/d4/ced1f8074819b43804a0a5015f33bae422330e8d38b1992be91fa947190c/typer_slim-0.12.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/26/9f/ad63fc0248c5379346306f8668cda6e2e2e9c95e01216d2b8ffd9ff037d0/typing_extensions-4.12.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/ce/d9/5f4c13cecde62396b0d3fe530a50ccea91e7dfc1ccf0e09c228841bb5ba8/urllib3-2.2.3-py3-none-any.whl
-      - pypi: git+https://github.com/Japan7/vocal-remover.git@f659f7629eaeee3217e84536e8cc9536cab701b3
+      - pypi: git+https://github.com/Japan7/vocal-remover.git@be5111e7147e78a1a9bc09804e2309d1c5610979
       - pypi: https://files.pythonhosted.org/packages/af/9b/8c06d425a1d5a74fd764dd793edd02be18cf6fc3b1ccd1f29244ba132dc0/websockets-13.1-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/bb/68/548f9819b41d53561d4f3d39588111cf39993c066b6e5300b4ae118eb2e6/yt_dlp-2024.10.22-py3-none-any.whl
       - pypi: .
@@ -304,7 +304,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/98/d4/ced1f8074819b43804a0a5015f33bae422330e8d38b1992be91fa947190c/typer_slim-0.12.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/26/9f/ad63fc0248c5379346306f8668cda6e2e2e9c95e01216d2b8ffd9ff037d0/typing_extensions-4.12.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/ce/d9/5f4c13cecde62396b0d3fe530a50ccea91e7dfc1ccf0e09c228841bb5ba8/urllib3-2.2.3-py3-none-any.whl
-      - pypi: git+https://github.com/Japan7/vocal-remover.git@f659f7629eaeee3217e84536e8cc9536cab701b3
+      - pypi: git+https://github.com/Japan7/vocal-remover.git@be5111e7147e78a1a9bc09804e2309d1c5610979
       - pypi: https://files.pythonhosted.org/packages/bf/e7/22285852502e33071a8cf0ac814f8988480ec6db4754e067b8b9d0e92498/websockets-13.1-cp311-cp311-macosx_10_9_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/bb/68/548f9819b41d53561d4f3d39588111cf39993c066b6e5300b4ae118eb2e6/yt_dlp-2024.10.22-py3-none-any.whl
       - pypi: .
@@ -433,7 +433,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/98/d4/ced1f8074819b43804a0a5015f33bae422330e8d38b1992be91fa947190c/typer_slim-0.12.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/26/9f/ad63fc0248c5379346306f8668cda6e2e2e9c95e01216d2b8ffd9ff037d0/typing_extensions-4.12.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/ce/d9/5f4c13cecde62396b0d3fe530a50ccea91e7dfc1ccf0e09c228841bb5ba8/urllib3-2.2.3-py3-none-any.whl
-      - pypi: git+https://github.com/Japan7/vocal-remover.git@f659f7629eaeee3217e84536e8cc9536cab701b3
+      - pypi: git+https://github.com/Japan7/vocal-remover.git@be5111e7147e78a1a9bc09804e2309d1c5610979
       - pypi: https://files.pythonhosted.org/packages/68/d4/c8c7c1e5b40ee03c5cc235955b0fb1ec90e7e37685a5f69229ad4708dcde/websockets-13.1-cp311-cp311-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/bb/68/548f9819b41d53561d4f3d39588111cf39993c066b6e5300b4ae118eb2e6/yt_dlp-2024.10.22-py3-none-any.whl
       - pypi: .
@@ -542,7 +542,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/98/d4/ced1f8074819b43804a0a5015f33bae422330e8d38b1992be91fa947190c/typer_slim-0.12.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/26/9f/ad63fc0248c5379346306f8668cda6e2e2e9c95e01216d2b8ffd9ff037d0/typing_extensions-4.12.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/ce/d9/5f4c13cecde62396b0d3fe530a50ccea91e7dfc1ccf0e09c228841bb5ba8/urllib3-2.2.3-py3-none-any.whl
-      - pypi: git+https://github.com/Japan7/vocal-remover.git@f659f7629eaeee3217e84536e8cc9536cab701b3
+      - pypi: git+https://github.com/Japan7/vocal-remover.git@be5111e7147e78a1a9bc09804e2309d1c5610979
       - pypi: https://files.pythonhosted.org/packages/fb/39/ec8832ecb9bb04a8d318149005ed8cee0ba4e0205835da99e0aa497a091f/websockets-13.1-cp311-cp311-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/bb/68/548f9819b41d53561d4f3d39588111cf39993c066b6e5300b4ae118eb2e6/yt_dlp-2024.10.22-py3-none-any.whl
       - pypi: .
@@ -2348,6 +2348,7 @@ packages:
   constrains:
   - binutils_impl_linux-64 2.43
   license: GPL-3.0-only
+  license_family: GPL
   purls: []
   size: 669211
   timestamp: 1729655358674
@@ -6588,7 +6589,7 @@ packages:
 - kind: pypi
   name: vocal-remover
   version: 6.0.0b4
-  url: git+https://github.com/Japan7/vocal-remover.git@f659f7629eaeee3217e84536e8cc9536cab701b3
+  url: git+https://github.com/Japan7/vocal-remover.git@be5111e7147e78a1a9bc09804e2309d1c5610979
   requires_dist:
   - torch>=2.1,<3
   - librosa~=0.10.0
@@ -6597,7 +6598,7 @@ packages:
   - resampy~=0.4.0
   - tqdm~=4.66.0
   - numpy~=1.26.4
-  requires_python: '>=3.9,<4'
+  requires_python: '>=3.9'
 - kind: conda
   name: vs2015_runtime
   version: 14.40.33810
@@ -7012,9 +7013,9 @@ packages:
   timestamp: 1660346976440
 - kind: pypi
   name: yohane
-  version: 0.1.dev439+g256534a.d20241022
+  version: 2024.10.10.dev3+g3855ac8
   path: .
-  sha256: 6358036c66eca7d00c866c4b5012411fbae6cda713b88a50b7d0e5b52d54e402
+  sha256: 911e0014db842a167bedf3fa847a7fec3339a533956b0ff69ba29a5a9de3c2df
   requires_dist:
   - pysubs2==1.7.3
   - regex==2024.9.11
@@ -7026,9 +7027,9 @@ packages:
   editable: true
 - kind: pypi
   name: yohane-cli
-  version: 0.1.dev444+g3bb4842.d20241023
+  version: 2024.10.10.dev3+g3855ac8
   path: yohane-cli
-  sha256: 8c7b1b38b6bf06be7bf3a2986ccf892f31a535e5512b7f6733de46a20f20b81d
+  sha256: 3b8959bd708190c77c81cee012cf5ce0e69e3fed6355e00b6a7c47172e840b0d
   requires_dist:
   - typer-slim[standard]==0.12.5
   - yt-dlp[default]==2024.10.22
