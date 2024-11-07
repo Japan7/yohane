@@ -5,7 +5,7 @@ description = "Typer CLI for yohane"
 license = "MIT"
 authors = [{ name = "NextFire", email = "git@yuru.moe" }]
 requires-python = ">=3.10"
-dependencies = ["typer-slim[standard]==0.12.5", "yt-dlp[default]==2024.11.4"]
+dependencies = ["typer-slim[standard]==0.13.0", "yt-dlp[default]==2024.11.4"]
 
 [project.urls]
 homepage = "https://github.com/Japan7/yohane"
