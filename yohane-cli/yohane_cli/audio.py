@@ -65,9 +65,9 @@ def save_separated_tracks(yohane: Yohane, song_path: Path):
         waveform, sample_rate = yohane.vocals
         filename = song_path.with_suffix(".vocals.wav")
         logger.info(f"Saving vocals track to {filename}")
-        torchaudio.save(filename, waveform.to("cpu"), sample_rate)
+        torchaudio.save(filename.as_posix(), waveform.to("cpu"), sample_rate)
     if yohane.off_vocal is not None:
         waveform, sample_rate = yohane.off_vocal
         filename = song_path.with_suffix(".off_vocal.wav")
         logger.info(f"Saving off vocal track to {filename}")
-        torchaudio.save(filename, waveform.to("cpu"), sample_rate)
+        torchaudio.save(filename.as_posix(), waveform.to("cpu"), sample_rate)
