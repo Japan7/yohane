@@ -1960,7 +1960,7 @@ wheels = [
 
 [[package]]
 name = "yohane"
-version = "2024.10.10.dev24+g8ea47bc.d20241123"
+version = "2024.10.10.dev26+ga283c31.d20241123"
 source = { editable = "." }
 dependencies = [
     { name = "pysubs2" },
@@ -2002,7 +2002,7 @@ dev = [
 
 [[package]]
 name = "yohane-cli"
-version = "2024.10.10.dev24+g8ea47bc.d20241123"
+version = "2024.10.10.dev26+ga283c31.d20241123"
 source = { editable = "yohane-cli" }
 dependencies = [
     { name = "typer-slim", extra = ["standard"] },
