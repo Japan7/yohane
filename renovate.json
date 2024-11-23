@@ -5,10 +5,5 @@
     "github>Japan7/renovate-config:python",
     "github>Japan7/renovate-config:python-app"
   ],
-  "packageRules": [
-    {
-      "matchPackageNames": ["torch", "torchaudio"],
-      "rangeStrategy": "auto"
-    }
-  ]
+  "ignoreDeps": ["torch", "torchaudio"]
 }
