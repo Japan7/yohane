@@ -886,7 +886,7 @@ name = "nvidia-cudnn-cu12"
 version = "8.9.2.26"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "nvidia-cublas-cu12" },
+    { name = "nvidia-cublas-cu12", marker = "(platform_machine != 'aarch64' and platform_system != 'Darwin') or (platform_system != 'Darwin' and platform_system != 'Linux')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ff/74/a2e2be7fb83aaedec84f391f082cf765dfb635e7caa9b49065f73e4835d8/nvidia_cudnn_cu12-8.9.2.26-py3-none-manylinux1_x86_64.whl", hash = "sha256:5ccb288774fdfb07a7e7025ffec286971c06d8d7b4fb162525334616d7629ff9", size = 731725872 },
@@ -913,9 +913,9 @@ name = "nvidia-cusolver-cu12"
 version = "11.4.5.107"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "nvidia-cublas-cu12" },
-    { name = "nvidia-cusparse-cu12" },
-    { name = "nvidia-nvjitlink-cu12" },
+    { name = "nvidia-cublas-cu12", marker = "(platform_machine != 'aarch64' and platform_system != 'Darwin') or (platform_system != 'Darwin' and platform_system != 'Linux')" },
+    { name = "nvidia-cusparse-cu12", marker = "(platform_machine != 'aarch64' and platform_system != 'Darwin') or (platform_system != 'Darwin' and platform_system != 'Linux')" },
+    { name = "nvidia-nvjitlink-cu12", marker = "(platform_machine != 'aarch64' and platform_system != 'Darwin') or (platform_system != 'Darwin' and platform_system != 'Linux')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/bc/1d/8de1e5c67099015c834315e333911273a8c6aaba78923dd1d1e25fc5f217/nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl", hash = "sha256:8a7ec542f0412294b15072fa7dab71d31334014a69f953004ea7a118206fe0dd", size = 124161928 },
@@ -926,7 +926,7 @@ name = "nvidia-cusparse-cu12"
 version = "12.1.0.106"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "nvidia-nvjitlink-cu12" },
+    { name = "nvidia-nvjitlink-cu12", marker = "(platform_machine != 'aarch64' and platform_system != 'Darwin') or (platform_system != 'Darwin' and platform_system != 'Linux')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/65/5b/cfaeebf25cd9fdec14338ccb16f6b2c4c7fa9163aefcf057d86b9cc248bb/nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl", hash = "sha256:f3b50f42cf363f86ab21f720998517a659a48131e8d538dc02f8768237bd884c", size = 195958278 },
@@ -1126,15 +1126,15 @@ wheels = [
 
 [[package]]
 name = "pyright"
-version = "1.1.389"
+version = "1.1.390"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "nodeenv" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/72/4e/9a5ab8745e7606b88c2c7ca223449ac9d82a71fd5e31df47b453f2cb39a1/pyright-1.1.389.tar.gz", hash = "sha256:716bf8cc174ab8b4dcf6828c3298cac05c5ed775dda9910106a5dcfe4c7fe220", size = 21940 }
+sdist = { url = "https://files.pythonhosted.org/packages/ba/42/1e0392f35dd275f9f775baf7c86407cef7f6a0d9b8e099a93e5422a7e571/pyright-1.1.390.tar.gz", hash = "sha256:aad7f160c49e0fbf8209507a15e17b781f63a86a1facb69ca877c71ef2e9538d", size = 21950 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1b/26/c288cabf8cfc5a27e1aa9e5029b7682c0f920b8074f45d22bf844314d66a/pyright-1.1.389-py3-none-any.whl", hash = "sha256:41e9620bba9254406dc1f621a88ceab5a88af4c826feb4f614d95691ed243a60", size = 18581 },
+    { url = "https://files.pythonhosted.org/packages/43/20/3f492ca789fb17962ad23619959c7fa642082621751514296c58de3bb801/pyright-1.1.390-py3-none-any.whl", hash = "sha256:ecebfba5b6b50af7c1a44c2ba144ba2ab542c227eb49bc1f16984ff714e0e110", size = 18579 },
 ]
 
 [[package]]
@@ -1538,7 +1538,7 @@ name = "triton"
 version = "2.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "filelock", marker = "python_full_version < '3.12' or platform_machine != 'x86_64' or sys_platform != 'darwin'" },
+    { name = "filelock", marker = "(python_full_version < '3.12' and platform_machine != 'aarch64' and platform_system != 'Darwin') or (platform_machine != 'aarch64' and platform_machine != 'x86_64' and platform_system != 'Darwin') or (platform_machine == 'aarch64' and platform_system != 'Darwin' and platform_system != 'Linux') or (python_full_version >= '3.12' and platform_machine == 'x86_64' and platform_system != 'Darwin' and sys_platform != 'darwin')" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/95/05/ed974ce87fe8c8843855daa2136b3409ee1c126707ab54a8b72815c08b49/triton-2.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a2294514340cfe4e8f4f9e5c66c702744c4a117d25e618bd08469d0bfed1e2e5", size = 167900779 },
@@ -1548,15 +1548,15 @@ wheels = [
 
 [[package]]
 name = "typer-slim"
-version = "0.14.0"
+version = "0.15.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d2/5f/4409263caf0583280cfcd67c5839b22d2399cb04393155d6e4d66e34f67c/typer_slim-0.14.0.tar.gz", hash = "sha256:28e9a54502e74fe3da66c51c9e4730e615eeb796ef33dbcc424dd2269f53838a", size = 98846 }
+sdist = { url = "https://files.pythonhosted.org/packages/7f/6e/883641eb1c853db6cfdbc7a02ccf6ecbeafc1d9baa3976246ae97df29253/typer_slim-0.15.0.tar.gz", hash = "sha256:405f7553330ef5a2b90aee39ccab8e19269a9c64f93c38da3c864dbf09f65dde", size = 99861 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/80/a7/742592cdc96dbd3087cff1db8288450ae48aafb5774ba9138e73622727a2/typer_slim-0.14.0-py3-none-any.whl", hash = "sha256:710d23c5956583aed4662871df759232f38f30bfa2c91b1aea54e4a1ce027c54", size = 44766 },
+    { url = "https://files.pythonhosted.org/packages/ed/99/f3b75f4b0da2edf8933f7a20a0c777edf65625676b6eac60e623c5267f7a/typer_slim-0.15.0-py3-none-any.whl", hash = "sha256:2d1f220c708d4f81c99494d4416389298b5acb463700e74d345cb78edd095b03", size = 44793 },
 ]
 
 [package.optional-dependencies]
@@ -1658,7 +1658,7 @@ wheels = [
 
 [[package]]
 name = "yohane"
-version = "2024.11.1.dev4+g5142405"
+version = "2024.11.1.dev7+ge52089a.d20241204"
 source = { editable = "." }
 dependencies = [
     { name = "pysubs2" },
@@ -1692,13 +1692,13 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "pyright", specifier = "==1.1.389" },
+    { name = "pyright", specifier = "==1.1.390" },
     { name = "ruff", specifier = "==0.8.1" },
 ]
 
 [[package]]
 name = "yohane-cli"
-version = "2024.11.1.dev4+g5142405"
+version = "2024.11.1.dev7+ge52089a.d20241204"
 source = { editable = "yohane-cli" }
 dependencies = [
     { name = "typer-slim", extra = ["standard"] },
@@ -1707,17 +1707,17 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "typer-slim", extras = ["standard"], specifier = "==0.14.0" },
-    { name = "yt-dlp", extras = ["default"], specifier = "==2024.11.18" },
+    { name = "typer-slim", extras = ["standard"], specifier = "==0.15.0" },
+    { name = "yt-dlp", extras = ["default"], specifier = "==2024.12.3" },
 ]
 
 [[package]]
 name = "yt-dlp"
-version = "2024.11.18"
+version = "2024.12.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/60/5c/906972f44c2057c929c85b9b309bff51847a74aa9f82c7d8dfe350b13225/yt_dlp-2024.11.18.tar.gz", hash = "sha256:b8a4c23d3c9afd7e476bcdb87f38b6c0e8e12e3a239d7988f13acb434200f54d", size = 2908340 }
+sdist = { url = "https://files.pythonhosted.org/packages/5e/8e/8c7d57d9462f9c5afd06c61c70030e0da65cde80d8ba786e85fd95afaf7b/yt_dlp-2024.12.3.tar.gz", hash = "sha256:35abff51c5762033103f2330ba0a8a1f48c4388a413a2d8cdc9b84642fe8edd4", size = 2911030 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/64/22/1918d2c8c123e9157efd7c2063ea89b4826f904d67b17e77152862ac3347/yt_dlp-2024.11.18-py3-none-any.whl", hash = "sha256:b9741695911dc566498b5f115cdd6b1abbc5be61cb01fd98abe649990a41656c", size = 3173165 },
+    { url = "https://files.pythonhosted.org/packages/b6/0d/16f6c846f3748c231e85573adef2b0756110e903a4e9eb17ce04dc17bc9d/yt_dlp-2024.12.3-py3-none-any.whl", hash = "sha256:a6b32ea879ce3f95b47b9b57948b755b4d61f3700d4fc24602b17537ddf0cf90", size = 3174789 },
 ]
 
 [package.optional-dependencies]
