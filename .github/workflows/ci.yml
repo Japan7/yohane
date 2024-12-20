@@ -15,8 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
-        with:
-          enable-cache: true
       - run: uv run --all-extras --frozen pyright
       - run: uv run --all-extras --frozen ruff check
         if: always()
@@ -32,8 +30,6 @@ jobs:
         with:
           fetch-depth: 0
       - uses: astral-sh/setup-uv@v5
-        with:
-          enable-cache: true
       - run: uv build --all
       # - run: uv publish
       - run: |
