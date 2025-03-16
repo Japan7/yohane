@@ -1,5 +1,8 @@
 import logging
 import subprocess
+import tempfile
+from collections.abc import Generator
+from contextlib import contextmanager
 from enum import Enum
 from pathlib import Path
 
@@ -12,22 +15,25 @@ from yohane.audio import HybridDemucsSeparator, Separator, VocalRemoverSeparator
 logger = logging.getLogger(__name__)
 
 
-def parse_song_argument(value: str) -> Path:
+@contextmanager
+def parse_song_argument(value: str) -> Generator[tuple[Path, Path]]:
     song_path = Path(value)
 
     if not song_path.is_file():
         logger.info("Song file not found, calling yt-dlp")
         song_path = ydl_download(value)
 
-    if "ffmpeg" not in torchaudio.list_audio_backends():
+    output_path = song_path.with_suffix("")
+    if "ffmpeg" in torchaudio.list_audio_backends() or song_path.suffix == ".wav":
+        yield song_path, output_path
+    else:
         logger.info(
             "Torchaudio FFmpeg backend is not available "
             "(macOS/Linux only, requires FFmpeg >=4.4,<7)"
         )
         logger.info("Converting the song to a .wav file with FFmpeg (via subprocess)")
-        song_path = ffmpeg_wav(song_path)
-
-    return song_path
+        with ffmpeg_wav(song_path) as wav_path:
+            yield wav_path, output_path
 
 
 def ydl_download(value: str) -> Path:
@@ -37,11 +43,12 @@ def ydl_download(value: str) -> Path:
         return Path(filename)
 
 
-def ffmpeg_wav(song_path: Path) -> Path:
-    wav_path = song_path.with_suffix(".wav")
-    proc = subprocess.run(["ffmpeg", "-y", "-i", song_path, wav_path])
-    proc.check_returncode()
-    return wav_path
+@contextmanager
+def ffmpeg_wav(song_path: Path) -> Generator[Path]:
+    with tempfile.NamedTemporaryFile(suffix=".wav") as temp:
+        proc = subprocess.run(["ffmpeg", "-y", "-i", song_path, temp.name])
+        proc.check_returncode()
+        yield Path(temp.name)
 
 
 class SeparatorChoice(str, Enum):
@@ -60,15 +67,15 @@ def get_separator(separator_choice: SeparatorChoice) -> Separator | None:
             return None
 
 
-def save_separated_tracks(yohane: Yohane, song_path: Path):
+def save_separated_tracks(yohane: Yohane, output: Path):
     if yohane.vocals is not None:
         waveform, sample_rate = yohane.vocals
-        filename = song_path.with_suffix(".vocals.wav")
+        filename = output.with_suffix(".vocals.wav")
         logger.info(f"Saving vocals track to {filename}")
         torchaudio.save(filename.as_posix(), waveform.to("cpu"), sample_rate)
     off_vocal = yohane.extract_off_vocal()
     if off_vocal is not None:
         waveform, sample_rate = off_vocal
-        filename = song_path.with_suffix(".off_vocal.wav")
+        filename = output.with_suffix(".off_vocal.wav")
         logger.info(f"Saving off vocal track to {filename}")
         torchaudio.save(filename.as_posix(), waveform.to("cpu"), sample_rate)

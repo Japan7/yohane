@@ -41,24 +41,24 @@ def generate(
         ),
     ] = SeparatorChoice.VocalRemover,
 ):
-    song = parse_song_argument(song_file)
-    lyrics = parse_lyrics_argument(lyrics_file)
-    separator = get_separator(separator_choice)
+    with parse_song_argument(song_file) as (song, output):
+        lyrics = parse_lyrics_argument(lyrics_file)
+        separator = get_separator(separator_choice)
 
-    yohane = Yohane(separator)
+        yohane = Yohane(separator)
 
-    yohane.load_song(song)
-    yohane.load_lyrics(lyrics)
+        yohane.load_song(song)
+        yohane.load_lyrics(lyrics)
 
-    yohane.extract_vocals()
-    save_separated_tracks(yohane, song)
+        yohane.extract_vocals()
+        save_separated_tracks(yohane, output)
 
-    yohane.force_align()
+        yohane.force_align()
 
-    subs = yohane.make_subs()
-    subs_file = song.with_suffix(".ass")
-    subs.save(subs_file.as_posix())
-    logger.info(f"Result saved to '{subs_file.as_posix()}'")
+        subs = yohane.make_subs()
+        subs_file = output.with_suffix(".ass")
+        subs.save(subs_file.as_posix())
+        logger.info(f"Result saved to '{subs_file.as_posix()}'")
 
 
 @app.command(help="Seperate vocals and instrumental tracks")
@@ -78,13 +78,13 @@ def separate(
         ),
     ] = SeparatorChoice.VocalRemover,
 ):
-    song = parse_song_argument(song_file)
-    separator = get_separator(separator_choice)
-    if separator is None:
-        raise RuntimeError("No separator selected")
+    with parse_song_argument(song_file) as (song, output):
+        separator = get_separator(separator_choice)
+        if separator is None:
+            raise RuntimeError("No separator selected")
 
-    yohane = Yohane(separator)
-    yohane.load_song(song)
+        yohane = Yohane(separator)
+        yohane.load_song(song)
 
-    yohane.extract_vocals()
-    save_separated_tracks(yohane, song)
+        yohane.extract_vocals()
+        save_separated_tracks(yohane, output)
