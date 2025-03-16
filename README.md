@@ -63,9 +63,14 @@ In Aegisub:
 
 ## Sample
 
-**KAF, ZOOKARADERU - PV - Himitsu no Kotoba**:
-[Video](https://youtu.be/rnpL3ZugPLc?si=sXZH_EPLt3jaQq9K),
-[Output](<samples/KAF, ZOOKARADERU - PV - Himitsu no Kotoba.ass>)
+- **CRYCHIC - Haruhikage (THE FIRST TAKE)** ([2025.03.0](https://github.com/Japan7/yohane/releases/tag/2025.03.0)):
+  [Video](https://www.youtube.com/watch?v=NJ1tne9u8YM),
+  [Output](<samples/CRYCHIC - 春日影 ⧸ THE FIRST TAKE [NJ1tne9u8YM].ass>)
+- **KAF x ZOOKARADERU - Himitsu no Kotoba** ([2024.10.5](https://github.com/Japan7/yohane/releases/tag/2024.10.5)):
+  [Video](https://youtu.be/rnpL3ZugPLc?si=sXZH_EPLt3jaQq9K),
+  [Output](<samples/【組曲】花譜×ズーカラデル # 124「秘密の言葉」【オリジナルMV】 [rnpL3ZugPLc].ass>)
+- **Aqours - HAPPY PARTY TRAIN** ([c43742c](https://github.com/Japan7/yohane/commit/c43742c1eb2ce9a86089a8d1b5fdc1fad458a91e)):
+  [Hardsubbed Video](https://hikari.butaishoujo.moe/v/9a11c0b1/Aqours%20-%20PV%20-%20HAPPY%20PARTY%20TRAIN.mp4)
 
 ## References
 
