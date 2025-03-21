@@ -40,14 +40,16 @@ class Yohane:
             return
         song_waveform, song_sample_rate = self.song
         vocals_waveform, vocals_sample_rate = self.vocals
-        vocals_waveform_resampled = torchaudio.functional.resample(
+        vocals_waveform = torchaudio.functional.resample(
             vocals_waveform, vocals_sample_rate, song_sample_rate
         )
-        min_rows = min(song_waveform.size(0), vocals_waveform_resampled.size(0))
-        min_columns = min(song_waveform.size(1), vocals_waveform_resampled.size(1))
-        song_waveform = song_waveform[:min_rows, :min_columns]
-        vocals_waveform_resampled = vocals_waveform_resampled[:min_rows, :min_columns]
-        return song_waveform - vocals_waveform_resampled, song_sample_rate
+        min_rows = min(song_waveform.size(0), vocals_waveform.size(0))
+        min_columns = min(song_waveform.size(1), vocals_waveform.size(1))
+        song_waveform = song_waveform.mean(dim=0, keepdim=True).repeat(min_rows, 1)
+        song_waveform = song_waveform[:, :min_columns]
+        vocals_waveform = vocals_waveform.mean(dim=0, keepdim=True).repeat(min_rows, 1)
+        vocals_waveform = vocals_waveform[:, :min_columns]
+        return song_waveform - vocals_waveform, song_sample_rate
 
     def load_lyrics(self, lyrics_str: str):
         logger.info("Loading lyrics")
