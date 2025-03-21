@@ -26,7 +26,10 @@ class Yohane:
 
     def load_song(self, song_file: Path):
         logger.info("Loading song")
-        self.song = torchaudio.load(song_file.as_posix())
+        waveform, sample_rate = torchaudio.load(song_file.as_posix())
+        if waveform.size(0) > 2:
+            waveform = waveform.mean(dim=0, keepdim=True).repeat(2, 1)
+        self.song = (waveform, sample_rate)
 
     def extract_vocals(self):
         if self.separator is None:
@@ -43,11 +46,8 @@ class Yohane:
         vocals_waveform = torchaudio.functional.resample(
             vocals_waveform, vocals_sample_rate, song_sample_rate
         )
-        min_rows = min(song_waveform.size(0), vocals_waveform.size(0))
         min_columns = min(song_waveform.size(1), vocals_waveform.size(1))
-        song_waveform = song_waveform.mean(dim=0, keepdim=True).repeat(min_rows, 1)
         song_waveform = song_waveform[:, :min_columns]
-        vocals_waveform = vocals_waveform.mean(dim=0, keepdim=True).repeat(min_rows, 1)
         vocals_waveform = vocals_waveform[:, :min_columns]
         return song_waveform - vocals_waveform, song_sample_rate
 
