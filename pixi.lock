@@ -4678,7 +4678,7 @@ packages:
   timestamp: 1749230666460
 - pypi: ./
   name: yohane
-  version: 2025.7.1.dev86+g5df65f500.d20251222
+  version: 2025.7.1.dev87+g41bcdfd59.d20251222
   sha256: 34c5077f2497d3bc43df3b2e70c0324890c555b9e8bf4d76de27682c03db6139
   requires_dist:
   - pysubs2==1.8.0
@@ -4691,7 +4691,7 @@ packages:
   requires_python: '>=3.10'
 - pypi: ./yohane-cli
   name: yohane-cli
-  version: 2025.7.1.dev86+g5df65f500.d20251222
+  version: 2025.7.1.dev87+g41bcdfd59.d20251222
   sha256: 8ffb6aa3e6bc3c36ff82888717b460f749b1667feceecf26897fec02dc29992b
   requires_dist:
   - typer-slim[standard]==0.20.1
