@@ -22,7 +22,7 @@ dependencies = [
 cli = ["yohane-cli"]
 
 [dependency-groups]
-dev = ["pyright==1.1.408", "ruff==0.14.10"]
+dev = ["pyright==1.1.408", "ruff==0.14.11"]
 
 [tool.uv.sources]
 yohane-cli = { workspace = true }
