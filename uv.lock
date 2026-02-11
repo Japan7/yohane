@@ -2178,22 +2178,30 @@ wheels = [
 ]
 
 [[package]]
-name = "typer-slim"
-version = "0.21.2"
+name = "typer"
+version = "0.23.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "annotated-doc" },
     { name = "click" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/a5/ca/0d9d822fd8a4c7e830cba36a2557b070d4b4a9558a0460377a61f8fb315d/typer_slim-0.21.2.tar.gz", hash = "sha256:78f20d793036a62aaf9c3798306142b08261d4b2a941c6e463081239f062a2f9", size = 120497, upload-time = "2026-02-10T19:33:45.836Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/54/03/e09325cfc40a33a82b31ba1a3f1d97e85246736856a45a43b19fcb48b1c2/typer_slim-0.21.2-py3-none-any.whl", hash = "sha256:4705082bb6c66c090f60e47c8be09a93158c139ce0aa98df7c6c47e723395e5f", size = 56790, upload-time = "2026-02-10T19:33:47.221Z" },
-]
-
-[package.optional-dependencies]
-standard = [
     { name = "rich" },
     { name = "shellingham" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7e/e6/44e073787aa57cd71c151f44855232feb0f748428fd5242d7366e3c4ae8b/typer-0.23.0.tar.gz", hash = "sha256:d8378833e47ada5d3d093fa20c4c63427cc4e27127f6b349a6c359463087d8cc", size = 120181, upload-time = "2026-02-11T15:22:18.637Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7a/ed/d6fca788b51d0d4640c4bc82d0e85bad4b49809bca36bf4af01b4dcb66a7/typer-0.23.0-py3-none-any.whl", hash = "sha256:79f4bc262b6c37872091072a3cb7cb6d7d79ee98c0c658b4364bdcde3c42c913", size = 56668, upload-time = "2026-02-11T15:22:21.075Z" },
+]
+
+[[package]]
+name = "typer-slim"
+version = "0.23.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "typer" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1f/8a/881cfd399a119db89619dc1b93d36e2fb6720ddb112bceff41203f1abd72/typer_slim-0.23.0.tar.gz", hash = "sha256:be8b60243df27cfee444c6db1b10a85f4f3e54d940574f31a996f78aa35a8254", size = 4773, upload-time = "2026-02-11T15:22:19.106Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/07/3e/ba3a222c80ee070d9497ece3e1fe77253c142925dd4c90f04278aac0a9eb/typer_slim-0.23.0-py3-none-any.whl", hash = "sha256:1d693daf22d998a7b1edab8413cdcb8af07254154ce3956c1664dc11b01e2f8b", size = 3399, upload-time = "2026-02-11T15:22:17.792Z" },
 ]
 
 [[package]]
@@ -2340,13 +2348,13 @@ dev = [
 name = "yohane-cli"
 source = { editable = "yohane-cli" }
 dependencies = [
-    { name = "typer-slim", extra = ["standard"] },
+    { name = "typer-slim" },
     { name = "yt-dlp", extra = ["default"] },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "typer-slim", extras = ["standard"], specifier = "==0.21.2" },
+    { name = "typer-slim", extras = ["standard"], specifier = "==0.23.0" },
     { name = "yt-dlp", extras = ["default"], specifier = "==2026.2.4" },
 ]
 
