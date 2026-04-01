@@ -5,8 +5,8 @@ from pathlib import Path
 from typing import cast
 
 import torch
-import torchaudio
 import vocal_remover.models
+from torchaudio.functional import resample
 from torchaudio.pipelines import HDEMUCS_HIGH_MUSDB_PLUS
 from torchaudio.pipelines import MMS_FA as fa_bundle
 from torchaudio.transforms import Fade
@@ -25,9 +25,7 @@ def compute_alignments(waveform: torch.Tensor, sample_rate: int, transcript: lis
 
     waveform = waveform.mean(0, keepdim=True)
     waveform, sample_rate = (
-        torchaudio.functional.resample(
-            waveform, sample_rate, int(fa_bundle.sample_rate)
-        ),
+        resample(waveform, sample_rate, int(fa_bundle.sample_rate)),
         int(fa_bundle.sample_rate),
     )
 
@@ -132,7 +130,8 @@ class HybridDemucsSeparator(Separator):
             fade_in_len=0, fade_out_len=int(overlap_frames), fade_shape="linear"
         )
 
-        final = torch.zeros(batch, len(model.sources), channels, length, device=device)
+        sources_list = cast(list[str], model.sources)
+        final = torch.zeros(batch, len(sources_list), channels, length, device=device)
 
         while start < length - overlap_frames:
             chunk = mix[:, :, start:end]
@@ -155,9 +154,7 @@ class HybridDemucsSeparator(Separator):
         logger.info(f"Using {device=}")
 
         waveform, sample_rate = (
-            torchaudio.functional.resample(
-                waveform, sample_rate, self.bundle.sample_rate
-            ),
+            resample(waveform, sample_rate, self.bundle.sample_rate),
             self.bundle.sample_rate,
         )
         waveform = waveform.to(device)
@@ -171,7 +168,7 @@ class HybridDemucsSeparator(Separator):
         sources = self.separate_sources(waveform[None], sample_rate, model, device)[0]
         sources = sources * ref.std() + ref.mean()
 
-        sources_list = model.sources
+        sources_list = cast(list[str], model.sources)
         sources = list(sources)
 
         audios = dict(zip(sources_list, sources))

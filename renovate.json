@@ -4,6 +4,5 @@
     "github>Japan7/renovate-config",
     "github>Japan7/renovate-config:python",
     "github>Japan7/renovate-config:python-app"
-  ],
-  "ignoreDeps": ["torch", "torchaudio", "ffmpeg"]
+  ]
 }

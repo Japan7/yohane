@@ -2,8 +2,8 @@ import logging
 from pathlib import Path
 
 import torch
-import torchaudio
-from torchaudio.functional import TokenSpan
+from torchaudio.functional import TokenSpan, resample
+from torchcodec.decoders import AudioDecoder
 
 from yohane.audio import Separator, compute_alignments
 from yohane.lyrics import Lyrics
@@ -26,10 +26,12 @@ class Yohane:
 
     def load_song(self, song_file: Path):
         logger.info("Loading song")
-        waveform, sample_rate = torchaudio.load(song_file.as_posix())
+        audio = AudioDecoder(song_file.as_posix())
+        samples = audio.get_all_samples()
+        waveform = samples.data
         if waveform.size(0) > 2:
             waveform = waveform.mean(dim=0, keepdim=True).repeat(2, 1)
-        self.song = (waveform, sample_rate)
+        self.song = (waveform, samples.sample_rate)
 
     def extract_vocals(self):
         if self.separator is None:
@@ -43,7 +45,7 @@ class Yohane:
             return
         song_waveform, song_sample_rate = self.song
         vocals_waveform, vocals_sample_rate = self.vocals
-        vocals_waveform = torchaudio.functional.resample(
+        vocals_waveform = resample(
             vocals_waveform, vocals_sample_rate, song_sample_rate
         )
         min_columns = min(song_waveform.size(1), vocals_waveform.size(1))
