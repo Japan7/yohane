@@ -6075,7 +6075,7 @@ packages:
   timestamp: 1727964811275
 - pypi: ./
   name: yohane
-  version: 2025.7.1.dev132+gbdba89fbf.d20260401
+  version: 2025.7.1.dev138+g409091d21.d20260401
   sha256: f65e5496d959811b63fae6b8f5e6cafc524e46cee15bab569a99d51f4045d7c7
   requires_dist:
   - pysubs2==1.8.1
@@ -6084,14 +6084,14 @@ packages:
   - torch==2.10.0 ; extra == 'cli'
   - torchaudio==2.10.0 ; extra == 'cli'
   - torchcodec==0.10.0 ; extra == 'cli'
-  - yohane-cli @ file:///Users/n.vu/Developer/Japan7/yohane/yohane-cli ; extra == 'cli'
+  - yohane-cli @ file:///tmp/renovate/repos/github/Japan7/yohane/yohane-cli ; extra == 'cli'
   - torch==2.10.0 ; extra == 'torch'
   - torchaudio==2.10.0 ; extra == 'torch'
   - torchcodec==0.10.0 ; extra == 'torch'
   requires_python: '>=3.10'
 - pypi: ./yohane-cli
   name: yohane-cli
-  version: 2025.7.1.dev132+gbdba89fbf.d20260401
+  version: 2025.7.1.dev138+g409091d21.d20260401
   sha256: 05710412cafb6d9743206cb12655b549c6994cf96fab571463ac779f3ba1de37
   requires_dist:
   - typer==0.24.1
