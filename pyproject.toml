@@ -13,7 +13,7 @@ dependencies = ["pysubs2==1.8.1", "regex==2026.2.28", "vocal-remover"]
 
 [project.optional-dependencies]
 cli = ["yohane[torch]", "yohane-cli"]
-torch = ["torch==2.10.0", "torchaudio==2.10.0", "torchcodec==0.10.0"]
+torch = ["torch==2.11.0", "torchaudio==2.10.0", "torchcodec==0.10.0"]
 
 [dependency-groups]
 dev = ["pyright==1.1.408", "ruff==0.15.7"]
