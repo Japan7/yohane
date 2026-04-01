@@ -4,5 +4,12 @@
     "github>Japan7/renovate-config",
     "github>Japan7/renovate-config:python",
     "github>Japan7/renovate-config:python-app"
+  ],
+  "packageRules": [
+    {
+      "groupName": "Pytorch dependencies",
+      "groupSlug": "pytorch",
+      "matchDepNames": ["torch", "torchaudio", "torchcodec"]
+    }
   ]
 }
