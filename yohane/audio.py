@@ -79,7 +79,13 @@ class VocalRemoverSeparator(Separator):
                 self.pretrained_model = path
 
     def __call__(self, waveform: torch.Tensor, sample_rate: int):
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        device = torch.device(
+            "cuda"
+            if torch.cuda.is_available()
+            else "mps"
+            if torch.backends.mps.is_available()
+            else "cpu"
+        )
         logger.info(f"Using {device=}")
 
         model = nets.CascadedNet(self.n_fft, self.hop_length, 32, 128)
