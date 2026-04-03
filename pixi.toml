@@ -4,8 +4,8 @@ channels = ["conda-forge"]
 platforms = ["linux-64", "osx-arm64", "win-64"]
 
 [dependencies]
-python = ">=3.12,<3.13"
-ffmpeg = ">=8,<9"
+python = "~=3.14.0"
+ffmpeg = "~=8.0"
 
 [pypi-dependencies]
 yohane = { path = ".", extras = ["torch"], editable = true }
