@@ -1832,7 +1832,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "pysubs2", specifier = "==1.8.1" },
+    { name = "pysubs2", specifier = ">=1.4.4,<2" },
     { name = "torch", marker = "extra == 'cli'", specifier = "==2.11.0" },
     { name = "torch", marker = "extra == 'torch'", specifier = "==2.11.0" },
     { name = "torchaudio", marker = "extra == 'cli'", specifier = "==2.11.0" },

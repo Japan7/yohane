@@ -6108,10 +6108,10 @@ packages:
   timestamp: 1727964811275
 - pypi: ./
   name: yohane
-  version: 2025.7.1.dev144+gbd4812185.d20260403
-  sha256: 3c89f3883b636d43d8858b9699f6dec913fdba460ef7913595d01531e916d1c7
+  version: 2025.7.1.dev145+gfd08f3584.d20260403
+  sha256: 84da6e5ed1620c4e6b9df7a5c566bb116686a3712307393787ea260d4c2da7c8
   requires_dist:
-  - pysubs2==1.8.1
+  - pysubs2>=1.4.4,<2
   - vocal-remover @ git+https://github.com/Japan7/vocal-remover.git@6.0.0b4
   - torch==2.11.0 ; extra == 'cli'
   - torchaudio==2.11.0 ; extra == 'cli'
