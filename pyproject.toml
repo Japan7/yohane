@@ -9,7 +9,7 @@ authors = [
     { name = "Voltini", email = "slimen3@hotmail.fr" },
 ]
 requires-python = ">=3.10"
-dependencies = ["pysubs2==1.8.1", "regex==2026.2.28", "vocal-remover"]
+dependencies = ["pysubs2==1.8.1", "vocal-remover"]
 
 [project.optional-dependencies]
 cli = ["yohane[torch]", "yohane-cli"]

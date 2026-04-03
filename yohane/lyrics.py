@@ -1,7 +1,6 @@
+import re
 from dataclasses import dataclass
 from functools import cached_property
-
-import regex as re
 
 
 @dataclass
@@ -49,7 +48,7 @@ def normalize_uroman(text: str):
 
 # https://docs.karaokes.moe/aegisub/auto-split.lua
 AUTO_SPLIT_RE = re.compile(
-    r"(?i)(?:(?<=[^sc])(?=h))|(?:(?<=[^kstnhfmrwpbdgzcj])(?=y))|(?:(?<=[^t])(?=s))|(?:(?=[ktnfmrwpbdgzcj]))|(?:(?<=[aeiou]|[^[:alnum:]])(?=[aeiou]))"
+    r"(?i)(?:(?<=[^sc])(?=h))|(?:(?<=[^kstnhfmrwpbdgzcj])(?=y))|(?:(?<=[^t])(?=s))|(?:(?=[ktnfmrwpbdgzcj]))|(?:(?<=[aeiou]|\W)(?=[aeiou]))"
 )
 
 
