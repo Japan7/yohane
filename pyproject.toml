@@ -16,7 +16,7 @@ cli = ["yohane[torch]", "yohane-cli"]
 torch = ["torch==2.11.0", "torchaudio==2.11.0", "torchcodec==0.11.0"]
 
 [dependency-groups]
-dev = ["pyright==1.1.408", "ruff==0.15.8"]
+dev = ["pyright==1.1.408", "ruff==0.15.9"]
 
 [tool.uv.sources]
 yohane-cli = { workspace = true }
