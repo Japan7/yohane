@@ -33,19 +33,27 @@ def generate(
         ),
     ] = None,
     separator_choice: Annotated[
-        SeparatorChoice,
+        SeparatorChoice | None,
         typer.Option(
             "--separator",
             "-s",
-            help="Source separator to use. 'none' to disable.",
+            help="Optional source separator to use.",
         ),
-    ] = SeparatorChoice.VocalRemover,
+    ] = None,
+    forced_aligner: Annotated[
+        str | None,
+        typer.Option(
+            "--forced-aligner",
+            "-a",
+            help="Forced aligner (Wav2Vec2-based) model to use. (Default: torchaudio's MMS-FA)",
+        ),
+    ] = None,
 ):
     with parse_song_argument(song_file) as (song, output):
         lyrics = parse_lyrics_argument(lyrics_file)
         separator = get_separator(separator_choice)
 
-        yohane = Yohane(separator)
+        yohane = Yohane(separator=separator, forced_aligner=forced_aligner)
 
         yohane.load_song(song)
         yohane.load_lyrics(lyrics)
@@ -83,7 +91,7 @@ def separate(
         if separator is None:
             raise RuntimeError("No separator selected")
 
-        yohane = Yohane(separator)
+        yohane = Yohane(separator=separator)
         yohane.load_song(song)
 
         yohane.extract_vocals()

@@ -35,10 +35,9 @@ def ydl_download(value: str) -> Path:
 class SeparatorChoice(str, Enum):
     VocalRemover = "vocal-remover"
     HybridDemucs = "hybrid-demucs"
-    Disable = "none"
 
 
-def get_separator(separator_choice: SeparatorChoice) -> Separator | None:
+def get_separator(separator_choice: SeparatorChoice | None) -> Separator | None:
     match separator_choice:
         case SeparatorChoice.VocalRemover:
             return VocalRemoverSeparator()

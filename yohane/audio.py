@@ -2,47 +2,101 @@ import logging
 from abc import ABC, abstractmethod
 from importlib.resources import as_file, files
 from pathlib import Path
-from typing import cast
+from typing import Callable, cast
 
 import torch
 import vocal_remover.models
-from torchaudio.functional import resample
+from torchaudio.functional import TokenSpan, resample
 from torchaudio.pipelines import HDEMUCS_HIGH_MUSDB_PLUS
 from torchaudio.pipelines import MMS_FA as fa_bundle
+from torchaudio.pipelines._wav2vec2 import aligner
 from torchaudio.transforms import Fade
+from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
 from vocal_remover.inference import Separator as VocalRemoverBaseSeparator
 from vocal_remover.lib import nets, spec_utils
 
 logger = logging.getLogger(__name__)
 
+TokenizerFn = Callable[[list[str]], list[list[int]]]
 
-def compute_alignments(waveform: torch.Tensor, sample_rate: int, transcript: list[str]):
+
+class ForcedAligner(ABC):
+    @abstractmethod
+    def tokenize(
+        self,
+        batch: list[str],
+    ) -> list[list[int]]: ...
+
+    @abstractmethod
+    def align(
+        self,
+        tokens: list[list[int]],
+        waveform: torch.Tensor,
+        sample_rate: int,
+    ) -> tuple[torch.Tensor, list[list[TokenSpan]]]: ...
+
+
+class TorchAudioForcedAligner(ForcedAligner):
     """
     https://pytorch.org/audio/stable/tutorials/forced_alignment_for_multilingual_data_tutorial.html
     """
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    logger.info(f"Using {device=}")
 
-    waveform = waveform.mean(0, keepdim=True)
-    waveform, sample_rate = (
-        resample(waveform, sample_rate, int(fa_bundle.sample_rate)),
-        int(fa_bundle.sample_rate),
-    )
+    def __init__(self) -> None:
+        super().__init__()
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        logger.info(f"TorchAudioForcedAligner: using MMS_FA on {self.device=}")
+        self.tokenizer = fa_bundle.get_tokenizer()
+        self.model = fa_bundle.get_model()
+        self.model.to(self.device)
+        self.aligner = fa_bundle.get_aligner()
 
-    model = fa_bundle.get_model()
-    model.to(device)
+    def tokenize(self, batch: list[str]):
+        return cast(list[list[int]], self.tokenizer(batch))
 
-    tokenizer = fa_bundle.get_tokenizer()
-    aligner = fa_bundle.get_aligner()
+    def align(self, tokens: list[list[int]], waveform: torch.Tensor, sample_rate: int):
+        waveform = resample(waveform, sample_rate, int(fa_bundle.sample_rate))
+        waveform = waveform.mean(0, keepdim=True)
+        with torch.inference_mode():
+            emission, _ = self.model(waveform.to(self.device))
+            emission = cast(torch.Tensor, emission)
+            token_spans = self.aligner(emission[0], tokens)
+        return emission, token_spans
 
-    with torch.inference_mode():
-        emission, _ = model(waveform.to(device))
-        emission = cast(torch.Tensor, emission)
-        tokens = tokenizer(transcript)
-        tokens = cast(list[list[int]], tokens)
-        token_spans = aligner(emission[0], tokens)
 
-    return emission, token_spans
+class Wav2Vec2ForcedAligner(ForcedAligner):
+    def __init__(self, model: str) -> None:
+        super().__init__()
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        logger.info(f"Wav2Vec2ForcedAligner: using {model=} on {self.device=}")
+        self.processor = Wav2Vec2Processor.from_pretrained(model)
+        self.model = Wav2Vec2ForCTC.from_pretrained(model)
+        self.model.to(self.device)  # pyright: ignore[reportArgumentType]
+        self.aligner = aligner.Aligner(
+            blank=self.processor.tokenizer.word_delimiter_token_id  # pyright: ignore[reportAttributeAccessIssue]
+        )
+
+    def tokenize(self, batch: list[str]):
+        tokenizer = self.processor.tokenizer  # pyright: ignore[reportAttributeAccessIssue]
+        tokens = [tokenizer.encode(e, add_special_tokens=False) for e in batch]
+        return cast(list[list[int]], tokens)
+
+    def align(self, tokens: list[list[int]], waveform: torch.Tensor, sample_rate: int):
+        waveform = resample(
+            waveform,
+            sample_rate,
+            self.processor.feature_extractor.sampling_rate,  # pyright: ignore[reportAttributeAccessIssue]
+        )
+        sample_rate = self.processor.feature_extractor.sampling_rate  # pyright: ignore[reportAttributeAccessIssue]
+        waveform = waveform.mean(0)
+        inputs = self.processor(
+            audio=waveform.numpy(),
+            sampling_rate=sample_rate,  # pyright: ignore[reportCallIssue]
+            return_tensors="pt",  # pyright: ignore[reportCallIssue]
+        ).to(self.device)
+        outputs = self.model(**inputs)
+        emission = torch.nn.functional.log_softmax(outputs.logits, dim=-1)
+        token_spans = self.aligner(emission[0], tokens)
+        return emission, token_spans
 
 
 class Separator(ABC):

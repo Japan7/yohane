@@ -4,9 +4,8 @@ from functools import partial
 from pysubs2 import SSAEvent, SSAFile
 from torch import Tensor
 from torchaudio.functional import TokenSpan
-from torchaudio.pipelines import Wav2Vec2FABundle
 
-from yohane.audio import fa_bundle
+from yohane.audio import TokenizerFn
 from yohane.lyrics import Lyrics
 from yohane.utils import get_identifier
 
@@ -26,11 +25,17 @@ def make_ass(
     lyrics: Lyrics,
     waveform: Tensor,
     sample_rate: int,
+    tokenizer: TokenizerFn,
     emission: Tensor,
     token_spans: list[list[TokenSpan]],
 ):
     all_line_syllables = time_lyrics(
-        lyrics, waveform, sample_rate, emission, token_spans
+        lyrics,
+        waveform,
+        sample_rate,
+        tokenizer,
+        emission,
+        token_spans,
     )
 
     subs = SSAFile()
@@ -78,13 +83,13 @@ def time_lyrics(
     lyrics: Lyrics,
     waveform: Tensor,
     sample_rate: int,
+    tokenizer: TokenizerFn,
     emission: Tensor,
     token_spans: list[list[TokenSpan]],
 ):
     # audio processing parameters
     num_frames = emission.size(1)
     ratio = waveform.size(1) / num_frames
-    tokenizer = fa_bundle.get_tokenizer()
 
     token_spans_iter = iter(token_spans)
     add_syllable = partial(_time_syllable, ratio, sample_rate, tokenizer)
@@ -121,7 +126,7 @@ def time_lyrics(
 def _time_syllable(
     ratio: float,
     sample_rate: float,
-    tokenizer: Wav2Vec2FABundle.Tokenizer,
+    tokenizer: TokenizerFn,
     spans: list[TokenSpan],
     syllable: str,
     span_idx: int,

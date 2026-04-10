@@ -5,7 +5,12 @@ import torch
 from torchaudio.functional import TokenSpan, resample
 from torchcodec.decoders import AudioDecoder
 
-from yohane.audio import Separator, compute_alignments
+from yohane.audio import (
+    ForcedAligner,
+    Separator,
+    TorchAudioForcedAligner,
+    Wav2Vec2ForcedAligner,
+)
 from yohane.lyrics import Lyrics
 from yohane.subtitles import make_ass
 
@@ -13,8 +18,18 @@ logger = logging.getLogger(__name__)
 
 
 class Yohane:
-    def __init__(self, separator: Separator | None):
+    def __init__(
+        self,
+        *,
+        separator: Separator | None,
+        forced_aligner: str | None = None,
+    ):
         self.separator = separator
+        self.forced_aligner: ForcedAligner = (
+            Wav2Vec2ForcedAligner(forced_aligner)
+            if forced_aligner is not None
+            else TorchAudioForcedAligner()
+        )
         self.song: tuple[torch.Tensor, int] | None = None
         self.vocals: tuple[torch.Tensor, int] | None = None
         self.lyrics: Lyrics | None = None
@@ -60,8 +75,9 @@ class Yohane:
     def force_align(self):
         logger.info("Computing forced alignment")
         assert self.forced_aligned_audio is not None and self.lyrics is not None
-        self.forced_alignment = compute_alignments(
-            *self.forced_aligned_audio, self.lyrics.transcript
+        tokens = self.forced_aligner.tokenize(self.lyrics.transcript)
+        self.forced_alignment = self.forced_aligner.align(
+            tokens, *self.forced_aligned_audio
         )
 
     def make_subs(self):
@@ -71,5 +87,10 @@ class Yohane:
             and self.forced_aligned_audio is not None
             and self.forced_alignment is not None
         )
-        subs = make_ass(self.lyrics, *self.forced_aligned_audio, *self.forced_alignment)
+        subs = make_ass(
+            self.lyrics,
+            *self.forced_aligned_audio,
+            self.forced_aligner.tokenize,
+            *self.forced_alignment,
+        )
         return subs
