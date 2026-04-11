@@ -1,19 +1,19 @@
 import logging
 from abc import ABC, abstractmethod
-from importlib.resources import as_file, files
-from pathlib import Path
 from typing import Callable, cast
 
 import torch
-import vocal_remover.models
 from torchaudio.functional import TokenSpan, resample
 from torchaudio.pipelines import HDEMUCS_HIGH_MUSDB_PLUS
 from torchaudio.pipelines import MMS_FA as fa_bundle
 from torchaudio.pipelines._wav2vec2 import aligner
 from torchaudio.transforms import Fade
-from transformers import Wav2Vec2CTCTokenizer, Wav2Vec2ForCTC, Wav2Vec2Processor
-from vocal_remover.inference import Separator as VocalRemoverBaseSeparator
-from vocal_remover.lib import nets, spec_utils
+from transformers import (
+    Wav2Vec2CTCTokenizer,
+    Wav2Vec2ForCTC,
+    Wav2Vec2Processor,
+    pipeline,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -109,55 +109,17 @@ class VocalRemoverSeparator(Separator):
     https://github.com/tsurumeso/vocal-remover
     """
 
-    def __init__(
-        self,
-        pretrained_model: Path | None = None,
-        n_fft: int = 2048,
-        hop_length: int = 1024,
-        batchsize: int = 4,
-        cropsize: int = 256,
-    ):
+    def __init__(self):
         super().__init__()
-        self.n_fft = n_fft
-        self.hop_length = hop_length
-        self.batchsize = batchsize
-        self.cropsize = cropsize
-
-        if pretrained_model is not None:
-            self.pretrained_model = pretrained_model
-        else:
-            state_resource = files(vocal_remover.models) / "baseline.pth"
-            with as_file(state_resource) as path:
-                self.pretrained_model = path
+        self.pipeline = pipeline(
+            task="tsurumeso-vocal-remover",  # type:ignore
+            model="NextFire/tsurumeso-vocal-remover",
+            trust_remote_code=True,
+        )
 
     def __call__(self, waveform: torch.Tensor, sample_rate: int):
-        device = torch.device(
-            "cuda"
-            if torch.cuda.is_available()
-            else "mps"
-            if torch.backends.mps.is_available()
-            else "cpu"
-        )
-        logger.info(f"Using {device=}")
-
-        model = nets.CascadedNet(self.n_fft, self.hop_length, 32, 128)
-        model.load_state_dict(
-            torch.load(self.pretrained_model, map_location="cpu", weights_only=True)
-        )
-        model.to(device)
-
-        waveform = waveform.repeat(2, 1) if waveform.ndim == 1 else waveform
-
-        waveform_spec = spec_utils.wave_to_spectrogram(
-            waveform.numpy(), self.hop_length, self.n_fft
-        )
-
-        sp = VocalRemoverBaseSeparator(model, device, self.batchsize, self.cropsize)
-        _, vocals_spec = sp.separate(waveform_spec)
-
-        vocals = spec_utils.spectrogram_to_wave(vocals_spec, hop_length=self.hop_length)
-
-        return torch.Tensor(vocals), sample_rate
+        outputs = self.pipeline(waveform)
+        return torch.Tensor(outputs["vocals"]), sample_rate
 
 
 class HybridDemucsSeparator(Separator):
