@@ -77,23 +77,20 @@ class Wav2Vec2ForcedAligner(ForcedAligner):
 
     def tokenize(self, batch: list[str]):
         tokenizer = self.processor.tokenizer  # pyright: ignore[reportAttributeAccessIssue]
-        tokens = [tokenizer.encode(e, add_special_tokens=False) for e in batch]
+        tokens = [tokenizer.encode(e) for e in batch]
         return cast(list[list[int]], tokens)
 
     def align(self, tokens: list[list[int]], waveform: torch.Tensor, sample_rate: int):
-        waveform = resample(
-            waveform,
-            sample_rate,
-            self.processor.feature_extractor.sampling_rate,  # pyright: ignore[reportAttributeAccessIssue]
-        )
-        sample_rate = self.processor.feature_extractor.sampling_rate  # pyright: ignore[reportAttributeAccessIssue]
+        target_sample_rate = self.processor.feature_extractor.sampling_rate  # pyright: ignore[reportAttributeAccessIssue]
+        waveform = resample(waveform, sample_rate, target_sample_rate)
+        sample_rate = target_sample_rate
         waveform = waveform.mean(0)
         inputs = self.processor(
             audio=waveform.numpy(),
             sampling_rate=sample_rate,  # pyright: ignore[reportCallIssue]
             return_tensors="pt",  # pyright: ignore[reportCallIssue]
-        ).to(self.device)
-        outputs = self.model(**inputs)
+        )
+        outputs = self.model(**inputs.to(self.device))
         emission = torch.nn.functional.log_softmax(outputs.logits, dim=-1)
         token_spans = self.aligner(emission[0], tokens)
         return emission, token_spans
