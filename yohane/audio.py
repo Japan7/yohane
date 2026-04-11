@@ -69,13 +69,16 @@ class Wav2Vec2ForcedAligner(ForcedAligner):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         logger.info(f"Wav2Vec2ForcedAligner: using {model=} on {self.device=}")
         self.processor = Wav2Vec2Processor.from_pretrained(model)
-        self.tokenizer = cast(Wav2Vec2CTCTokenizer, self.processor.tokenizer)  # pyright: ignore[reportAttributeAccessIssue]
         self.model = Wav2Vec2ForCTC.from_pretrained(model)
         self.model.to(self.device)  # pyright: ignore[reportArgumentType]
         self.aligner = aligner.Aligner(blank=self.tokenizer.word_delimiter_token_id)
 
+    @property
+    def tokenizer(self) -> Wav2Vec2CTCTokenizer:
+        return self.processor.tokenizer  # pyright: ignore[reportAttributeAccessIssue]
+
     def tokenize(self, batch: list[str]):
-        return [self.tokenizer.encode(e) for e in batch]
+        return [self.tokenizer.encode(e, add_special_tokens=False) for e in batch]
 
     def align(self, tokens: list[list[int]], waveform: torch.Tensor, sample_rate: int):
         target_sample_rate = self.processor.feature_extractor.sampling_rate  # pyright: ignore[reportAttributeAccessIssue]
