@@ -1,18 +1,18 @@
 # yohane
 
-Takes a song and its lyrics, extracts the vocals, splits the syllables and computes a forced alignment to generate a karaoke in an [Aegisub](https://aegisub.org) subtitles file (.ass).
+Yohane takes a song and its lyrics, optionally extracts the vocals, splits the syllables, and computes a forced alignment to generate karaoke in an [Aegisub](https://aegisub.org) subtitle file (.ass).
 
 ## Getting Started
 
 ### Notebook
 
-Open the [notebook](notebook/yohane.ipynb) in Google Colab to use their offered GPU resources:
+Open the [notebook](notebook/yohane.ipynb) in Google Colab to use their free T4 GPUs:
 
 <a target="_blank" href="https://colab.research.google.com/github/Japan7/yohane/blob/main/notebook/yohane.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-The full pipeline will be completed in less than a minute in their environment.
+The full pipeline takes less than a minute to complete.
 
 ### Local environment
 
