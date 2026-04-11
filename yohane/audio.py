@@ -11,7 +11,7 @@ from torchaudio.pipelines import HDEMUCS_HIGH_MUSDB_PLUS
 from torchaudio.pipelines import MMS_FA as fa_bundle
 from torchaudio.pipelines._wav2vec2 import aligner
 from torchaudio.transforms import Fade
-from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
+from transformers import Wav2Vec2CTCTokenizer, Wav2Vec2ForCTC, Wav2Vec2Processor
 from vocal_remover.inference import Separator as VocalRemoverBaseSeparator
 from vocal_remover.lib import nets, spec_utils
 
@@ -69,16 +69,13 @@ class Wav2Vec2ForcedAligner(ForcedAligner):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         logger.info(f"Wav2Vec2ForcedAligner: using {model=} on {self.device=}")
         self.processor = Wav2Vec2Processor.from_pretrained(model)
+        self.tokenizer = cast(Wav2Vec2CTCTokenizer, self.processor.tokenizer)  # pyright: ignore[reportAttributeAccessIssue]
         self.model = Wav2Vec2ForCTC.from_pretrained(model)
         self.model.to(self.device)  # pyright: ignore[reportArgumentType]
-        self.aligner = aligner.Aligner(
-            blank=self.processor.tokenizer.word_delimiter_token_id  # pyright: ignore[reportAttributeAccessIssue]
-        )
+        self.aligner = aligner.Aligner(blank=self.tokenizer.word_delimiter_token_id)
 
     def tokenize(self, batch: list[str]):
-        tokenizer = self.processor.tokenizer  # pyright: ignore[reportAttributeAccessIssue]
-        tokens = [tokenizer.encode(e) for e in batch]
-        return cast(list[list[int]], tokens)
+        return [self.tokenizer.encode(e) for e in batch]
 
     def align(self, tokens: list[list[int]], waveform: torch.Tensor, sample_rate: int):
         target_sample_rate = self.processor.feature_extractor.sampling_rate  # pyright: ignore[reportAttributeAccessIssue]
