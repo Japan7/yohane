@@ -59,7 +59,7 @@ class TorchAudioForcedAligner(ForcedAligner):
         with torch.inference_mode():
             emission, _ = self.model(waveform.to(self.device))
             emission = cast(torch.Tensor, emission)
-            token_spans = self.aligner(emission[0], tokens)
+        token_spans = self.aligner(emission[0], tokens)
         return emission, token_spans
 
 
@@ -90,8 +90,9 @@ class Wav2Vec2ForcedAligner(ForcedAligner):
             sampling_rate=sample_rate,  # pyright: ignore[reportCallIssue]
             return_tensors="pt",  # pyright: ignore[reportCallIssue]
         )
-        outputs = self.model(**inputs.to(self.device))
-        emission = torch.nn.functional.log_softmax(outputs.logits, dim=-1)
+        with torch.inference_mode():
+            outputs = self.model(**inputs.to(self.device))
+            emission = torch.nn.functional.log_softmax(outputs.logits, dim=-1)
         token_spans = self.aligner(emission[0], tokens)
         return emission, token_spans
 
