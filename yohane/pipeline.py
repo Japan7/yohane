@@ -50,6 +50,10 @@ class Yohane:
 
     def extract_vocals(self):
         if self.separator is None:
+            logger.warning(
+                "Vocals extraction skipped because no separator was provided. "
+                'Use the "--separator" flag to specify one.'
+            )
             return
         logger.info(f"Extracting vocals with {self.separator=}")
         assert self.song
