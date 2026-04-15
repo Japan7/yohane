@@ -1,5 +1,5 @@
 from functools import cached_property
-from typing import Any
+from typing import Any, TypedDict
 
 import lightning as L
 import torch
@@ -8,9 +8,26 @@ from datasets import Dataset, load_dataset
 from torch.nn import functional as F
 from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import DataLoader
+from torchcodec.decoders import AudioDecoder
 
 from yohane_fa.modules import YohaneFA
 from yohane_fa.tokenizer import YohaneFATokenizer
+
+
+class DatasetMora(TypedDict):
+    value: str
+    start: int
+    end: int
+
+
+class DatasetRow(TypedDict):
+    audio: AudioDecoder
+    morae: list[DatasetMora]
+
+
+class ModelInput(TypedDict):
+    input_values: torch.Tensor
+    labels: torch.Tensor
 
 
 class KaraokeAlignementsDataModule(L.LightningDataModule):
@@ -121,10 +138,10 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
 
     def _prepare_example(
         self,
-        example: dict[str, Any],
+        example: DatasetRow,
         *,
         mel_transform: torchaudio.transforms.MelSpectrogram,
-    ) -> dict[str, Any]:
+    ) -> ModelInput:
         waveform = example["audio"].get_all_samples().data
         input_values = mel_transform(waveform).squeeze(0).transpose(0, 1)
         input_values = torch.log(input_values.clamp_min(1e-5))
@@ -133,7 +150,7 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
 
     def _build_labels(
         self,
-        morae: list[dict[str, Any]],
+        morae: list[DatasetMora],
         input_length: int,
     ) -> torch.Tensor:
         labels = torch.full((input_length,), self.tokenizer.blank_id)
@@ -151,10 +168,7 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
                 labels[frame] = self.tokenizer.encode(characters[char_idx])
         return labels
 
-    def _collate_batch(
-        self,
-        batch: list[dict[str, torch.Tensor]],
-    ) -> dict[str, torch.Tensor]:
+    def _collate_batch(self, batch: list[ModelInput]) -> ModelInput:
         input_values = [example["input_values"] for example in batch]
         labels = [example["labels"] for example in batch]
         padded_input_values = pad_sequence(
@@ -188,30 +202,18 @@ class YohaneFALightning(L.LightningModule):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.model(x)
 
-    def training_step(
-        self,
-        batch: dict[str, torch.Tensor],
-        batch_idx: int,
-    ) -> torch.Tensor:
+    def training_step(self, batch: ModelInput, batch_idx: int) -> torch.Tensor:
         return self._shared_step(batch, batch_idx, stage="train")
 
-    def validation_step(
-        self,
-        batch: dict[str, torch.Tensor],
-        batch_idx: int,
-    ) -> torch.Tensor:
+    def validation_step(self, batch: ModelInput, batch_idx: int) -> torch.Tensor:
         return self._shared_step(batch, batch_idx, stage="val")
 
-    def test_step(
-        self,
-        batch: dict[str, torch.Tensor],
-        batch_idx: int,
-    ) -> torch.Tensor:
+    def test_step(self, batch: ModelInput, batch_idx: int) -> torch.Tensor:
         return self._shared_step(batch, batch_idx, stage="test")
 
     def _shared_step(
         self,
-        batch: dict[str, torch.Tensor],
+        batch: ModelInput,
         batch_idx: int,
         *,
         stage: str,
