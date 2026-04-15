@@ -5,6 +5,13 @@ trainer:
       init_args:
         monitor: val_frame_accuracy
         mode: max
+  logger:
+    - class_path: TensorBoardLogger
+      init_args:
+        save_dir: lightning_logs
+    - class_path: yohane_fa.logger.TrackioLogger
+      init_args:
+        project: yohane-fa
 
 data:
   dataset_path: NextFire/karaoke-alignments
