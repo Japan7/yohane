@@ -10,4 +10,5 @@ ffmpeg = "~=8.0"
 [pypi-dependencies]
 yohane = { path = ".", extras = ["torch"], editable = true }
 yohane-cli = { path = "yohane-cli", editable = true }
+yohane-fa = { path = "yohane-fa", editable = true }
 vocal-remover = { git = "https://github.com/Japan7/vocal-remover.git", branch = "6.0.0b4" }

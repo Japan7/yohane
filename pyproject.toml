@@ -12,7 +12,8 @@ requires-python = ">=3.10"
 dependencies = ["pysubs2>=1.4.4,<2", "transformers>=5,<6"]
 
 [project.optional-dependencies]
-cli = ["yohane[torch,vocal-remover]", "yohane-cli"]
+cli = ["yohane[forced-aligner,torch,vocal-remover]", "yohane-cli"]
+forced-aligner = ["yohane-fa"]
 torch = ["torch==2.11.0", "torchaudio==2.11.0", "torchcodec==0.11.1"]
 vocal-remover = ["vocal-remover"]
 
@@ -21,10 +22,11 @@ dev = ["pyright==1.1.408", "ruff==0.15.11"]
 
 [tool.uv.sources]
 yohane-cli = { workspace = true }
+yohane-fa = { workspace = true }
 vocal-remover = { git = "https://github.com/Japan7/vocal-remover.git", branch = "6.0.0b4" }
 
 [tool.uv.workspace]
-members = ["yohane-cli"]
+members = ["yohane-cli", "yohane-fa"]
 
 [project.scripts]
 yohane = "yohane.__main__:main"

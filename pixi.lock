@@ -242,6 +242,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/e3/bd/520769863744b669440a924271a6159ddd82ad5ae26b4ac4d4b69e9f8d44/yt_dlp_ejs-0.8.0-py3-none-any.whl
       - pypi: ./
       - pypi: ./yohane-cli
+      - pypi: ./yohane-fa
       osx-arm64:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/aom-3.9.1-h7bae524_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/bzip2-1.0.8-hd037594_9.conda
@@ -407,6 +408,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/e3/bd/520769863744b669440a924271a6159ddd82ad5ae26b4ac4d4b69e9f8d44/yt_dlp_ejs-0.8.0-py3-none-any.whl
       - pypi: ./
       - pypi: ./yohane-cli
+      - pypi: ./yohane-fa
       win-64:
       - conda: https://conda.anaconda.org/conda-forge/win-64/aom-3.9.1-he0c23c2_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/bzip2-1.0.8-h0ad9c76_9.conda
@@ -551,6 +553,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/e3/bd/520769863744b669440a924271a6159ddd82ad5ae26b4ac4d4b69e9f8d44/yt_dlp_ejs-0.8.0-py3-none-any.whl
       - pypi: ./
       - pypi: ./yohane-cli
+      - pypi: ./yohane-fa
 packages:
 - conda: https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda
   build_number: 20
@@ -6467,8 +6470,8 @@ packages:
   timestamp: 1727964811275
 - pypi: ./
   name: yohane
-  version: 2026.4.5.dev7+g092165e4a.d20260425
-  sha256: 0de0e33922db441e15f27e827811e9163f841230c30f09e0a43d9de7d5cd54ed
+  version: 2026.4.5.dev8+gdc7ccdd69.d20260425
+  sha256: 7ff16946801eebb9b489f27561514c2bccbf0161aee752fa0eb89c4d050dc100
   requires_dist:
   - pysubs2>=1.4.4,<2
   - transformers>=5,<6
@@ -6477,6 +6480,8 @@ packages:
   - torchcodec==0.11.1 ; extra == 'cli'
   - vocal-remover @ git+https://github.com/Japan7/vocal-remover.git@6.0.0b4 ; extra == 'cli'
   - yohane-cli @ file:///Users/n.vu/Developer/Japan7/yohane/yohane-cli ; extra == 'cli'
+  - yohane-fa @ file:///Users/n.vu/Developer/Japan7/yohane/yohane-fa ; extra == 'cli'
+  - yohane-fa @ file:///Users/n.vu/Developer/Japan7/yohane/yohane-fa ; extra == 'forced-aligner'
   - torch==2.11.0 ; extra == 'torch'
   - torchaudio==2.11.0 ; extra == 'torch'
   - torchcodec==0.11.1 ; extra == 'torch'
@@ -6489,6 +6494,15 @@ packages:
   requires_dist:
   - typer==0.24.1
   - yt-dlp[default]==2026.3.17
+  requires_python: '>=3.10'
+- pypi: ./yohane-fa
+  name: yohane-fa
+  version: 2026.4.5.dev8+gdc7ccdd69.d20260425
+  sha256: 695ff61bc15422a260f5c8cd4b4bb157f7026515b42504fcedbe57092368a9b2
+  requires_dist:
+  - torch==2.11.0 ; extra == 'torch'
+  - torchaudio==2.11.0 ; extra == 'torch'
+  - torchcodec==0.11.1 ; extra == 'torch'
   requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/cd/13/5093bcb954878e50f7217fd2ab94282b53934022e4e4a03265582da83bf5/yt_dlp-2026.3.17-py3-none-any.whl
   name: yt-dlp

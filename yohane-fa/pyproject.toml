@@ -1,0 +1,25 @@
+[project]
+name = "yohane-fa"
+dynamic = ["version"]
+description = "Forced Alignement model for yohane"
+license = "MIT"
+authors = [{ name = "NextFire", email = "git@yuru.moe" }]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+torch = ["torch==2.11.0", "torchaudio==2.11.0", "torchcodec==0.11.1"]
+
+[dependency-groups]
+dev = ["datasets==4.8.4", "lightning[extra]==2.6.1"]
+
+[project.urls]
+homepage = "https://github.com/Japan7/yohane"
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+raw-options = { root = ".." }
