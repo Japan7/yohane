@@ -178,26 +178,15 @@ class YohaneFALightning(L.LightningModule):
         output_dim: int,
         blank_token_id: int,
         pad_token_id: int,
-        lr: float = 1e-3,
-        weight_decay: float = 1e-2,
     ):
         super().__init__()
         self.save_hyperparameters()
         self.model = YohaneFA(input_dim, hidden_dim, output_dim)
         self.blank_token_id = blank_token_id
         self.pad_token_id = pad_token_id
-        self.lr = lr
-        self.weight_decay = weight_decay
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.model(x)
-
-    def configure_optimizers(self) -> torch.optim.Optimizer:
-        return torch.optim.AdamW(
-            self.parameters(),
-            lr=self.lr,
-            weight_decay=self.weight_decay,
-        )
 
     def training_step(
         self,
