@@ -1,7 +1,8 @@
 [project]
 name = "yohane-fa"
 dynamic = ["version"]
-description = "Forced Alignement model for yohane"
+description = "Custom forced alignement model for yohane"
+readme = "README.md"
 license = "MIT"
 authors = [{ name = "NextFire", email = "git@yuru.moe" }]
 requires-python = ">=3.10"
