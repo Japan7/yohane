@@ -17,3 +17,14 @@ data:
   dataset_path: NextFire/karaoke-alignments
   batch_size: 8
   num_workers: 4
+
+optimizer:
+  class_path: AdamW
+  init_args:
+    lr: 2e-4
+    weight_decay: 1e-2
+
+lr_scheduler:
+  class_path: ReduceLROnPlateau
+  init_args:
+    monitor: train_loss
