@@ -4,8 +4,7 @@ from typing import Callable, cast
 
 import torch
 from torchaudio.functional import TokenSpan, resample
-from torchaudio.pipelines import HDEMUCS_HIGH_MUSDB_PLUS
-from torchaudio.pipelines import MMS_FA as fa_bundle
+from torchaudio.pipelines import HDEMUCS_HIGH_MUSDB_PLUS, MMS_FA
 from torchaudio.pipelines._wav2vec2 import aligner
 from torchaudio.transforms import Fade
 from transformers import (
@@ -41,20 +40,22 @@ class TorchAudioForcedAligner(ForcedAligner):
     https://pytorch.org/audio/stable/tutorials/forced_alignment_for_multilingual_data_tutorial.html
     """
 
+    bundle = MMS_FA
+
     def __init__(self) -> None:
         super().__init__()
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        logger.info(f"TorchAudioForcedAligner: using MMS_FA on {self.device=}")
-        self.tokenizer = fa_bundle.get_tokenizer()
-        self.model = fa_bundle.get_model()
+        logger.info(f"TorchAudioForcedAligner: using {self.bundle=} on {self.device=}")
+        self.tokenizer = self.bundle.get_tokenizer()
+        self.model = self.bundle.get_model()
         self.model.to(self.device)
-        self.aligner = fa_bundle.get_aligner()
+        self.aligner = self.bundle.get_aligner()
 
     def tokenize(self, batch: list[str]):
         return cast(list[list[int]], self.tokenizer(batch))
 
     def align(self, tokens: list[list[int]], waveform: torch.Tensor, sample_rate: int):
-        waveform = resample(waveform, sample_rate, int(fa_bundle.sample_rate))
+        waveform = resample(waveform, sample_rate, int(self.bundle.sample_rate))
         waveform = waveform.mean(0, keepdim=True)
         with torch.inference_mode():
             emission, _ = self.model(waveform.to(self.device))
@@ -127,9 +128,10 @@ class HybridDemucsSeparator(Separator):
     https://pytorch.org/audio/2.1.0/tutorials/hybrid_demucs_tutorial.html
     """
 
+    bundle = HDEMUCS_HIGH_MUSDB_PLUS
+
     def __init__(self, segment=10.0, overlap=0.1):
         super().__init__()
-        self.bundle = HDEMUCS_HIGH_MUSDB_PLUS
         self.segment = segment
         self.overlap = overlap
 
