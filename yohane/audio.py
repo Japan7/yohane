@@ -7,12 +7,7 @@ from torchaudio.functional import TokenSpan, resample
 from torchaudio.pipelines import HDEMUCS_HIGH_MUSDB_PLUS, MMS_FA
 from torchaudio.pipelines._wav2vec2 import aligner
 from torchaudio.transforms import Fade
-from transformers import (
-    Wav2Vec2CTCTokenizer,
-    Wav2Vec2ForCTC,
-    Wav2Vec2Processor,
-    pipeline,
-)
+from transformers import Wav2Vec2CTCTokenizer, Wav2Vec2ForCTC, Wav2Vec2Processor
 
 logger = logging.getLogger(__name__)
 
@@ -112,11 +107,13 @@ class VocalRemoverSeparator(Separator):
 
     def __init__(self):
         super().__init__()
-        self.pipeline = pipeline(
-            task="tsurumeso-vocal-remover",  # type:ignore
-            model="NextFire/tsurumeso-vocal-remover",
-            trust_remote_code=True,
+        from vocal_remover.transformer.modeling import VocalRemoverModel
+        from vocal_remover.transformer.pipeline import VocalRemoverPipeline
+
+        self.model = VocalRemoverModel.from_pretrained(
+            "NextFire/tsurumeso-vocal-remover"
         )
+        self.pipeline = VocalRemoverPipeline(self.model)
 
     def __call__(self, waveform: torch.Tensor, sample_rate: int):
         outputs = self.pipeline(waveform)
