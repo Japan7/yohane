@@ -1,5 +1,5 @@
 from functools import cached_property
-from typing import Any, TypedDict
+from typing import Any, TypedDict, cast
 
 import lightning as L
 import torch
@@ -91,7 +91,7 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
             new_fingerprint="yohane_fa_prepared_dataset",
         )
 
-        split = dataset.train_test_split(test_size=0.1)
+        split = dataset.train_test_split(test_size=0.2)
         self.train_dataset = split["train"]
         split = split["test"].train_test_split(test_size=0.5)
         self.val_dataset = split["train"]
@@ -192,12 +192,17 @@ class YohaneFALightning(L.LightningModule):
         output_dim: int,
         blank_token_id: int,
         pad_token_id: int,
+        dropout: float = 0.1,
+        dampening_factor: float = 0.5,
+        label_smoothing: float = 0.1,
     ):
         super().__init__()
         self.save_hyperparameters()
-        self.model = YohaneFA(input_dim, hidden_dim, output_dim)
+        self.model = YohaneFA(input_dim, hidden_dim, output_dim, dropout=dropout)
         self.blank_token_id = blank_token_id
         self.pad_token_id = pad_token_id
+        self.dampening_factor = dampening_factor
+        self.label_smoothing = label_smoothing
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.model(x)
@@ -218,18 +223,29 @@ class YohaneFALightning(L.LightningModule):
         *,
         stage: str,
     ) -> torch.Tensor:
-        logits = self(batch["input_values"])
+        logits = cast(torch.Tensor, self(batch["input_values"]))
         labels = batch["labels"]
+
+        valid_mask = labels != self.pad_token_id
+
+        counts = (
+            torch.bincount(labels[valid_mask], minlength=logits.size(-1))
+            .float()
+            .clamp(min=1)
+        )
+        weight = (1.0 / counts) ** self.dampening_factor
+        weight = weight / weight.sum() * len(weight)
 
         loss = F.cross_entropy(
             logits.transpose(1, 2),
             labels,
+            weight=weight,
             ignore_index=self.pad_token_id,
+            label_smoothing=self.label_smoothing,
         )
 
         with torch.no_grad():
             predictions = logits.argmax(dim=-1)
-            valid_mask = labels != self.pad_token_id
             frame_accuracy = self._masked_accuracy(predictions, labels, valid_mask)
             char_mask = valid_mask & (labels != self.blank_token_id)
             char_accuracy = self._masked_accuracy(predictions, labels, char_mask)
