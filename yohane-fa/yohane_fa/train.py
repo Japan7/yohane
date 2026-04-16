@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+import torch
 from lightning.pytorch.cli import LightningArgumentParser, LightningCLI
 
 from yohane_fa.lightning import KaraokeAlignementsDataModule, YohaneFALightning
@@ -48,6 +49,7 @@ class YohaneFALightningCLI(LightningCLI):
 
 
 def cli_main():
+    torch.set_float32_matmul_precision("high")
     _ = YohaneFALightningCLI(YohaneFALightning, KaraokeAlignementsDataModule)
 
 

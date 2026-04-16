@@ -4265,7 +4265,7 @@ wheels = [
 
 [[package]]
 name = "trackio"
-version = "0.22.0"
+version = "0.23.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "gradio", extra = ["oauth"] },
@@ -4279,7 +4279,7 @@ dependencies = [
     { name = "tomli", marker = "python_full_version < '3.11'" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5b/3b/ed26ca8c713bab35c7bcf0f2b4f7204c6a62c3287a23fe6a3d6d0907d5e7/trackio-0.22.0-py3-none-any.whl", hash = "sha256:85303d5630a82cfb7912e914915aaeca5bc36177ed312103955b7d5e57249520", size = 1562173, upload-time = "2026-04-10T19:34:02.421Z" },
+    { url = "https://files.pythonhosted.org/packages/36/e7/939cc3bf70707cf2a2caf1120f3b32593844e43afb25846e62e709530b9e/trackio-0.23.0-py3-none-any.whl", hash = "sha256:9cf53aa289d9a35d6f9790042d21deeea20ec0ae7c73c361d295e3a15840b5c7", size = 1579603, upload-time = "2026-04-16T03:58:02.657Z" },
 ]
 
 [package.optional-dependencies]
@@ -4854,7 +4854,7 @@ provides-extras = ["torch"]
 dev = [
     { name = "datasets", specifier = "==4.8.4" },
     { name = "lightning", extras = ["extra"], specifier = "==2.6.1" },
-    { name = "trackio", extras = ["apple-gpu", "gpu"], specifier = "==0.22.0" },
+    { name = "trackio", extras = ["apple-gpu", "gpu"], specifier = "==0.23.0" },
 ]
 
 [[package]]
