@@ -93,9 +93,16 @@ class TdnnFfn(nn.Module):
                 dilation=32,
                 dropout=dropout,
             ),
+            TdnnLayer(
+                hidden_dim,
+                hidden_dim,
+                kernel_size=3,
+                stride=1,
+                dilation=64,
+                dropout=dropout,
+            ),
         )
         self.ffn = nn.Sequential(
-            FfnLayer(hidden_dim, hidden_dim, dropout=dropout),
             FfnLayer(hidden_dim, hidden_dim, dropout=dropout),
             FfnLayer(hidden_dim, hidden_dim, dropout=dropout),
         )

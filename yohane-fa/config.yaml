@@ -18,6 +18,7 @@ trainer:
         project: yohane-fa
 
 model:
+  hidden_dim_multiplier: 8
   dropout: 0.05
 
 data:
