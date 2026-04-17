@@ -256,7 +256,7 @@ class YohaneFALightning(L.LightningModule):
             char_accuracy = self._masked_accuracy(predictions, labels, char_mask)
         self.log(f"{stage}_loss", loss, prog_bar=True)
         self.log(f"{stage}_frame_accuracy", frame_accuracy, prog_bar=True)
-        self.log(f"{stage}_char_accuracy", char_accuracy, prog_bar=True)
+        self.log(f"{stage}_char_accuracy", char_accuracy)
         return loss
 
     @staticmethod
