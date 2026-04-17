@@ -8,7 +8,7 @@ from yohane_fa.lightning import KaraokeAlignementsDataModule, YohaneFALightning
 
 
 class YohaneFALightningCLI(LightningCLI):
-    DEFAULT_HIDDEN_DIM_MULTIPLIER = 8
+    DEFAULT_HIDDEN_DIM_MULTIPLIER = 16
 
     def add_arguments_to_parser(self, parser: LightningArgumentParser) -> None:
         parser.link_arguments(

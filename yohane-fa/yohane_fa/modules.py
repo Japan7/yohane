@@ -23,10 +23,11 @@ class TdnnLayer(nn.Module):
             dilation=dilation,
         )
         self.relu = nn.ReLU()
+        self.batch_norm = nn.BatchNorm1d(out_channels)
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.dropout(self.relu(self.conv(x)))
+        return self.dropout(self.batch_norm(self.relu(self.conv(x))))
 
 
 class FfnLayer(nn.Module):
@@ -37,7 +38,7 @@ class FfnLayer(nn.Module):
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.dropout(self.relu(self.linear(x)))
+        return self.dropout(self.relu(self.linear(x))) + x
 
 
 class TdnnFfn(nn.Module):
@@ -74,6 +75,22 @@ class TdnnFfn(nn.Module):
                 kernel_size=3,
                 stride=1,
                 dilation=8,
+                dropout=dropout,
+            ),
+            TdnnLayer(
+                hidden_dim,
+                hidden_dim,
+                kernel_size=3,
+                stride=1,
+                dilation=16,
+                dropout=dropout,
+            ),
+            TdnnLayer(
+                hidden_dim,
+                hidden_dim,
+                kernel_size=3,
+                stride=1,
+                dilation=32,
                 dropout=dropout,
             ),
         )

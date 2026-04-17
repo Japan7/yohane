@@ -1,7 +1,10 @@
 trainer:
   max_epochs: 100
   log_every_n_steps: 10
+  precision: bf16-mixed
+  gradient_clip_val: 1.0
   callbacks:
+    - class_path: LearningRateMonitor
     - class_path: EarlyStopping
       init_args:
         monitor: val_frame_accuracy
@@ -16,18 +19,16 @@ trainer:
 
 model:
   dropout: 0.05
-  dampening_factor: 0.5
-  label_smoothing: 0.1
 
 data:
   dataset_path: NextFire/karaoke-alignments
-  batch_size: 48
-  num_workers: 4
+  load_from_cache_file: true
+  batch_size: 32
 
 optimizer:
   class_path: AdamW
   init_args:
-    lr: 5e-4
+    lr: 4e-4
     weight_decay: 1e-2
 
 lr_scheduler:
@@ -35,4 +36,4 @@ lr_scheduler:
   init_args:
     monitor: val_loss
     factor: 0.5
-    patience: 5
+    patience: 2
