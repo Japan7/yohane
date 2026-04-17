@@ -63,7 +63,7 @@ class YohaneFATokenizer:
                     )
                 )
             },
-            input_columns="morae",
+            input_columns=["morae"],
             remove_columns=dataset.column_names,
             batched=True,
             batch_size=None,
