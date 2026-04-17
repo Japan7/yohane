@@ -23,12 +23,12 @@ model:
 data:
   dataset_path: NextFire/karaoke-alignments
   load_from_cache_file: true
-  batch_size: 32
+  batch_size: 16
 
 optimizer:
   class_path: AdamW
   init_args:
-    lr: 4e-4
+    lr: 2e-4
     weight_decay: 1e-2
 
 lr_scheduler:

@@ -148,12 +148,11 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
         for mora in morae:
             characters = list(mora["value"])
             start_frame = round(mora["start"] / self.ms_per_frame)
-            if start_frame >= input_length:
-                continue
-            end_frame = min(round(mora["end"] / self.ms_per_frame), input_length)
-            if end_frame <= start_frame:
-                continue
+            assert start_frame < input_length
+            end_frame = round(mora["end"] / self.ms_per_frame)
+            assert start_frame <= end_frame <= input_length
             for frame in range(start_frame, end_frame):
+                assert labels[frame] == self.tokenizer.blank_id, "Overlapping morae"
                 position = (frame - start_frame) / (end_frame - start_frame)
                 char_idx = int(position * len(characters))
                 labels[frame] = self.tokenizer.encode(characters[char_idx])
@@ -255,9 +254,9 @@ class YohaneFALightning(L.LightningModule):
             frame_accuracy = self._masked_accuracy(predictions, labels, valid_mask)
             char_mask = valid_mask & (labels != self.blank_token_id)
             char_accuracy = self._masked_accuracy(predictions, labels, char_mask)
-        self.log(f"{stage}_loss", loss)
-        self.log(f"{stage}_frame_accuracy", frame_accuracy)
-        self.log(f"{stage}_char_accuracy", char_accuracy)
+        self.log(f"{stage}_loss", loss, prog_bar=True)
+        self.log(f"{stage}_frame_accuracy", frame_accuracy, prog_bar=True)
+        self.log(f"{stage}_char_accuracy", char_accuracy, prog_bar=True)
         return loss
 
     @staticmethod
