@@ -194,7 +194,7 @@ class YohaneFALightning(L.LightningModule):
         self,
         *,
         input_dim: int,
-        hidden_dim: int,
+        hidden_dim_multiplier: int,
         output_dim: int,
         blank_token_id: int,
         pad_token_id: int,
@@ -203,7 +203,12 @@ class YohaneFALightning(L.LightningModule):
     ):
         super().__init__()
         self.save_hyperparameters()
-        self.model = YohaneFA(input_dim, hidden_dim, output_dim, dropout=dropout)
+        self.model = YohaneFA(
+            input_dim,
+            input_dim * hidden_dim_multiplier,
+            output_dim,
+            dropout=dropout,
+        )
         self.blank_token_id = blank_token_id
         self.pad_token_id = pad_token_id
         self.label_smoothing = label_smoothing

@@ -8,17 +8,10 @@ from yohane_fa.lightning import KaraokeAlignementsDataModule, YohaneFALightning
 
 
 class YohaneFALightningCLI(LightningCLI):
-    DEFAULT_HIDDEN_DIM_MULTIPLIER = 8
-
     def add_arguments_to_parser(self, parser: LightningArgumentParser) -> None:
         parser.link_arguments(
             "data.mel_n_mels",
             "model.input_dim",
-        )
-        parser.link_arguments(
-            "data.mel_n_mels",
-            "model.hidden_dim",
-            compute_fn=lambda x: x * self.DEFAULT_HIDDEN_DIM_MULTIPLIER,
         )
         parser.link_arguments(
             "data",
