@@ -14,32 +14,32 @@ python = "~=3.13.0"
 torchcodec = "~=0.10.0"
 
 [feature.cpu.pypi-dependencies]
-torch = { version = "~=2.10.0", index = "https://download.pytorch.org/whl/cpu" }
-torchaudio = { version = "~=2.10.0", index = "https://download.pytorch.org/whl/cpu" }
+torch = { version = "~=2.11.0", index = "https://download.pytorch.org/whl/cpu" }
+torchaudio = { version = "~=2.11.0", index = "https://download.pytorch.org/whl/cpu" }
 
 [feature.cu126]
 platforms = ["linux-64", "win-64"]
 system-requirements = { cuda = "12.6" }
 
 [feature.cu126.pypi-dependencies]
-torch = { version = "~=2.10.0", index = "https://download.pytorch.org/whl/cu126" }
-torchaudio = { version = "~=2.10.0", index = "https://download.pytorch.org/whl/cu126" }
+torch = { version = "~=2.11.0", index = "https://download.pytorch.org/whl/cu126" }
+torchaudio = { version = "~=2.11.0", index = "https://download.pytorch.org/whl/cu126" }
 
 [feature.cu128]
 platforms = ["linux-64", "win-64"]
 system-requirements = { cuda = "12.8" }
 
 [feature.cu128.pypi-dependencies]
-torch = { version = "~=2.10.0", index = "https://download.pytorch.org/whl/cu128" }
-torchaudio = { version = "~=2.10.0", index = "https://download.pytorch.org/whl/cu128" }
+torch = { version = "~=2.11.0", index = "https://download.pytorch.org/whl/cu128" }
+torchaudio = { version = "~=2.11.0", index = "https://download.pytorch.org/whl/cu128" }
 
 [feature.cu130]
 platforms = ["linux-64", "win-64"]
 system-requirements = { cuda = "13.0" }
 
 [feature.cu130.pypi-dependencies]
-torch = { version = "~=2.10.0", index = "https://download.pytorch.org/whl/cu130" }
-torchaudio = { version = "~=2.10.0", index = "https://download.pytorch.org/whl/cu130" }
+torch = { version = "~=2.11.0", index = "https://download.pytorch.org/whl/cu130" }
+torchaudio = { version = "~=2.11.0", index = "https://download.pytorch.org/whl/cu130" }
 
 [environments]
 default = ["cpu"]
