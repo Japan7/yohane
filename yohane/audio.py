@@ -39,10 +39,9 @@ class TorchAudioForcedAligner(ForcedAligner):
 
     def __init__(self) -> None:
         super().__init__()
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        logger.info(f"TorchAudioForcedAligner: using {self.bundle=} on {self.device=}")
         self.tokenizer = self.bundle.get_tokenizer()
         self.model = self.bundle.get_model()
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
         self.aligner = self.bundle.get_aligner()
 
@@ -50,6 +49,7 @@ class TorchAudioForcedAligner(ForcedAligner):
         return cast(list[list[int]], self.tokenizer(batch))
 
     def align(self, tokens: list[list[int]], waveform: torch.Tensor, sample_rate: int):
+        logger.info(f"TorchAudioForcedAligner: runs MMS_FA on {self.device=}")
         waveform = resample(waveform, sample_rate, int(self.bundle.sample_rate))
         waveform = waveform.mean(0, keepdim=True)
         with torch.inference_mode():
@@ -62,10 +62,10 @@ class TorchAudioForcedAligner(ForcedAligner):
 class Wav2Vec2ForcedAligner(ForcedAligner):
     def __init__(self, model: str) -> None:
         super().__init__()
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        logger.info(f"Wav2Vec2ForcedAligner: using {model=} on {self.device=}")
+        self.model_name = model
         self.processor = Wav2Vec2Processor.from_pretrained(model)
         self.model = Wav2Vec2ForCTC.from_pretrained(model)
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)  # pyright: ignore[reportArgumentType]
         self.aligner = aligner.Aligner(blank=self.tokenizer.word_delimiter_token_id)
 
@@ -77,6 +77,7 @@ class Wav2Vec2ForcedAligner(ForcedAligner):
         return [self.tokenizer.encode(e, add_special_tokens=False) for e in batch]
 
     def align(self, tokens: list[list[int]], waveform: torch.Tensor, sample_rate: int):
+        logger.info(f"Wav2Vec2ForcedAligner: runs {self.model_name} on {self.device=}")
         target_sample_rate = self.processor.feature_extractor.sampling_rate  # pyright: ignore[reportAttributeAccessIssue]
         waveform = resample(waveform, sample_rate, target_sample_rate)
         sample_rate = target_sample_rate
@@ -131,13 +132,13 @@ class HybridDemucsSeparator(Separator):
         super().__init__()
         self.segment = segment
         self.overlap = overlap
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     def separate_sources(
         self,
         mix: torch.Tensor,
         sample_rate: int,
         model: torch.nn.Module,
-        device: torch.device,
     ):
         batch, channels, length = mix.shape
 
@@ -150,7 +151,9 @@ class HybridDemucsSeparator(Separator):
         )
 
         sources_list = cast(list[str], model.sources)
-        final = torch.zeros(batch, len(sources_list), channels, length, device=device)
+        final = torch.zeros(
+            batch, len(sources_list), channels, length, device=self.device
+        )
 
         while start < length - overlap_frames:
             chunk = mix[:, :, start:end]
@@ -169,22 +172,21 @@ class HybridDemucsSeparator(Separator):
         return final
 
     def __call__(self, waveform: torch.Tensor, sample_rate: int):
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        logger.info(f"Using {device=}")
+        logger.info(f"HybridDemucsSeparator: runs on {self.device=}")
 
         waveform, sample_rate = (
             resample(waveform, sample_rate, self.bundle.sample_rate),
             self.bundle.sample_rate,
         )
-        waveform = waveform.to(device)
+        waveform = waveform.to(self.device)
 
         model = self.bundle.get_model()
-        model.to(device)
+        model.to(self.device)
 
         ref = waveform.mean(0)
         waveform = (waveform - ref.mean()) / ref.std()  # normalization
 
-        sources = self.separate_sources(waveform[None], sample_rate, model, device)[0]
+        sources = self.separate_sources(waveform[None], sample_rate, model)[0]
         sources = sources * ref.std() + ref.mean()
 
         sources_list = cast(list[str], model.sources)
