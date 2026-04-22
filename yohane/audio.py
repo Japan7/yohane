@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from typing import Callable, cast
 
 import torch
-from torchaudio.functional import TokenSpan, resample
+from torchaudio.functional import TokenSpan, merge_tokens, resample
 from torchaudio.pipelines import HDEMUCS_HIGH_MUSDB_PLUS, MMS_FA
 from torchaudio.pipelines._wav2vec2 import aligner
 from torchaudio.transforms import Fade
@@ -67,7 +67,9 @@ class Wav2Vec2ForcedAligner(ForcedAligner):
         self.model = Wav2Vec2ForCTC.from_pretrained(model)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)  # pyright: ignore[reportArgumentType]
-        self.aligner = aligner.Aligner(blank=self.tokenizer.word_delimiter_token_id)
+        blank = self.model.config.pad_token_id
+        assert blank is not None
+        self.blank = blank
 
     @property
     def tokenizer(self) -> Wav2Vec2CTCTokenizer:
@@ -90,8 +92,37 @@ class Wav2Vec2ForcedAligner(ForcedAligner):
         with torch.inference_mode():
             outputs = self.model(**inputs.to(self.device))
             emission = torch.nn.functional.log_softmax(outputs.logits, dim=-1)
-        token_spans = self.aligner(emission[0], tokens)
+        token_spans = _align_token_spans(emission[0], tokens, blank=self.blank)
         return emission, token_spans
+
+
+def _align_token_spans(
+    emission: torch.Tensor, tokens: list[list[int]], *, blank: int
+) -> list[list[TokenSpan]]:
+    aligned_tokens, scores = aligner._align_emission_and_tokens(
+        emission, _flatten_token_sequences(tokens), blank=blank
+    )
+    spans = merge_tokens(aligned_tokens, scores, blank=blank)
+    return _unflatten_token_spans(spans, [len(seq) for seq in tokens])
+
+
+def _flatten_token_sequences(tokens: list[list[int]]) -> list[int]:
+    return [token for seq in tokens for token in seq]
+
+
+def _unflatten_token_spans(
+    spans: list[TokenSpan], token_lengths: list[int]
+) -> list[list[TokenSpan]]:
+    if len(spans) != sum(token_lengths):
+        raise RuntimeError(
+            "Forced alignment returned a different number of token spans than tokens."
+        )
+    offset = 0
+    grouped_spans: list[list[TokenSpan]] = []
+    for length in token_lengths:
+        grouped_spans.append(spans[offset : offset + length])
+        offset += length
+    return grouped_spans
 
 
 class Separator(ABC):
