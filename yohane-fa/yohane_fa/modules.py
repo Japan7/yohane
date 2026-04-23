@@ -105,6 +105,7 @@ class TdnnFfn(nn.Module):
         self.ffn = nn.Sequential(
             FfnLayer(hidden_dim, hidden_dim, dropout=dropout),
             FfnLayer(hidden_dim, hidden_dim, dropout=dropout),
+            FfnLayer(hidden_dim, hidden_dim, dropout=dropout),
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:

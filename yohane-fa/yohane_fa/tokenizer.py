@@ -6,52 +6,54 @@ from typing import Iterable
 @dataclass(frozen=True)
 class YohaneFATokenizer:
     vocabulary: dict[str, int]
-    blank_token: str
     unk_token: str
     pad_token: str
 
     @cached_property
-    def blank_id(self) -> int:
-        return self.vocabulary[self.blank_token]
-
-    @cached_property
-    def unk_id(self) -> int:
+    def unk_token_id(self) -> int:
         return self.vocabulary[self.unk_token]
 
     @cached_property
-    def pad_id(self) -> int:
+    def pad_token_id(self) -> int:
         return self.vocabulary[self.pad_token]
 
-    def encode(self, token: str) -> int:
-        return self.vocabulary.get(
-            token if token != " " else self.blank_token,
-            self.unk_id,
-        )
+    def encode(self, value: str) -> list[int]:
+        return [self.vocabulary.get(t, self.unk_token_id) for t in value]
+
+    def __len__(self) -> int:
+        return len(self.vocabulary)
 
     @classmethod
     def from_iterable(
         cls,
         tokens: Iterable[str],
         *,
-        blank_token: str = "|",
         unk_token: str = "[UNK]",
         pad_token: str = "[PAD]",
     ) -> "YohaneFATokenizer":
         vocabulary = {token: idx for idx, token in enumerate(sorted(set(tokens)))}
-        if " " in vocabulary:
-            vocabulary[blank_token] = vocabulary[" "]
-            del vocabulary[" "]
-        else:
-            vocabulary[blank_token] = len(vocabulary)
         vocabulary[unk_token] = len(vocabulary)
         vocabulary[pad_token] = len(vocabulary)
-        return cls(vocabulary, blank_token, unk_token, pad_token)
+        return cls(vocabulary=vocabulary, unk_token=unk_token, pad_token=pad_token)
 
     @classmethod
-    def from_dataset(cls, path: str, *, split: str) -> "YohaneFATokenizer":
-        from datasets import load_dataset
+    def from_dataset(
+        cls,
+        path: str,
+        *,
+        split: str,
+        max_duration: int,
+        load_from_cache_file: bool,
+    ) -> "YohaneFATokenizer":
+        from yohane_fa.dataset import load_dataset
 
-        dataset = load_dataset(path, split=split)
+        dataset = load_dataset(
+            path,
+            split=split,
+            max_duration=max_duration,
+            load_from_cache_file=load_from_cache_file,
+        )
+
         vocab = dataset.map(
             lambda batch: {
                 "vocab": list(

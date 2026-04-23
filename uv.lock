@@ -4839,7 +4839,6 @@ torch = [
 dev = [
     { name = "datasets" },
     { name = "lightning", extra = ["extra"] },
-    { name = "tqdm" },
     { name = "trackio", extra = ["apple-gpu", "gpu"] },
 ]
 
@@ -4855,7 +4854,6 @@ provides-extras = ["torch"]
 dev = [
     { name = "datasets", specifier = "==4.8.4" },
     { name = "lightning", extras = ["extra"], specifier = "==2.6.1" },
-    { name = "tqdm", specifier = "==4.67.3" },
     { name = "trackio", extras = ["apple-gpu", "gpu"], specifier = "==0.23.0" },
 ]
 
