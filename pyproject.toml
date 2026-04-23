@@ -17,7 +17,7 @@ torch = ["torch==2.11.0", "torchaudio==2.11.0", "torchcodec==0.11.1"]
 vocal-remover = ["vocal-remover"]
 
 [dependency-groups]
-dev = ["pyright==1.1.408", "ruff==0.15.10"]
+dev = ["pyright==1.1.408", "ruff==0.15.11"]
 
 [tool.uv.sources]
 yohane-cli = { workspace = true }
