@@ -16,19 +16,13 @@ class YohaneFALightningCLI(LightningCLI):
         parser.link_arguments(
             "data",
             "model.output_dim",
-            compute_fn=lambda data: len(data.tokenizer.vocabulary),
-            apply_on="instantiate",
-        )
-        parser.link_arguments(
-            "data",
-            "model.blank_token_id",
-            compute_fn=lambda data: data.tokenizer.blank_id,
+            compute_fn=lambda data: len(data.tokenizer),
             apply_on="instantiate",
         )
         parser.link_arguments(
             "data",
             "model.pad_token_id",
-            compute_fn=lambda data: data.tokenizer.pad_id,
+            compute_fn=lambda data: data.tokenizer.pad_token_id,
             apply_on="instantiate",
         )
 
