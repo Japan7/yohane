@@ -14,6 +14,7 @@ class TdnnLayer(nn.Module):
         dropout: float,
     ):
         super().__init__()
+        self.norm = nn.LayerNorm(in_channels)
         self.conv = nn.Conv1d(
             in_channels,
             out_channels,
@@ -23,22 +24,38 @@ class TdnnLayer(nn.Module):
             dilation=dilation,
         )
         self.relu = nn.ReLU()
-        self.batch_norm = nn.BatchNorm1d(out_channels)
         self.dropout = nn.Dropout(dropout)
+        self.residual = (
+            nn.Identity()
+            if in_channels == out_channels
+            else nn.Conv1d(in_channels, out_channels, kernel_size=1, bias=False)
+        )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.dropout(self.batch_norm(self.relu(self.conv(x))))
+        residual = self.residual(x)
+        x = x.transpose(1, 2)
+        x = self.norm(x)
+        x = x.transpose(1, 2)
+        x = self.conv(x)
+        x = self.dropout(self.relu(x))
+        return x + residual
 
 
 class FfnLayer(nn.Module):
     def __init__(self, in_features: int, out_features: int, *, dropout: float):
         super().__init__()
+        self.norm = nn.LayerNorm(in_features)
         self.linear = nn.Linear(in_features, out_features)
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout(dropout)
+        self.residual = (
+            nn.Identity()
+            if in_features == out_features
+            else nn.Linear(in_features, out_features, bias=False)
+        )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.dropout(self.relu(self.linear(x))) + x
+        return self.dropout(self.relu(self.linear(self.norm(x)))) + self.residual(x)
 
 
 class TdnnFfn(nn.Module):
@@ -101,6 +118,14 @@ class TdnnFfn(nn.Module):
                 dilation=64,
                 dropout=dropout,
             ),
+            TdnnLayer(
+                hidden_dim,
+                hidden_dim,
+                kernel_size=3,
+                stride=1,
+                dilation=1,
+                dropout=dropout,
+            ),
         )
         self.ffn = nn.Sequential(
             FfnLayer(hidden_dim, hidden_dim, dropout=dropout),
@@ -127,7 +152,8 @@ class YohaneFA(nn.Module):
     ):
         super().__init__()
         self.encoder = TdnnFfn(input_dim, hidden_dim, dropout=dropout)
+        self.norm = nn.LayerNorm(hidden_dim)
         self.head = nn.Linear(hidden_dim, output_dim)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.head(self.encoder(x))
+        return self.head(self.norm(self.encoder(x)))

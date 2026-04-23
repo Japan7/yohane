@@ -1,5 +1,5 @@
 trainer:
-  max_epochs: 100
+  max_epochs: 50
   log_every_n_steps: 10
   precision: bf16-mixed
   gradient_clip_val: 1.0
@@ -19,13 +19,13 @@ trainer:
 
 model:
   hidden_dim_multiplier: 8
-  dropout: 0.05
-  label_smoothing: 0.05
+  dropout: 0.01
+  label_smoothing: 0.01
 
 data:
   dataset_path: NextFire/karaoke-alignments
   load_from_cache_file: true
-  batch_size: 64
+  batch_size: 16
 
 optimizer:
   class_path: AdamW
@@ -38,4 +38,4 @@ lr_scheduler:
   init_args:
     monitor: val_loss
     factor: 0.5
-    patience: 2
+    patience: 1

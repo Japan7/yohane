@@ -43,7 +43,6 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
         mel_n_mels: int = 80,
         load_from_cache_file: bool = True,
         batch_size: int = 1,
-        dampening_factor: float = 0.1,
     ) -> None:
         super().__init__()
         self.dataset_path = dataset_path
@@ -55,7 +54,6 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
         self.mel_n_mels = mel_n_mels
         self.load_from_cache_file = load_from_cache_file
         self.batch_size = batch_size
-        self.dampening_factor = dampening_factor
         self.mel_transform = torchaudio.transforms.MelSpectrogram(
             sample_rate=self.mel_target_sample_rate,
             n_fft=self.mel_n_fft,
@@ -157,7 +155,8 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
                     labels[frame] = -100
         return labels
 
-    def _collate_batch(self, batch: list[ModelInput]) -> ModelInput:
+    @staticmethod
+    def _collate_batch(batch: list[ModelInput]) -> ModelInput:
         input_values = [example["input_values"] for example in batch]
         labels = [example["labels"] for example in batch]
         padded_input_values = pad_sequence(

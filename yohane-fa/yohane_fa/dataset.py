@@ -1,8 +1,11 @@
 import re
 import unicodedata
-from typing import cast
+from typing import TYPE_CHECKING, cast
 
 from datasets import load_dataset as _load_dataset
+
+if TYPE_CHECKING:
+    from yohane_fa.lightning import DatasetMora
 
 
 def load_dataset(
@@ -24,11 +27,12 @@ def load_dataset(
         input_columns=["morae"],
         writer_batch_size=500,
         new_fingerprint="yohane_fa_normalized",
+        load_from_cache_file=load_from_cache_file,
     )
     return dataset
 
 
-def normalize_morae(morae):
+def normalize_morae(morae: list["DatasetMora"]):
     for mora in morae:
         value = cast(str, mora["value"])
         value = value.casefold()
