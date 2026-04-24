@@ -3,6 +3,7 @@ trainer:
   log_every_n_steps: 10
   precision: bf16-mixed
   gradient_clip_val: 1.0
+  accumulate_grad_batches: 4
   callbacks:
     - class_path: LearningRateMonitor
     - class_path: EarlyStopping
@@ -18,19 +19,19 @@ trainer:
         project: yohane-fa
 
 model:
-  hidden_dim_multiplier: 8
-  dropout: 0.01
-  label_smoothing: 0.01
+  hidden_dim_multiplier: 16
+  dropout: 0.05
+  label_smoothing: 0.05
 
 data:
   dataset_path: NextFire/karaoke-alignments
   load_from_cache_file: true
-  batch_size: 16
+  batch_size: 8
 
 optimizer:
   class_path: AdamW
   init_args:
-    lr: 1e-3
+    lr: 5e-4
     weight_decay: 1e-2
 
 lr_scheduler:
