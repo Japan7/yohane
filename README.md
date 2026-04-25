@@ -24,7 +24,7 @@ The full pipeline takes less than a minute to complete.
 - [FFmpeg](https://ffmpeg.org)
 
 ```sh
-uvx --from git+https://github.com/Japan7/yohane.git[cli] --python 3.13 yohane --help
+uvx --from git+https://github.com/Japan7/yohane.git[cli] --python 3.14 yohane --help
 ```
 
 #### With `pixi`
