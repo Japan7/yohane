@@ -28,6 +28,7 @@ class DatasetRow(TypedDict):
 class ModelInput(TypedDict):
     input_values: torch.Tensor
     labels: torch.Tensor
+    attention_mask: torch.Tensor | None
 
 
 class KaraokeAlignementsDataModule(L.LightningDataModule):
@@ -82,10 +83,10 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
         dataset = dataset.map(
             self._prepare_example,
             remove_columns=dataset.column_names,
-            new_fingerprint="yohane_fa_prepared",
+            new_fingerprint="yohane_fa_prepare",
             load_from_cache_file=self.load_from_cache_file,
         )
-        split = dataset.train_test_split(test_size=0.15)
+        split = dataset.train_test_split(test_size=0.1)
         self.train_dataset = split["train"]
         split = split["test"].train_test_split(test_size=0.5)
         self.val_dataset = split["train"]
@@ -126,7 +127,7 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
             float(duration_seconds * 1000),
             input_values.size(0),
         )
-        return {"input_values": input_values, "labels": labels}
+        return {"input_values": input_values, "labels": labels, "attention_mask": None}
 
     def _build_labels(
         self,
@@ -140,10 +141,11 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
             value = mora["value"]
             if not value.strip():
                 continue
-            start_frame = round(mora["start"] * frames_per_ms)
-            assert start_frame < input_length
-            end_frame = round(mora["end"] * frames_per_ms)
-            assert start_frame <= end_frame <= input_length
+            start_frame = int(mora["start"] * frames_per_ms)
+            end_frame = int(mora["end"] * frames_per_ms)
+            assert start_frame <= end_frame <= input_length, (
+                f"{start_frame} <= {end_frame} <= {input_length}"
+            )
             n_frames = end_frame - start_frame
             input_ids = self.tokenizer.encode(value)
             for idx, frame in enumerate(range(start_frame, end_frame)):
@@ -159,6 +161,7 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
     def _collate_batch(batch: list[ModelInput]) -> ModelInput:
         input_values = [example["input_values"] for example in batch]
         labels = [example["labels"] for example in batch]
+        lengths = torch.tensor([iv.shape[0] for iv in input_values])
         padded_input_values = pad_sequence(
             input_values,
             batch_first=True,
@@ -169,7 +172,13 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
             batch_first=True,
             padding_value=-100,
         )
-        return {"input_values": padded_input_values, "labels": padded_labels}
+        T = padded_input_values.shape[1]
+        attention_mask = torch.arange(T).unsqueeze(0) < lengths.unsqueeze(1)
+        return {
+            "input_values": padded_input_values,
+            "labels": padded_labels,
+            "attention_mask": attention_mask,
+        }
 
 
 class YohaneFALightning(L.LightningModule):
@@ -177,23 +186,42 @@ class YohaneFALightning(L.LightningModule):
         self,
         *,
         input_dim: int,
-        hidden_dim_multiplier: int,
+        d_model: int,
+        num_layers: int,
+        num_heads: int,
+        num_kv_heads: int,
+        kernel_size: int,
+        swa_window_size: int,
         output_dim: int,
         pad_token_id: int,
-        dropout: float = 0.1,
+        gradient_checkpointing: bool = False,
     ):
         super().__init__()
         self.save_hyperparameters()
         self.model = YohaneFA(
-            input_dim,
-            input_dim * hidden_dim_multiplier,
-            output_dim,
-            dropout=dropout,
+            input_dim=input_dim,
+            d_model=d_model,
+            output_dim=output_dim,
+            num_layers=num_layers,
+            num_heads=num_heads,
+            num_kv_heads=num_kv_heads,
+            ff_dim=8 * d_model // 3,
+            kernel_size=kernel_size,
+            swa_window_size=swa_window_size,
+            gradient_checkpointing=gradient_checkpointing,
         )
         self.pad_token_id = pad_token_id
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.model(x)
+    def on_fit_start(self) -> None:
+        if self.device.type == "cuda":
+            self.model = torch.compile(self.model, dynamic=True)  # type: ignore[assignment]
+
+    def forward(
+        self,
+        x: torch.Tensor,
+        attention_mask: torch.Tensor | None = None,
+    ) -> torch.Tensor:
+        return self.model(x, attention_mask)
 
     def training_step(self, batch: ModelInput, batch_idx: int) -> torch.Tensor:
         return self._shared_step(batch, batch_idx, stage="train")
@@ -211,7 +239,10 @@ class YohaneFALightning(L.LightningModule):
         *,
         stage: str,
     ) -> torch.Tensor:
-        logits = cast(torch.Tensor, self(batch["input_values"]))
+        logits = cast(
+            torch.Tensor,
+            self(batch["input_values"], batch["attention_mask"]),
+        )
         labels = batch["labels"]
         ce = F.cross_entropy(
             logits.transpose(1, 2),

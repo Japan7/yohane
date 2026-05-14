@@ -1,5 +1,5 @@
 trainer:
-  max_epochs: 50
+  max_epochs: 200
   log_every_n_steps: 10
   precision: bf16-mixed
   gradient_clip_val: 1.0
@@ -19,23 +19,26 @@ trainer:
         project: yohane-fa
 
 model:
-  hidden_dim_multiplier: 16
-  dropout: 0.05
+  d_model: 1024
+  num_layers: 8
+  num_heads: 16
+  num_kv_heads: 4
+  kernel_size: 31
+  swa_window_size: 500
+  gradient_checkpointing: true
 
 data:
-  dataset_path: NextFire/karaoke-alignments
+  dataset_path: NextFire/karaoke-mugen-alignments
   load_from_cache_file: true
   batch_size: 8
 
 optimizer:
   class_path: AdamW
   init_args:
-    lr: 5e-4
+    lr: 1e-3
     weight_decay: 1e-2
 
 lr_scheduler:
-  class_path: ReduceLROnPlateau
+  class_path: CosineAnnealingLR
   init_args:
-    monitor: val_loss
-    factor: 0.5
-    patience: 1
+    T_max: 200

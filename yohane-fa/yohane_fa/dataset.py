@@ -16,17 +16,33 @@ def load_dataset(
     load_from_cache_file: bool,
 ):
     dataset = _load_dataset(path, split=split)
-    dataset = dataset.filter(
-        lambda x: x.metadata.duration_seconds <= max_duration,
-        input_columns=["audio"],
-        new_fingerprint="yohane_fa_filtered",
-        load_from_cache_file=load_from_cache_file,
-    )
     dataset = dataset.map(
         normalize_morae,
         input_columns=["morae"],
-        writer_batch_size=500,
-        new_fingerprint="yohane_fa_normalized",
+        new_fingerprint="yohane_fa_normalize",
+        load_from_cache_file=load_from_cache_file,
+    )
+    dataset = dataset.map(
+        lambda morae: {
+            "morae": sorted(
+                [mora for mora in morae if mora["value"].strip()],
+                key=lambda mora: mora["start"],
+            )
+        },
+        input_columns=["morae"],
+        new_fingerprint="yohane_fa_sort",
+        load_from_cache_file=load_from_cache_file,
+    )
+    dataset = dataset.filter(
+        lambda morae: len(morae) > 0,
+        input_columns=["morae"],
+        new_fingerprint="yohane_fa_nonempty",
+        load_from_cache_file=load_from_cache_file,
+    )
+    dataset = dataset.filter(
+        lambda x: x.metadata.duration_seconds <= max_duration,
+        input_columns=["audio"],
+        new_fingerprint=f"yohane_fa_filter_{max_duration}s",
         load_from_cache_file=load_from_cache_file,
     )
     return dataset
