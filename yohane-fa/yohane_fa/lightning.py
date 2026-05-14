@@ -3,7 +3,7 @@ from typing import Any, TypedDict, cast
 import lightning as L
 import torch
 import torchaudio
-from datasets import Dataset
+from datasets import IterableDataset
 from torch.nn import functional as F
 from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import DataLoader
@@ -42,7 +42,6 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
         mel_n_fft: int = 400,
         mel_hop_length: int = 160,
         mel_n_mels: int = 80,
-        load_from_cache_file: bool = True,
         batch_size: int = 1,
     ) -> None:
         super().__init__()
@@ -53,7 +52,6 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
         self.mel_n_fft = mel_n_fft
         self.mel_hop_length = mel_hop_length
         self.mel_n_mels = mel_n_mels
-        self.load_from_cache_file = load_from_cache_file
         self.batch_size = batch_size
         self.mel_transform = torchaudio.transforms.MelSpectrogram(
             sample_rate=self.mel_target_sample_rate,
@@ -61,15 +59,10 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
             hop_length=self.mel_hop_length,
             n_mels=self.mel_n_mels,
         )
-        self.tokenizer = YohaneFATokenizer.from_dataset(
-            self.dataset_path,
-            split=self.dataset_split,
-            max_duration=self.dataset_max_duration,
-            load_from_cache_file=self.load_from_cache_file,
-        )
-        self.train_dataset: Dataset | None = None
-        self.val_dataset: Dataset | None = None
-        self.test_dataset: Dataset | None = None
+        self.tokenizer = YohaneFATokenizer.from_iterable("abcdefghijklmnopqrstuvwxyz' ")
+        self.train_dataset: IterableDataset | None = None
+        self.val_dataset: IterableDataset | None = None
+        self.test_dataset: IterableDataset | None = None
 
     def setup(self, stage: str | None = None) -> None:
         if all((self.train_dataset, self.val_dataset, self.test_dataset)):
@@ -78,19 +71,23 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
             self.dataset_path,
             split=self.dataset_split,
             max_duration=self.dataset_max_duration,
-            load_from_cache_file=self.load_from_cache_file,
         )
         dataset = dataset.map(
             self._prepare_example,
             remove_columns=dataset.column_names,
-            new_fingerprint="yohane_fa_prepare",
-            load_from_cache_file=self.load_from_cache_file,
         )
-        split = dataset.train_test_split(test_size=0.1)
-        self.train_dataset = split["train"]
-        split = split["test"].train_test_split(test_size=0.5)
-        self.val_dataset = split["train"]
-        self.test_dataset = split["test"]
+        self.train_dataset = dataset.filter(
+            lambda _, idx: idx % 20 >= 2,
+            with_indices=True,
+        )
+        self.val_dataset = dataset.filter(
+            lambda _, idx: idx % 20 == 0,
+            with_indices=True,
+        )
+        self.test_dataset = dataset.filter(
+            lambda _, idx: idx % 20 == 1,
+            with_indices=True,
+        )
 
     def train_dataloader(self) -> Any:
         assert self.train_dataset
@@ -139,10 +136,8 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
         labels = torch.full((input_length,), self.tokenizer.pad_token_id)
         for mora in morae:
             value = mora["value"]
-            if not value.strip():
-                continue
-            start_frame = int(mora["start"] * frames_per_ms)
-            end_frame = int(mora["end"] * frames_per_ms)
+            start_frame = round(mora["start"] * frames_per_ms)
+            end_frame = round(mora["end"] * frames_per_ms)
             assert start_frame <= end_frame <= input_length, (
                 f"{start_frame} <= {end_frame} <= {input_length}"
             )

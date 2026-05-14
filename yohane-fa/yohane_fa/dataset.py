@@ -8,19 +8,11 @@ if TYPE_CHECKING:
     from yohane_fa.lightning import DatasetMora
 
 
-def load_dataset(
-    path: str,
-    *,
-    split: str,
-    max_duration: int,
-    load_from_cache_file: bool,
-):
-    dataset = _load_dataset(path, split=split)
+def load_dataset(path: str, *, split: str, max_duration: int):
+    dataset = _load_dataset(path, split=split, streaming=True)
     dataset = dataset.map(
         normalize_morae,
         input_columns=["morae"],
-        new_fingerprint="yohane_fa_normalize",
-        load_from_cache_file=load_from_cache_file,
     )
     dataset = dataset.map(
         lambda morae: {
@@ -30,20 +22,14 @@ def load_dataset(
             )
         },
         input_columns=["morae"],
-        new_fingerprint="yohane_fa_sort",
-        load_from_cache_file=load_from_cache_file,
     )
     dataset = dataset.filter(
         lambda morae: len(morae) > 0,
         input_columns=["morae"],
-        new_fingerprint="yohane_fa_nonempty",
-        load_from_cache_file=load_from_cache_file,
     )
     dataset = dataset.filter(
         lambda x: x.metadata.duration_seconds <= max_duration,
         input_columns=["audio"],
-        new_fingerprint=f"yohane_fa_filter_{max_duration}s",
-        load_from_cache_file=load_from_cache_file,
     )
     return dataset
 

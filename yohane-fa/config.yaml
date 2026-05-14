@@ -29,7 +29,6 @@ model:
 
 data:
   dataset_path: NextFire/karaoke-mugen-alignments
-  load_from_cache_file: true
   batch_size: 8
 
 optimizer:
