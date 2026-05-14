@@ -181,7 +181,6 @@ class YohaneFALightning(L.LightningModule):
         output_dim: int,
         pad_token_id: int,
         dropout: float = 0.1,
-        label_smoothing: float = 0.1,
     ):
         super().__init__()
         self.save_hyperparameters()
@@ -192,7 +191,6 @@ class YohaneFALightning(L.LightningModule):
             dropout=dropout,
         )
         self.pad_token_id = pad_token_id
-        self.label_smoothing = label_smoothing
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.model(x)
@@ -215,12 +213,15 @@ class YohaneFALightning(L.LightningModule):
     ) -> torch.Tensor:
         logits = cast(torch.Tensor, self(batch["input_values"]))
         labels = batch["labels"]
-        loss = F.cross_entropy(
+        ce = F.cross_entropy(
             logits.transpose(1, 2),
             labels,
             ignore_index=-100,
-            label_smoothing=self.label_smoothing,
+            reduction="none",
         )
+        ce = ce[labels != -100]
+        pt = torch.exp(-ce)
+        loss = ((1 - pt) ** 2 * ce).mean()
         with torch.no_grad():
             predictions = logits.argmax(dim=-1)
             valid_mask = labels != -100

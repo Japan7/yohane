@@ -21,7 +21,6 @@ trainer:
 model:
   hidden_dim_multiplier: 16
   dropout: 0.05
-  label_smoothing: 0.05
 
 data:
   dataset_path: NextFire/karaoke-alignments
