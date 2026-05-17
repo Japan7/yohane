@@ -4,19 +4,23 @@ Yohane takes a song and its lyrics, optionally extracts the vocals, splits the s
 
 ## Getting Started
 
-### Notebook
+### Google Colab (Free GPU)
 
-Open the [notebook](notebook/yohane.ipynb) in Google Colab to use their free T4 GPUs:
+Open the provided [notebook](notebook/yohane.ipynb) in Google Colab and use their free T4 GPUs:
 
 <a target="_blank" href="https://colab.research.google.com/github/Japan7/yohane/blob/main/notebook/yohane.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-The full pipeline takes less than a minute to complete.
+### Hugging Face Space (CPU-only)
 
-### Local environment
+<a target="_blank" href="https://nextfire-yohane.hf.space">
+  <img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-sm-dark.svg" alt="Open In HF Spaces"/>
+</a>
 
-#### With `uv`
+### Local Environment
+
+#### With `uv` (PyPI)
 
 **Requirements:**
 
@@ -27,7 +31,7 @@ The full pipeline takes less than a minute to complete.
 uvx --from git+https://github.com/Japan7/yohane.git[cli] --python 3.14 yohane --help
 ```
 
-#### With `pixi`
+#### With `pixi` (Conda)
 
 **Requirement:** [`pixi`](https://prefix.dev)
 
@@ -40,7 +44,7 @@ pixi run yohane --help
 ## Caveats
 
 - Yohane's syllable splitting is only optimized for Japanese lyrics at the moment
-- Syllables at the end of lines are often shortened
+- Syllables at the end of lines are often shortened (*Workaround:* use our [finetuned model](https://huggingface.co/NextFire/mms-300m-ForcedAligner-karaoke-ja-Latn))
 - Forced alignment can't deal with overlapping vocals
 - It is not fully accurate, you should still check and edit the result!
 
