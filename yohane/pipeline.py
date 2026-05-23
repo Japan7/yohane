@@ -3,7 +3,7 @@ from pathlib import Path
 
 import torch
 from torchaudio.functional import TokenSpan, resample
-from torchcodec.decoders import AudioDecoder
+from torchcodec.decoders._audio_decoder import AudioDecoder
 
 from yohane.audio import (
     ForcedAligner,

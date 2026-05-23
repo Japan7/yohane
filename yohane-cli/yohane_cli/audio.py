@@ -4,7 +4,7 @@ from contextlib import contextmanager
 from enum import Enum
 from pathlib import Path
 
-from torchcodec.encoders import AudioEncoder
+from torchcodec.encoders._audio_encoder import AudioEncoder
 from yt_dlp import YoutubeDL
 
 from yohane import Yohane
