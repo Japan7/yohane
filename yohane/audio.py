@@ -41,7 +41,7 @@ class TorchAudioForcedAligner(ForcedAligner):
         super().__init__()
         self.tokenizer = self.bundle.get_tokenizer()
         self.model = self.bundle.get_model()
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # pyright: ignore[reportPrivateImportUsage]
         self.model.to(self.device)
         self.aligner = self.bundle.get_aligner()
 
@@ -65,7 +65,7 @@ class Wav2Vec2ForcedAligner(ForcedAligner):
         self.model_id = model
         self.processor = Wav2Vec2Processor.from_pretrained(model)
         self.model = Wav2Vec2ForCTC.from_pretrained(model)
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # pyright: ignore[reportPrivateImportUsage]
         self.model.to(self.device)  # pyright: ignore[reportArgumentType]
         blank = self.model.config.pad_token_id
         assert blank is not None
@@ -163,7 +163,7 @@ class HybridDemucsSeparator(Separator):
         super().__init__()
         self.segment = segment
         self.overlap = overlap
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # pyright: ignore[reportPrivateImportUsage]
 
     def separate_sources(
         self,
@@ -182,7 +182,7 @@ class HybridDemucsSeparator(Separator):
         )
 
         sources_list = cast(list[str], model.sources)
-        final = torch.zeros(
+        final = torch.zeros(  # pyright: ignore[reportPrivateImportUsage]
             batch, len(sources_list), channels, length, device=self.device
         )
 
