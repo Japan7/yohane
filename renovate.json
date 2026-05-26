@@ -9,11 +9,6 @@
       "matchManagers": ["pixi"],
       "matchDepNames": ["python"],
       "automerge": false
-    },
-    {
-      "groupName": "Pytorch dependencies",
-      "groupSlug": "pytorch",
-      "matchDepNames": ["torch", "torchaudio", "torchcodec"]
     }
   ]
 }
