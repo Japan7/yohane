@@ -156,7 +156,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2025c-hc9c84f9_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/wayland-protocols-1.47-hd8ed1ab_0.conda
       - pypi: .
-      - pypi: git+https://github.com/japan7/vocal-remover?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
+      - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/05/7f/798705f5296a58ca505d600456748d1be48078eac8a7050d8a98bc9edb89/decorator-5.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0b/2e/7eea398450457ecb54e18e9d10110993fa65561c4f3add5e8eccd2b9cd41/scipy-1.17.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
@@ -341,7 +341,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/x265-3.5-hbc6ce65_3.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hbf9d68e_6.conda
       - pypi: .
-      - pypi: git+https://github.com/japan7/vocal-remover?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
+      - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
       - pypi: https://files.pythonhosted.org/packages/03/dc/200013a74641f8774664bbcd2346c695c05c2e300ea792adcb40a293eed0/soxr-1.1.0-cp312-abi3-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/05/7f/798705f5296a58ca505d600456748d1be48078eac8a7050d8a98bc9edb89/decorator-5.3.1-py3-none-any.whl
@@ -485,7 +485,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/x265-3.5-h2d74725_3.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.7-h534d264_6.conda
       - pypi: .
-      - pypi: git+https://github.com/japan7/vocal-remover?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
+      - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/05/7f/798705f5296a58ca505d600456748d1be48078eac8a7050d8a98bc9edb89/decorator-5.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0b/bb/0dc8b9a38609701ca3f107dc516300b317641bed9b2ef1c964a9ad37ae9e/pysubs2-1.8.1-py3-none-any.whl
@@ -4496,14 +4496,14 @@ packages:
   - torch==2.12.0 ; extra == 'cli'
   - torchaudio==2.11.0 ; extra == 'cli'
   - torchcodec==0.14.0 ; extra == 'cli'
-  - vocal-remover @ git+https://github.com/japan7/vocal-remover@6.0.0b4 ; extra == 'cli'
-  - yohane-cli @ file:///Users/n.vu/Developer/Japan7/yohane/yohane-cli ; extra == 'cli'
+  - vocal-remover @ git+https://github.com/Japan7/vocal-remover.git@6.0.0b4 ; extra == 'cli'
+  - yohane-cli @ file:///tmp/renovate/repos/github/Japan7/yohane/yohane-cli ; extra == 'cli'
   - torch==2.12.0 ; extra == 'torch'
   - torchaudio==2.11.0 ; extra == 'torch'
   - torchcodec==0.14.0 ; extra == 'torch'
-  - vocal-remover @ git+https://github.com/japan7/vocal-remover@6.0.0b4 ; extra == 'vocal-remover'
+  - vocal-remover @ git+https://github.com/Japan7/vocal-remover.git@6.0.0b4 ; extra == 'vocal-remover'
   requires_python: '>=3.10'
-- pypi: git+https://github.com/japan7/vocal-remover?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
+- pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
   name: vocal-remover
   version: 6.0.0b4
   requires_dist:
