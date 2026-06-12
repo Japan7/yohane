@@ -38,7 +38,7 @@ uvx --from git+https://github.com/Japan7/yohane.git[cli] --python 3.14 yohane --
 ```sh
 git clone https://github.com/Japan7/yohane.git
 cd yohane/
-pixi run yohane --help
+pixi run -e [default|cpu|cu126|cu130] yohane --help
 ```
 
 ## Caveats
