@@ -157,7 +157,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/wayland-protocols-1.49-hd8ed1ab_0.conda
       - pypi: .
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
-      - pypi: https://download-r2.pytorch.org/whl/cpu/torch-2.12.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl
+      - pypi: https://download-r2.pytorch.org/whl/cpu/torch-2.12.1%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://download.pytorch.org/whl/cpu/torchcodec-0.14.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
@@ -301,7 +301,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.7-h534d264_6.conda
       - pypi: .
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
-      - pypi: https://download-r2.pytorch.org/whl/cpu/torch-2.12.0%2Bcpu-cp314-cp314-win_amd64.whl
+      - pypi: https://download-r2.pytorch.org/whl/cpu/torch-2.12.1%2Bcpu-cp314-cp314-win_amd64.whl
       - pypi: https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp314-cp314-win_amd64.whl
       - pypi: https://download.pytorch.org/whl/cpu/torchcodec-0.14.0%2Bcpu-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
@@ -524,7 +524,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/wayland-protocols-1.49-hd8ed1ab_0.conda
       - pypi: .
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
-      - pypi: https://download-r2.pytorch.org/whl/cu126/torch-2.12.0%2Bcu126-cp314-cp314-manylinux_2_28_x86_64.whl
+      - pypi: https://download-r2.pytorch.org/whl/cu126/torch-2.12.1%2Bcu126-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://download-r2.pytorch.org/whl/cu126/torchaudio-2.11.0%2Bcu126-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://download.pytorch.org/whl/cu126/torchcodec-0.14.0%2Bcu126-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
@@ -574,11 +574,11 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/88/f9/16491d7ed2a919954993e48aa941b200f38040928474c9e85ea9e64222c3/pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/8a/a1/8d812e53a5da1687abb10445275d41a8b13adb781bbf7196ddbcf8d88505/lazy_loader-0.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/8f/16/73727675941ab8e6ffd86ca3a4b7b47065edcca7a997920b831f8147c99d/nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
-      - pypi: https://files.pythonhosted.org/packages/8f/af/9904ec6d3c93d9b24e5ec360445bbdf758b7f00bfbeedb89cb0eb64eb8bb/triton-3.7.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/9d/d7/c5383e47c7e9bf1c99d5bd2a8c935af2b6d705ad831a7ec5c97db4d82f4f/nvidia_nvjitlink_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/9e/c9/b2622292ea83fbb4ec318f5b9ab867d0a28ab43c5717bb85b0a5f6b3b0a4/networkx-3.6.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a0/f4/c67b0b3f1b9245e8d266f0f112c500d50e5b4e83cb6f3b71b6528104182a/requests-2.34.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/a4/09/5683146fda6a2b569deb78ccfd8fbfea8bfe55f726b081c0a6bb18dd6f28/triton-3.7.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/ad/88/2dbc37975fffb874418b14380418a1b99cb36f2101fd1d08c54e06ee8c95/cuda_toolkit-12.6.3-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/af/eb/ff4b8c503fa1f1796679dce648854d58751982426e4e4b37d6fce49d259c/nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/b0/7a/620f945b96be1f6ee357d211d5bf74ab1b7fe72a9f1525aafbfe3aee6875/mutagen-1.47.0-py3-none-any.whl
@@ -687,7 +687,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.7-h534d264_6.conda
       - pypi: .
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
-      - pypi: https://download-r2.pytorch.org/whl/cu126/torch-2.12.0%2Bcu126-cp314-cp314-win_amd64.whl
+      - pypi: https://download-r2.pytorch.org/whl/cu126/torch-2.12.1%2Bcu126-cp314-cp314-win_amd64.whl
       - pypi: https://download-r2.pytorch.org/whl/cu126/torchaudio-2.11.0%2Bcu126-cp314-cp314-win_amd64.whl
       - pypi: https://download.pytorch.org/whl/cu126/torchcodec-0.14.0%2Bcu126-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
@@ -910,7 +910,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/wayland-protocols-1.49-hd8ed1ab_0.conda
       - pypi: .
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
-      - pypi: https://download-r2.pytorch.org/whl/cu130/torch-2.12.0%2Bcu130-cp314-cp314-manylinux_2_28_x86_64.whl
+      - pypi: https://download-r2.pytorch.org/whl/cu130/torch-2.12.1%2Bcu130-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://download-r2.pytorch.org/whl/cu130/torchaudio-2.11.0%2Bcu130-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://download.pytorch.org/whl/cu130/torchcodec-0.14.0%2Bcu130-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
@@ -964,10 +964,10 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/87/96/f3eb235fafa82a34e2ab5dd7dc9ffff998ebf5f0bbc23fa56a96aeb44da6/numba-0.65.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/88/f9/16491d7ed2a919954993e48aa941b200f38040928474c9e85ea9e64222c3/pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/8a/a1/8d812e53a5da1687abb10445275d41a8b13adb781bbf7196ddbcf8d88505/lazy_loader-0.5-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/8f/af/9904ec6d3c93d9b24e5ec360445bbdf758b7f00bfbeedb89cb0eb64eb8bb/triton-3.7.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/9e/c9/b2622292ea83fbb4ec318f5b9ab867d0a28ab43c5717bb85b0a5f6b3b0a4/networkx-3.6.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a0/f4/c67b0b3f1b9245e8d266f0f112c500d50e5b4e83cb6f3b71b6528104182a/requests-2.34.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/a4/09/5683146fda6a2b569deb78ccfd8fbfea8bfe55f726b081c0a6bb18dd6f28/triton-3.7.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/a5/9f/be0a41ca4a4917abf5cb9ae0daff1a6060cc5de950aec0396de9f3b52bc5/nvidia_curand-10.4.0.35-py3-none-manylinux_2_27_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/a8/2f/7b57e29836ea8714f81e9898409196f47d772d5ddedddf1592eadb8ab743/nvidia_cufft-12.0.0.61-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/b0/7a/620f945b96be1f6ee357d211d5bf74ab1b7fe72a9f1525aafbfe3aee6875/mutagen-1.47.0-py3-none-any.whl
@@ -1073,7 +1073,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.7-h534d264_6.conda
       - pypi: .
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
-      - pypi: https://download-r2.pytorch.org/whl/cu130/torch-2.12.0%2Bcu130-cp314-cp314-win_amd64.whl
+      - pypi: https://download-r2.pytorch.org/whl/cu130/torch-2.12.1%2Bcu130-cp314-cp314-win_amd64.whl
       - pypi: https://download-r2.pytorch.org/whl/cu130/torchaudio-2.11.0%2Bcu130-cp314-cp314-win_amd64.whl
       - pypi: https://download.pytorch.org/whl/cu130/torchcodec-0.14.0%2Bcu130-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
@@ -1348,10 +1348,10 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/87/96/f3eb235fafa82a34e2ab5dd7dc9ffff998ebf5f0bbc23fa56a96aeb44da6/numba-0.65.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/88/f9/16491d7ed2a919954993e48aa941b200f38040928474c9e85ea9e64222c3/pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/8a/a1/8d812e53a5da1687abb10445275d41a8b13adb781bbf7196ddbcf8d88505/lazy_loader-0.5-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/8f/af/9904ec6d3c93d9b24e5ec360445bbdf758b7f00bfbeedb89cb0eb64eb8bb/triton-3.7.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/9e/c9/b2622292ea83fbb4ec318f5b9ab867d0a28ab43c5717bb85b0a5f6b3b0a4/networkx-3.6.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a0/f4/c67b0b3f1b9245e8d266f0f112c500d50e5b4e83cb6f3b71b6528104182a/requests-2.34.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/a4/09/5683146fda6a2b569deb78ccfd8fbfea8bfe55f726b081c0a6bb18dd6f28/triton-3.7.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/a5/9f/be0a41ca4a4917abf5cb9ae0daff1a6060cc5de950aec0396de9f3b52bc5/nvidia_curand-10.4.0.35-py3-none-manylinux_2_27_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/a8/2f/7b57e29836ea8714f81e9898409196f47d772d5ddedddf1592eadb8ab743/nvidia_cufft-12.0.0.61-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/a8/a8/bf2e1f6ce24c990192400ae49b4acc1a0d0295b6c6a06bceecdc46ce08de/torchaudio-2.11.0-cp314-cp314-manylinux_2_28_x86_64.whl
@@ -1365,7 +1365,6 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/c3/68/483a78f5e8f31b08fb1bb671559968c0ca3a065ac7acabfc7cee55214fd6/nvidia_cuda_nvrtc-13.0.88-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/c7/0d/67e5b4109ea4a837e80daa87c2c696711955e40449a97e8926672534def2/click-8.4.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c8/a9/8862616a85cf450d2822dbd4fff1fcaba90877907a6ff5bc2672cafe42f8/pycryptodomex-3.23.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-      - pypi: https://files.pythonhosted.org/packages/cd/d4/7e730dba0c7032a4154dc9056b76cf9625515e030e269cfbf8098fcfee7d/torch-2.12.0-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/d4/e0/c8a1f0c8f9ffdea4f5fe6dbab89b326cef4d85caf489dad39e209da89416/cuda_bindings-13.3.1-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/d5/0c/043d5e551459da400957a1395e0febbf771446ff34291afcbe3d8be2a279/fsspec-2026.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d9/27/2af43dd1dc201d1fecefda64a45f4ad0995855b92724f795a777b402ee69/regex-2026.5.9-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
@@ -1381,6 +1380,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/f3/eb/ebffaa97dc55502df69584a8f0dcf07f69a3e0b3e2323670a2722db9aa39/numpy-2.4.6-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/f3/ee/188a3dadf9dfdac713243521f919feca1cd091d4358c9ea7e8ebb710a7cc/yt_dlp-2026.6.9-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f4/7e/a72dd26f3b0f4f2bf1dd8923c85f7ceb43172af56d63c7383eb62b332364/pygments-2.20.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/f8/dd/c9ce9a4b0eb3c5bb92d9ea56766e2c22559f0b45171149188494edcce80f/torch-2.12.1-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/fa/18/623c77619c31d62efd55302939756966f3ecc8d724a14dab2b75f1508850/nvidia_cusparse-12.6.3.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/ff/1f/d385913c38e900d23b728a4188fee625f2fccb306aeebc59be9d91404a5a/transformers-5.12.0-py3-none-any.whl
       - pypi: yohane-cli
@@ -1511,7 +1511,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/60/61/23f27c172f022e04025b7dc2367f4d63c1a398120607ec896228649a6f48/numpy-2.4.6-cp314-cp314-macosx_14_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/63/7a/dfdd6f8c748988427119f75eb860a3cedd858d1aea1fe28f39ad8559ef22/soundfile-0.14.0-py2.py3-none-macosx_11_0_arm64.whl
-      - pypi: https://files.pythonhosted.org/packages/67/dc/ac069f8d6e8be701535921141055293b0d4819d3d7f224a4612cf157c7f9/torch-2.12.0-cp314-cp314-macosx_14_0_arm64.whl
+      - pypi: https://files.pythonhosted.org/packages/63/b7/1b49fe7086ea36839cc80abc43174c43d0ab6f676c0891c871c162f44fe3/torch-2.12.1-cp314-cp314-macosx_14_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/7a/90/a5c1084d87767d787a6caba615aa50dc587229646308d9420c960cb5e4c0/standard_chunk-3.13.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/7b/91/984aca2ec129e2757d1e4e3c81c3fcda9d0f85b74670a094cc443d9ee949/joblib-1.5.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/7e/16/fbe8e1e185a45042f7cd3a282def5bb8d95bb69ab9e9ef6a5368aa17e426/audioread-3.1.0-py3-none-any.whl
@@ -1633,6 +1633,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/1b/6d/3fba214c1e5e0f69991677ec3bc17023f0421776975e1de0c682dca475e2/safetensors-0.8.0-cp310-abi3-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/1e/5e/d4e9f1a599fb8e573b7b87160658329fbf28d19eac2718f51fc3def3aa5a/idna-3.18-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1e/d3/26bf1008eb3d2daa8ef4cacc7f3bfdc11818d111f7e2d0201bc6e3b49d45/annotated_doc-0.0.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/21/7c/f3a601fc1b1f663ff269bfe553654e638651939aa6563e8daa7167c33098/torch-2.12.1-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/23/20/bb6982b26a40bb43951265ba29d4c246ef0ff59c9fdcdf0ed04e0687de4d/pyyaml-6.0.3-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/24/25/2201973529af2c954de0bb725323c3aaed6d7f0ceee8f550dec9185df013/typer-0.26.7-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/28/52/182836104b33b444e400b14f797212f720cbc9ed6ba34c800639d154e821/markupsafe-3.0.3-cp314-cp314-win_amd64.whl
@@ -1689,7 +1690,6 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/e3/bd/520769863744b669440a924271a6159ddd82ad5ae26b4ac4d4b69e9f8d44/yt_dlp_ejs-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/eb/75/1a0392bcc21c44dcdf87b3cf2d137e7829be2c083a1e38d44efca3d57a16/tqdm-4.68.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/ed/97/b39c18ac1df45e755ca22b8b00e872929da5d107998a207a5e4ac831bfda/soundfile-0.14.0-py2.py3-none-win_amd64.whl
-      - pypi: https://files.pythonhosted.org/packages/f1/b4/92c80d1bbfee1c0036c06d1d2155a3065bd2423134c83bf8a47e65cd6b9b/torch-2.12.0-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/f3/ee/188a3dadf9dfdac713243521f919feca1cd091d4358c9ea7e8ebb710a7cc/yt_dlp-2026.6.9-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f4/7e/a72dd26f3b0f4f2bf1dd8923c85f7ceb43172af56d63c7383eb62b332364/pygments-2.20.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f5/10/56978295c14794b2c12007b07f3e41ba26acda9257457d7085b0bb3bb90c/brotli-1.2.0-cp314-cp314-win_amd64.whl
@@ -5739,12 +5739,12 @@ packages:
   requires_dist:
   - pysubs2>=1.4.4,<2
   - transformers>=5,<6
-  - torch==2.12.0 ; extra == 'cli'
+  - torch==2.12.1 ; extra == 'cli'
   - torchaudio==2.11.0 ; extra == 'cli'
   - torchcodec==0.14.0 ; extra == 'cli'
   - vocal-remover @ git+https://github.com/Japan7/vocal-remover.git@6.0.0b4 ; extra == 'cli'
-  - yohane-cli @ file:///Users/n.vu/Developer/Japan7/yohane/yohane-cli ; extra == 'cli'
-  - torch==2.12.0 ; extra == 'torch'
+  - yohane-cli @ file:///tmp/renovate/repos/github/Japan7/yohane/yohane-cli ; extra == 'cli'
+  - torch==2.12.1 ; extra == 'torch'
   - torchaudio==2.11.0 ; extra == 'torch'
   - torchcodec==0.14.0 ; extra == 'torch'
   - vocal-remover @ git+https://github.com/Japan7/vocal-remover.git@6.0.0b4 ; extra == 'vocal-remover'
@@ -5761,10 +5761,9 @@ packages:
   - torch>=2.1.0,<3 ; extra == 'torch'
   - transformers>=5.5.3,<6 ; extra == 'torch'
   requires_python: '>=3.10'
-- pypi: https://download-r2.pytorch.org/whl/cpu/torch-2.12.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl
+- pypi: https://download-r2.pytorch.org/whl/cpu/torch-2.12.1%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl
   name: torch
-  version: 2.12.0+cpu
-  sha256: a8f419ce3f25388d36e67153ec63b3a1b17059c49f5a7759a7e91ac4843660d3
+  version: 2.12.1+cpu
   index: https://download.pytorch.org/whl/cpu
   requires_dist:
   - filelock
@@ -5778,10 +5777,9 @@ packages:
   - opt-einsum>=3.3 ; extra == 'opt-einsum'
   - pyyaml ; extra == 'pyyaml'
   requires_python: '>=3.10'
-- pypi: https://download-r2.pytorch.org/whl/cpu/torch-2.12.0%2Bcpu-cp314-cp314-win_amd64.whl
+- pypi: https://download-r2.pytorch.org/whl/cpu/torch-2.12.1%2Bcpu-cp314-cp314-win_amd64.whl
   name: torch
-  version: 2.12.0+cpu
-  sha256: 1dd196c43e74e7b3b526ff434e7efbdef3f3792a2efbecfc983d7dce501840d2
+  version: 2.12.1+cpu
   index: https://download.pytorch.org/whl/cpu
   requires_dist:
   - filelock
@@ -5798,7 +5796,7 @@ packages:
   - nvidia-cusparselt-cu13==0.8.1 ; sys_platform == 'linux'
   - nvidia-nccl-cu13==2.29.7 ; sys_platform == 'linux'
   - nvidia-nvshmem-cu13==3.4.5 ; sys_platform == 'linux'
-  - triton==3.7.0 ; sys_platform == 'linux'
+  - triton==3.7.1 ; sys_platform == 'linux'
   - opt-einsum>=3.3 ; extra == 'opt-einsum'
   - optree>=0.13.0 ; extra == 'optree'
   - pyyaml ; extra == 'pyyaml'
@@ -5813,10 +5811,9 @@ packages:
   version: 2.11.0+cpu
   sha256: be19f467eb7a173264653369426e7ecc4745e28d15f9c52eea2ad5316ec685eb
   index: https://download.pytorch.org/whl/cpu
-- pypi: https://download-r2.pytorch.org/whl/cu126/torch-2.12.0%2Bcu126-cp314-cp314-manylinux_2_28_x86_64.whl
+- pypi: https://download-r2.pytorch.org/whl/cu126/torch-2.12.1%2Bcu126-cp314-cp314-manylinux_2_28_x86_64.whl
   name: torch
-  version: 2.12.0+cu126
-  sha256: 149a376813baf61f4a6d1fa2b3dd046a41c98b91d7d2c22a0989984642373f73
+  version: 2.12.1+cu126
   index: https://download.pytorch.org/whl/cu126
   requires_dist:
   - filelock
@@ -5832,15 +5829,14 @@ packages:
   - nvidia-cusparselt-cu12==0.7.1 ; sys_platform == 'linux'
   - nvidia-nccl-cu12==2.29.3 ; sys_platform == 'linux'
   - nvidia-nvshmem-cu12==3.4.5 ; sys_platform == 'linux'
-  - triton==3.7.0 ; sys_platform == 'linux'
+  - triton==3.7.1 ; sys_platform == 'linux'
   - optree>=0.13.0 ; extra == 'optree'
   - opt-einsum>=3.3 ; extra == 'opt-einsum'
   - pyyaml ; extra == 'pyyaml'
   requires_python: '>=3.10'
-- pypi: https://download-r2.pytorch.org/whl/cu126/torch-2.12.0%2Bcu126-cp314-cp314-win_amd64.whl
+- pypi: https://download-r2.pytorch.org/whl/cu126/torch-2.12.1%2Bcu126-cp314-cp314-win_amd64.whl
   name: torch
-  version: 2.12.0+cu126
-  sha256: 4b05a1e104739100179ffb0d94daf17f1808b2f71cd895841729ccf06460b0d3
+  version: 2.12.1+cu126
   index: https://download.pytorch.org/whl/cu126
   requires_dist:
   - filelock
@@ -5864,10 +5860,9 @@ packages:
   version: 2.11.0+cu126
   sha256: 6c13443d27de1297ebbf37b84c2b6a1f0cfe36459fc7740fe28cced68264b1ee
   index: https://download.pytorch.org/whl/cu126
-- pypi: https://download-r2.pytorch.org/whl/cu130/torch-2.12.0%2Bcu130-cp314-cp314-manylinux_2_28_x86_64.whl
+- pypi: https://download-r2.pytorch.org/whl/cu130/torch-2.12.1%2Bcu130-cp314-cp314-manylinux_2_28_x86_64.whl
   name: torch
-  version: 2.12.0+cu130
-  sha256: 3ff7366f6919232f099ef702c3ebd3509c91ab37c367e408cb3799c6bed214a4
+  version: 2.12.1+cu130
   index: https://download.pytorch.org/whl/cu130
   requires_dist:
   - filelock
@@ -5884,15 +5879,14 @@ packages:
   - nvidia-cusparselt-cu13==0.8.1 ; sys_platform == 'linux'
   - nvidia-nccl-cu13==2.29.7 ; sys_platform == 'linux'
   - nvidia-nvshmem-cu13==3.4.5 ; sys_platform == 'linux'
-  - triton==3.7.0 ; sys_platform == 'linux'
+  - triton==3.7.1 ; sys_platform == 'linux'
   - optree>=0.13.0 ; extra == 'optree'
   - opt-einsum>=3.3 ; extra == 'opt-einsum'
   - pyyaml ; extra == 'pyyaml'
   requires_python: '>=3.10'
-- pypi: https://download-r2.pytorch.org/whl/cu130/torch-2.12.0%2Bcu130-cp314-cp314-win_amd64.whl
+- pypi: https://download-r2.pytorch.org/whl/cu130/torch-2.12.1%2Bcu130-cp314-cp314-win_amd64.whl
   name: torch
-  version: 2.12.0+cu130
-  sha256: b30d09337048750c1bf10c2abc8cb3d3bf9bb5163d6a34df7c2eb6e9ee32c603
+  version: 2.12.1+cu130
   index: https://download.pytorch.org/whl/cu130
   requires_dist:
   - filelock
@@ -6144,6 +6138,30 @@ packages:
   version: 0.0.4
   sha256: 571ac1dc6991c450b25a9c2d84a3705e2ae7a53467b5d111c24fa8baabbed320
   requires_python: '>=3.8'
+- pypi: https://files.pythonhosted.org/packages/21/7c/f3a601fc1b1f663ff269bfe553654e638651939aa6563e8daa7167c33098/torch-2.12.1-cp314-cp314-win_amd64.whl
+  name: torch
+  version: 2.12.1
+  sha256: f6dc4caf7eb4adb38a2d9f536b51db56310fdd1254e69a2d96767e1367c892b3
+  requires_dist:
+  - filelock
+  - typing-extensions>=4.10.0
+  - setuptools<82
+  - sympy>=1.13.3
+  - networkx>=2.5.1
+  - jinja2
+  - fsspec>=0.8.5
+  - cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2 ; sys_platform == 'linux'
+  - nvidia-cublas>=13.1.0.3,<=13.1.1.3 ; sys_platform == 'linux'
+  - cuda-bindings>=13.0.3,<14 ; sys_platform == 'linux'
+  - nvidia-cudnn-cu13==9.20.0.48 ; sys_platform == 'linux'
+  - nvidia-cusparselt-cu13==0.8.1 ; sys_platform == 'linux'
+  - nvidia-nccl-cu13==2.29.7 ; sys_platform == 'linux'
+  - nvidia-nvshmem-cu13==3.4.5 ; sys_platform == 'linux'
+  - triton==3.7.1 ; sys_platform == 'linux'
+  - opt-einsum>=3.3 ; extra == 'opt-einsum'
+  - optree>=0.13.0 ; extra == 'optree'
+  - pyyaml ; extra == 'pyyaml'
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/21/91/9d50b433828d8e74196904e168a43abf1e6e88b2a15d47ed742456720c37/regex-2026.5.9-cp314-cp314-macosx_11_0_arm64.whl
   name: regex
   version: 2026.5.9
@@ -6795,6 +6813,30 @@ packages:
   - numpy
   - typing-extensions
   requires_python: '>=3.10'
+- pypi: https://files.pythonhosted.org/packages/63/b7/1b49fe7086ea36839cc80abc43174c43d0ab6f676c0891c871c162f44fe3/torch-2.12.1-cp314-cp314-macosx_14_0_arm64.whl
+  name: torch
+  version: 2.12.1
+  sha256: e9b6f7d2dd66ea87a3ae620069d31335d594c06effb1a383bdd21cfe61e44ece
+  requires_dist:
+  - filelock
+  - typing-extensions>=4.10.0
+  - setuptools<82
+  - sympy>=1.13.3
+  - networkx>=2.5.1
+  - jinja2
+  - fsspec>=0.8.5
+  - cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2 ; sys_platform == 'linux'
+  - nvidia-cublas>=13.1.0.3,<=13.1.1.3 ; sys_platform == 'linux'
+  - cuda-bindings>=13.0.3,<14 ; sys_platform == 'linux'
+  - nvidia-cudnn-cu13==9.20.0.48 ; sys_platform == 'linux'
+  - nvidia-cusparselt-cu13==0.8.1 ; sys_platform == 'linux'
+  - nvidia-nccl-cu13==2.29.7 ; sys_platform == 'linux'
+  - nvidia-nvshmem-cu13==3.4.5 ; sys_platform == 'linux'
+  - triton==3.7.1 ; sys_platform == 'linux'
+  - optree>=0.13.0 ; extra == 'optree'
+  - opt-einsum>=3.3 ; extra == 'opt-einsum'
+  - pyyaml ; extra == 'pyyaml'
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/63/bc/d3e208028de777087e6fb2b122051a6ff7bbcca0d6df9d9c2bf1dd869ae9/websockets-16.0-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl
   name: websockets
   version: '16.0'
@@ -6823,30 +6865,6 @@ packages:
   - setuptools-rust ; extra == 'docs'
   - tokenizers[testing] ; extra == 'dev'
   requires_python: '>=3.9'
-- pypi: https://files.pythonhosted.org/packages/67/dc/ac069f8d6e8be701535921141055293b0d4819d3d7f224a4612cf157c7f9/torch-2.12.0-cp314-cp314-macosx_14_0_arm64.whl
-  name: torch
-  version: 2.12.0
-  sha256: f7dfae4a519197dfa050e98d8e36378a0fb5899625a875c2b54445005a2e404e
-  requires_dist:
-  - filelock
-  - typing-extensions>=4.10.0
-  - setuptools<82
-  - sympy>=1.13.3
-  - networkx>=2.5.1
-  - jinja2
-  - fsspec>=0.8.5
-  - cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2 ; sys_platform == 'linux'
-  - nvidia-cublas>=13.1.0.3,<=13.1.1.3 ; sys_platform == 'linux'
-  - cuda-bindings>=13.0.3,<14 ; sys_platform == 'linux'
-  - nvidia-cudnn-cu13==9.20.0.48 ; sys_platform == 'linux'
-  - nvidia-cusparselt-cu13==0.8.1 ; sys_platform == 'linux'
-  - nvidia-nccl-cu13==2.29.7 ; sys_platform == 'linux'
-  - nvidia-nvshmem-cu13==3.4.5 ; sys_platform == 'linux'
-  - triton==3.7.0 ; sys_platform == 'linux'
-  - optree>=0.13.0 ; extra == 'optree'
-  - opt-einsum>=3.3 ; extra == 'opt-einsum'
-  - pyyaml ; extra == 'pyyaml'
-  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/67/f4/58e4e91b6919367c7aafb8e36fce9aad1a3047e536bf7e2fd560927d3a4c/nvidia_nccl_cu13-2.29.7-py3-none-manylinux_2_18_x86_64.whl
   name: nvidia-nccl-cu13
   version: 2.29.7
@@ -6991,26 +7009,6 @@ packages:
   requires_dist:
   - nvidia-nvjitlink-cu12
   requires_python: '>=3'
-- pypi: https://files.pythonhosted.org/packages/8f/af/9904ec6d3c93d9b24e5ec360445bbdf758b7f00bfbeedb89cb0eb64eb8bb/triton-3.7.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
-  name: triton
-  version: 3.7.0
-  sha256: b9b85e72968a9d8bba5ddb24e9b64aaabaf48affb042f2755cb7cfa92b7531ce
-  requires_dist:
-  - importlib-metadata ; python_full_version < '3.10'
-  - cmake>=3.20,<4.0 ; extra == 'build'
-  - lit ; extra == 'build'
-  - autopep8 ; extra == 'tests'
-  - isort ; extra == 'tests'
-  - numpy ; extra == 'tests'
-  - pytest ; extra == 'tests'
-  - pytest-forked ; extra == 'tests'
-  - pytest-xdist ; extra == 'tests'
-  - scipy>=1.7.1 ; extra == 'tests'
-  - llnl-hatchet ; extra == 'tests'
-  - matplotlib ; extra == 'tutorials'
-  - pandas ; extra == 'tutorials'
-  - tabulate ; extra == 'tutorials'
-  requires_python: '>=3.10,<3.15'
 - pypi: https://files.pythonhosted.org/packages/90/6f/51ac94fa337afe0aadc2330591e34af7dfadc49366d6ec00bbfec7cd9ddc/torchcodec-0.14.0-cp314-cp314-macosx_14_0_arm64.whl
   name: torchcodec
   version: 0.14.0
@@ -7158,6 +7156,26 @@ packages:
   - pooch>=1.8.0 ; extra == 'tests'
   - conda-lock==3.0.1 ; extra == 'maintenance'
   requires_python: '>=3.11'
+- pypi: https://files.pythonhosted.org/packages/a4/09/5683146fda6a2b569deb78ccfd8fbfea8bfe55f726b081c0a6bb18dd6f28/triton-3.7.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+  name: triton
+  version: 3.7.1
+  sha256: 2020153b08280415ec0da6607834e79166442147e78e144df06b508c75b186d2
+  requires_dist:
+  - importlib-metadata ; python_full_version < '3.10'
+  - cmake>=3.20,<4.0 ; extra == 'build'
+  - lit ; extra == 'build'
+  - autopep8 ; extra == 'tests'
+  - isort ; extra == 'tests'
+  - numpy ; extra == 'tests'
+  - pytest ; extra == 'tests'
+  - pytest-forked ; extra == 'tests'
+  - pytest-xdist ; extra == 'tests'
+  - scipy>=1.7.1 ; extra == 'tests'
+  - llnl-hatchet ; extra == 'tests'
+  - matplotlib ; extra == 'tutorials'
+  - pandas ; extra == 'tutorials'
+  - tabulate ; extra == 'tutorials'
+  requires_python: '>=3.10,<3.15'
 - pypi: https://files.pythonhosted.org/packages/a5/9f/be0a41ca4a4917abf5cb9ae0daff1a6060cc5de950aec0396de9f3b52bc5/nvidia_curand-10.4.0.35-py3-none-manylinux_2_27_x86_64.whl
   name: nvidia-curand
   version: 10.4.0.35
@@ -7407,30 +7425,6 @@ packages:
   name: msgpack
   version: 1.2.0
   sha256: e90df581f80f53b372d5d9d9349078d729851a3a0d0bd74f53ccb598d01e45b8
-  requires_python: '>=3.10'
-- pypi: https://files.pythonhosted.org/packages/cd/d4/7e730dba0c7032a4154dc9056b76cf9625515e030e269cfbf8098fcfee7d/torch-2.12.0-cp314-cp314-manylinux_2_28_x86_64.whl
-  name: torch
-  version: 2.12.0
-  sha256: e2ad3eb85d39c3cab62dfa93ed5a73516e6a53c6713cb97d004004fe089f0f1f
-  requires_dist:
-  - filelock
-  - typing-extensions>=4.10.0
-  - setuptools<82
-  - sympy>=1.13.3
-  - networkx>=2.5.1
-  - jinja2
-  - fsspec>=0.8.5
-  - cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2 ; sys_platform == 'linux'
-  - nvidia-cublas>=13.1.0.3,<=13.1.1.3 ; sys_platform == 'linux'
-  - cuda-bindings>=13.0.3,<14 ; sys_platform == 'linux'
-  - nvidia-cudnn-cu13==9.20.0.48 ; sys_platform == 'linux'
-  - nvidia-cusparselt-cu13==0.8.1 ; sys_platform == 'linux'
-  - nvidia-nccl-cu13==2.29.7 ; sys_platform == 'linux'
-  - nvidia-nvshmem-cu13==3.4.5 ; sys_platform == 'linux'
-  - triton==3.7.0 ; sys_platform == 'linux'
-  - optree>=0.13.0 ; extra == 'optree'
-  - opt-einsum>=3.3 ; extra == 'opt-einsum'
-  - pyyaml ; extra == 'pyyaml'
   requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/d0/9c/02eebf0be95efe416c664db7fb8b6b05b7a0b06a7544f2884f2558b0526f/regex-2026.5.9-cp314-cp314-win_amd64.whl
   name: regex
@@ -7833,30 +7827,6 @@ packages:
   - pooch>=1.8.0 ; extra == 'tests'
   - conda-lock==3.0.1 ; extra == 'maintenance'
   requires_python: '>=3.11'
-- pypi: https://files.pythonhosted.org/packages/f1/b4/92c80d1bbfee1c0036c06d1d2155a3065bd2423134c83bf8a47e65cd6b9b/torch-2.12.0-cp314-cp314-win_amd64.whl
-  name: torch
-  version: 2.12.0
-  sha256: c66696857e987efb8bc1777a37357ec4f60ab5e8af6250b83d6034437fa2d8f3
-  requires_dist:
-  - filelock
-  - typing-extensions>=4.10.0
-  - setuptools<82
-  - sympy>=1.13.3
-  - networkx>=2.5.1
-  - jinja2
-  - fsspec>=0.8.5
-  - cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2 ; sys_platform == 'linux'
-  - nvidia-cublas>=13.1.0.3,<=13.1.1.3 ; sys_platform == 'linux'
-  - cuda-bindings>=13.0.3,<14 ; sys_platform == 'linux'
-  - nvidia-cudnn-cu13==9.20.0.48 ; sys_platform == 'linux'
-  - nvidia-cusparselt-cu13==0.8.1 ; sys_platform == 'linux'
-  - nvidia-nccl-cu13==2.29.7 ; sys_platform == 'linux'
-  - nvidia-nvshmem-cu13==3.4.5 ; sys_platform == 'linux'
-  - triton==3.7.0 ; sys_platform == 'linux'
-  - opt-einsum>=3.3 ; extra == 'opt-einsum'
-  - optree>=0.13.0 ; extra == 'optree'
-  - pyyaml ; extra == 'pyyaml'
-  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/f3/2f/0976d5b097ff8a22163b10617f76b2557f15f0f39d6a0fe1f02b1a53e92b/brotli-1.2.0-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
   name: brotli
   version: 1.2.0
@@ -7967,6 +7937,30 @@ packages:
   - tf-nightly ; extra == 'tf-nightly'
   - safetensors[numpy] ; extra == 'torch'
   - torch>=2.4 ; extra == 'torch'
+  requires_python: '>=3.10'
+- pypi: https://files.pythonhosted.org/packages/f8/dd/c9ce9a4b0eb3c5bb92d9ea56766e2c22559f0b45171149188494edcce80f/torch-2.12.1-cp314-cp314-manylinux_2_28_x86_64.whl
+  name: torch
+  version: 2.12.1
+  sha256: c64ac4aac16be5e296dcd912305605804b203333c690bf98c55bc09494ee92ad
+  requires_dist:
+  - filelock
+  - typing-extensions>=4.10.0
+  - setuptools<82
+  - sympy>=1.13.3
+  - networkx>=2.5.1
+  - jinja2
+  - fsspec>=0.8.5
+  - cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2 ; sys_platform == 'linux'
+  - nvidia-cublas>=13.1.0.3,<=13.1.1.3 ; sys_platform == 'linux'
+  - cuda-bindings>=13.0.3,<14 ; sys_platform == 'linux'
+  - nvidia-cudnn-cu13==9.20.0.48 ; sys_platform == 'linux'
+  - nvidia-cusparselt-cu13==0.8.1 ; sys_platform == 'linux'
+  - nvidia-nccl-cu13==2.29.7 ; sys_platform == 'linux'
+  - nvidia-nvshmem-cu13==3.4.5 ; sys_platform == 'linux'
+  - triton==3.7.1 ; sys_platform == 'linux'
+  - optree>=0.13.0 ; extra == 'optree'
+  - opt-einsum>=3.3 ; extra == 'opt-einsum'
+  - pyyaml ; extra == 'pyyaml'
   requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/fa/18/623c77619c31d62efd55302939756966f3ecc8d724a14dab2b75f1508850/nvidia_cusparse-12.6.3.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
   name: nvidia-cusparse
