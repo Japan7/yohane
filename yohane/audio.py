@@ -1,6 +1,7 @@
 import logging
 from abc import ABC, abstractmethod
-from typing import Callable, cast
+from collections.abc import Callable
+from typing import cast
 
 import torch
 from torchaudio.functional import TokenSpan, merge_tokens, resample
