@@ -1,7 +1,7 @@
 import logging
 from abc import ABC, abstractmethod
 from collections.abc import Callable
-from typing import cast
+from typing import Any, cast
 
 import torch
 from torchaudio.functional import TokenSpan, merge_tokens, resample
@@ -149,7 +149,7 @@ class VocalRemoverSeparator(Separator):
         self.pipeline = VocalRemoverPipeline(self.model)
 
     def __call__(self, waveform: torch.Tensor, sample_rate: int):
-        outputs = self.pipeline(waveform)
+        outputs = cast(dict[str, Any], self.pipeline(waveform))
         return torch.Tensor(outputs["vocals"]), sample_rate
 
 
