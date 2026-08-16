@@ -204,7 +204,7 @@ environments:
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
       - pypi: https://download-r2.pytorch.org/whl/cpu/torch-2.13.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl
-      - pypi: https://download.pytorch.org/whl/cpu/torchcodec-0.15.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl
+      - pypi: https://download.pytorch.org/whl/cpu/torchcodec-0.16.0%2Bcpu-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/05/7f/798705f5296a58ca505d600456748d1be48078eac8a7050d8a98bc9edb89/decorator-5.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl
@@ -357,7 +357,7 @@ environments:
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
       - pypi: https://download-r2.pytorch.org/whl/cpu/torch-2.13.0%2Bcpu-cp314-cp314-win_amd64.whl
       - pypi: https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp314-cp314-win_amd64.whl
-      - pypi: https://download.pytorch.org/whl/cpu/torchcodec-0.15.0%2Bcpu-cp314-cp314-win_amd64.whl
+      - pypi: https://download.pytorch.org/whl/cpu/torchcodec-0.16.0%2Bcpu-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/05/7f/798705f5296a58ca505d600456748d1be48078eac8a7050d8a98bc9edb89/decorator-5.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl
@@ -582,7 +582,7 @@ environments:
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
       - pypi: https://download-r2.pytorch.org/whl/cu126/torch-2.13.0%2Bcu126-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://download-r2.pytorch.org/whl/cu126/torchaudio-2.11.0%2Bcu126-cp314-cp314-manylinux_2_28_x86_64.whl
-      - pypi: https://download.pytorch.org/whl/cu126/torchcodec-0.15.0%2Bcu126-cp314-cp314-manylinux_2_28_x86_64.whl
+      - pypi: https://download.pytorch.org/whl/cu126/torchcodec-0.16.0%2Bcu126-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/05/7f/798705f5296a58ca505d600456748d1be48078eac8a7050d8a98bc9edb89/decorator-5.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/06/1e/b8b7c2f4099a37b96af5c9bb158632ea9e5d9d27d7391d7eb8fc45236674/nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
@@ -754,7 +754,7 @@ environments:
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
       - pypi: https://download-r2.pytorch.org/whl/cu126/torch-2.13.0%2Bcu126-cp314-cp314-win_amd64.whl
       - pypi: https://download-r2.pytorch.org/whl/cu126/torchaudio-2.11.0%2Bcu126-cp314-cp314-win_amd64.whl
-      - pypi: https://download.pytorch.org/whl/cu126/torchcodec-0.15.0%2Bcu126-cp314-cp314-win_amd64.whl
+      - pypi: https://download.pytorch.org/whl/cu126/torchcodec-0.16.0%2Bcu126-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/05/7f/798705f5296a58ca505d600456748d1be48078eac8a7050d8a98bc9edb89/decorator-5.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl
@@ -979,7 +979,7 @@ environments:
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
       - pypi: https://download-r2.pytorch.org/whl/cu130/torch-2.13.0%2Bcu130-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://download-r2.pytorch.org/whl/cu130/torchaudio-2.11.0%2Bcu130-cp314-cp314-manylinux_2_28_x86_64.whl
-      - pypi: https://download.pytorch.org/whl/cu130/torchcodec-0.15.0%2Bcu130-cp314-cp314-manylinux_2_28_x86_64.whl
+      - pypi: https://download.pytorch.org/whl/cu130/torchcodec-0.16.0%2Bcu130-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/05/7f/798705f5296a58ca505d600456748d1be48078eac8a7050d8a98bc9edb89/decorator-5.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl
@@ -1151,7 +1151,7 @@ environments:
       - pypi: git+https://github.com/Japan7/vocal-remover.git?branch=6.0.0b4#cbc6cbb349513995fa7c4d3594cce7e4e0aed89b
       - pypi: https://download-r2.pytorch.org/whl/cu130/torch-2.13.0%2Bcu130-cp314-cp314-win_amd64.whl
       - pypi: https://download-r2.pytorch.org/whl/cu130/torchaudio-2.11.0%2Bcu130-cp314-cp314-win_amd64.whl
-      - pypi: https://download.pytorch.org/whl/cu130/torchcodec-0.15.0%2Bcu130-cp314-cp314-win_amd64.whl
+      - pypi: https://download.pytorch.org/whl/cu130/torchcodec-0.16.0%2Bcu130-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/05/7f/798705f5296a58ca505d600456748d1be48078eac8a7050d8a98bc9edb89/decorator-5.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl
@@ -1383,9 +1383,9 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/19/03/8c63e8cf52958534ef688625965ab04c269a6cadd8caef16758b380a821a/msgpack-1.2.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/19/a9/c34aebedd3a4c9afe5101b1b8713710b3fec18087c8a36c35d2f909861bd/platformdirs-4.11.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/36/e614ba2bc0f005ed0f37a6413f08fe705210297ddb9a37a475a8b9fdab61/numba-0.67.0-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+      - pypi: https://files.pythonhosted.org/packages/1c/58/07df4dc91580bc878eaf6f0b9b43c0823f67fb3a926e816c6869494b0710/torchcodec-0.16.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/1e/5e/d4e9f1a599fb8e573b7b87160658329fbf28d19eac2718f51fc3def3aa5a/idna-3.18-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/28/50/f203ff3a3ddfe19308efc83c5a3a29ed02bf786732ec35e68bf9162f3365/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-      - pypi: https://files.pythonhosted.org/packages/28/57/4bab825dbb8aff755c87ff040fd91e6dbc1bb7c51a9bd5b2fdd61fda0437/torchcodec-0.15.0-cp314-cp314-manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/2a/2d/d4bf65e47cea8ff2c794a600c4fd1273a7902f268757c531e0ee9f18aa58/pooch-1.9.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/2e/24/d1558f3b68b1d26e706813b1d10aa1d785e4698c425af8db8edc3dced472/nvidia_cuda_runtime-13.0.96-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
@@ -1593,7 +1593,6 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/63/7a/dfdd6f8c748988427119f75eb860a3cedd858d1aea1fe28f39ad8559ef22/soundfile-0.14.0-py2.py3-none-macosx_11_0_arm64.whl
-      - pypi: https://files.pythonhosted.org/packages/74/9a/e1e2724334ffdc2ae86db067e13bd931ae87db82807d99136b295ac78d68/torchcodec-0.15.0-cp314-cp314-macosx_14_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/7a/90/a5c1084d87767d787a6caba615aa50dc587229646308d9420c960cb5e4c0/standard_chunk-3.13.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/7b/91/984aca2ec129e2757d1e4e3c81c3fcda9d0f85b74670a094cc443d9ee949/joblib-1.5.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/7e/16/fbe8e1e185a45042f7cd3a282def5bb8d95bb69ab9e9ef6a5368aa17e426/audioread-3.1.0-py3-none-any.whl
@@ -1609,6 +1608,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/a0/f4/c67b0b3f1b9245e8d266f0f112c500d50e5b4e83cb6f3b71b6528104182a/requests-2.34.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a7/8e/50f46a9c0ce8d2861a394c1347caae037ea0431d2f67d7feb151cbc4649a/filelock-3.32.3-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/aa/ae/ba8a4fcc5af759006c156bae38d12aa6bf9635742a8f8175f33ebe37b50e/torchcodec-0.16.0-cp314-cp314-macosx_14_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b3/81/4da04ced5a082363ecfa159c010d200ecbd959ae410c10c0264a38cac0f5/markdown_it_py-4.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b3/a9/9db617d05d7367c1ad0ab00b3aa6e6f9281edd689b4ee9ea0e5a84e89c97/cffi-2.1.1-cp314-cp314-macosx_11_0_arm64.whl
@@ -1724,6 +1724,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/15/5c/7bcbd5b11f94199073320410cddcbb80cee62415bfeb540874b265c2d922/numpy-2.5.2-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/16/f1/467b81e98b24dd3885d7b1857728797b4ffc76a7a7483af4fb321a07de3c/msgpack-1.2.1-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/18/6d/21bd16f770476e394c5e5f504935817967442a71251d6b86c244a2767980/numba-0.67.0-cp314-cp314-win_amd64.whl
+      - pypi: https://files.pythonhosted.org/packages/18/74/55fd918f3a1a3b1bcb77d7239ae44cd302e2140c94378fa436691e08e548/torchcodec-0.16.0-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/19/a9/c34aebedd3a4c9afe5101b1b8713710b3fec18087c8a36c35d2f909861bd/platformdirs-4.11.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/6d/3fba214c1e5e0f69991677ec3bc17023f0421776975e1de0c682dca475e2/safetensors-0.8.0-cp310-abi3-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/1e/5e/d4e9f1a599fb8e573b7b87160658329fbf28d19eac2718f51fc3def3aa5a/idna-3.18-py3-none-any.whl
@@ -1769,7 +1770,6 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/b3/81/4da04ced5a082363ecfa159c010d200ecbd959ae410c10c0264a38cac0f5/markdown_it_py-4.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b5/ba/c63c5786dfee4c3417094c4b00966e61e4a63efecee22cb7b4c0387dda83/librosa-0.11.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c3/52/5fbb203394cc852334d1575cc020f6bcec768d2265355984dfd361968f36/standard_aifc-3.13.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/cb/95/71aa2910875c806e2979390bfd5bef8b4689218389a79d707ac30582c755/torchcodec-0.15.0-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d8/43/81355710a4c84e9420e11a86d41a5364deb561f2ef36dfdf254a07371bbb/transformers-5.15.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/da/35/f2287558c17e29fafc8ef3daf819bb9834061cfa43bff8014f7df7f63bdc/anyio-4.14.2-py3-none-any.whl
@@ -6867,12 +6867,12 @@ packages:
   - transformers>=5,<6
   - torch==2.13.0 ; extra == 'cli'
   - torchaudio==2.11.0 ; extra == 'cli'
-  - torchcodec==0.15.0 ; extra == 'cli'
+  - torchcodec==0.16.0 ; extra == 'cli'
   - vocal-remover @ git+https://github.com/Japan7/vocal-remover.git@6.0.0b4 ; extra == 'cli'
   - yohane-cli @ ./yohane-cli ; extra == 'cli'
   - torch==2.13.0 ; extra == 'torch'
   - torchaudio==2.11.0 ; extra == 'torch'
-  - torchcodec==0.15.0 ; extra == 'torch'
+  - torchcodec==0.16.0 ; extra == 'torch'
   - vocal-remover @ git+https://github.com/Japan7/vocal-remover.git@6.0.0b4 ; extra == 'vocal-remover'
   requires_python: '>=3.10'
 - pypi: ./yohane-cli
@@ -7045,60 +7045,60 @@ packages:
   version: 2.11.0+cu130
   sha256: b345401d76a371031b2fe965bd9579b9621c9d87902ee3e586be665df04c179e
   index: https://download.pytorch.org/whl/cu130
-- pypi: https://download.pytorch.org/whl/cpu/torchcodec-0.15.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl
+- pypi: https://download.pytorch.org/whl/cpu/torchcodec-0.16.0%2Bcpu-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
   name: torchcodec
-  version: 0.15.0+cpu
-  sha256: 7700ddcbf6de0901fe7dd5b1aafff79cf8959235e196ca22b5cc624bead3a11f
+  version: 0.16.0+cpu
+  sha256: 2538c329441cb64b27a53530bf476db1735532344fe132b081d02e4ae67bbe4c
   index: https://download.pytorch.org/whl/cpu
   requires_dist:
   - numpy ; extra == 'dev'
   - pytest ; extra == 'dev'
   - pillow ; extra == 'dev'
   requires_python: '>=3.10'
-- pypi: https://download.pytorch.org/whl/cpu/torchcodec-0.15.0%2Bcpu-cp314-cp314-win_amd64.whl
+- pypi: https://download.pytorch.org/whl/cpu/torchcodec-0.16.0%2Bcpu-cp314-cp314-win_amd64.whl
   name: torchcodec
-  version: 0.15.0+cpu
-  sha256: 3e1c108a4b2830e76a50be7e4d7456679862d2a30e8f45a3915cb80c5c7ee42c
+  version: 0.16.0+cpu
+  sha256: b7c224c83ae45092fea23dd90a9ec02143c57a05045b6172ab4bfa18c38d919d
   index: https://download.pytorch.org/whl/cpu
   requires_dist:
   - numpy ; extra == 'dev'
   - pytest ; extra == 'dev'
   - pillow ; extra == 'dev'
   requires_python: '>=3.10'
-- pypi: https://download.pytorch.org/whl/cu126/torchcodec-0.15.0%2Bcu126-cp314-cp314-manylinux_2_28_x86_64.whl
+- pypi: https://download.pytorch.org/whl/cu126/torchcodec-0.16.0%2Bcu126-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
   name: torchcodec
-  version: 0.15.0+cu126
-  sha256: 0ca6abe1fe093a62e20f4b9a4b78aa609c8398d8d497c524519206e05174e2f5
+  version: 0.16.0+cu126
+  sha256: 161cf221b43266627d58649d7edc45682c425e65340a3b47508375b6c1b22a26
   index: https://download.pytorch.org/whl/cu126
   requires_dist:
   - numpy ; extra == 'dev'
   - pytest ; extra == 'dev'
   - pillow ; extra == 'dev'
   requires_python: '>=3.10'
-- pypi: https://download.pytorch.org/whl/cu126/torchcodec-0.15.0%2Bcu126-cp314-cp314-win_amd64.whl
+- pypi: https://download.pytorch.org/whl/cu126/torchcodec-0.16.0%2Bcu126-cp314-cp314-win_amd64.whl
   name: torchcodec
-  version: 0.15.0+cu126
-  sha256: f8fee0d1845d5c453d37b6ffc726f31de925a3fd5329c5276556e916479d9922
+  version: 0.16.0+cu126
+  sha256: 1bb454c3afe7a3fca419a68036121703c0eacd2c7bb65d0cb97961039fd24893
   index: https://download.pytorch.org/whl/cu126
   requires_dist:
   - numpy ; extra == 'dev'
   - pytest ; extra == 'dev'
   - pillow ; extra == 'dev'
   requires_python: '>=3.10'
-- pypi: https://download.pytorch.org/whl/cu130/torchcodec-0.15.0%2Bcu130-cp314-cp314-manylinux_2_28_x86_64.whl
+- pypi: https://download.pytorch.org/whl/cu130/torchcodec-0.16.0%2Bcu130-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
   name: torchcodec
-  version: 0.15.0+cu130
-  sha256: cfe0b8d91f74c45d6ad5d654d8296fedcf72f26c3aaab685a38a42de1ab30930
+  version: 0.16.0+cu130
+  sha256: f2eb2cd8deb9d87fc4919fb252c28fbfaa51d2fd9c08c591ae72191083e48cb8
   index: https://download.pytorch.org/whl/cu130
   requires_dist:
   - numpy ; extra == 'dev'
   - pytest ; extra == 'dev'
   - pillow ; extra == 'dev'
   requires_python: '>=3.10'
-- pypi: https://download.pytorch.org/whl/cu130/torchcodec-0.15.0%2Bcu130-cp314-cp314-win_amd64.whl
+- pypi: https://download.pytorch.org/whl/cu130/torchcodec-0.16.0%2Bcu130-cp314-cp314-win_amd64.whl
   name: torchcodec
-  version: 0.15.0+cu130
-  sha256: 3bb23bad381e774dba6cbdafb8af1570430cc0fa40c809f2e2d9160f5ba63b8c
+  version: 0.16.0+cu130
+  sha256: 8507c83615d1d07fef9902badd3814b592453e6dbfc05d2fb96cd8030c3e9331
   index: https://download.pytorch.org/whl/cu130
   requires_dist:
   - numpy ; extra == 'dev'
@@ -7176,6 +7176,15 @@ packages:
   - llvmlite>=0.49.0.dev0,<0.50
   - numpy>=1.22,<2.6
   requires_python: '>=3.10'
+- pypi: https://files.pythonhosted.org/packages/18/74/55fd918f3a1a3b1bcb77d7239ae44cd302e2140c94378fa436691e08e548/torchcodec-0.16.0-cp314-cp314-win_amd64.whl
+  name: torchcodec
+  version: 0.16.0
+  sha256: 602a5d8fa1c26d52d3c814e8912ab3a5538889f1384665260061addef2b5d83c
+  requires_dist:
+  - numpy ; extra == 'dev'
+  - pytest ; extra == 'dev'
+  - pillow ; extra == 'dev'
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/19/03/8c63e8cf52958534ef688625965ab04c269a6cadd8caef16758b380a821a/msgpack-1.2.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
   name: msgpack
   version: 1.2.1
@@ -7241,6 +7250,15 @@ packages:
   version: 0.2.2
   sha256: 9a13dc409f2564de15dd68be65b462ba0dde01b19663720c68c1140c782d1d75
   requires_python: '>=3.13'
+- pypi: https://files.pythonhosted.org/packages/1c/58/07df4dc91580bc878eaf6f0b9b43c0823f67fb3a926e816c6869494b0710/torchcodec-0.16.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+  name: torchcodec
+  version: 0.16.0
+  sha256: 12bd2c7eff4056e74c1f57c115d455a5efc2d0f577517242ec66bf30712f5a9f
+  requires_dist:
+  - numpy ; extra == 'dev'
+  - pytest ; extra == 'dev'
+  - pillow ; extra == 'dev'
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/1e/5e/d4e9f1a599fb8e573b7b87160658329fbf28d19eac2718f51fc3def3aa5a/idna-3.18-py3-none-any.whl
   name: idna
   version: '3.18'
@@ -7307,15 +7325,6 @@ packages:
   version: 3.0.3
   sha256: bdc919ead48f234740ad807933cdf545180bfbe9342c2bb451556db2ed958581
   requires_python: '>=3.9'
-- pypi: https://files.pythonhosted.org/packages/28/57/4bab825dbb8aff755c87ff040fd91e6dbc1bb7c51a9bd5b2fdd61fda0437/torchcodec-0.15.0-cp314-cp314-manylinux_2_28_x86_64.whl
-  name: torchcodec
-  version: 0.15.0
-  sha256: b8b0b5b293024e0753455fa141522db794a72ae7b8e1d0a750db5756704ca6ea
-  requires_dist:
-  - numpy ; extra == 'dev'
-  - pytest ; extra == 'dev'
-  - pillow ; extra == 'dev'
-  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/2a/2d/d4bf65e47cea8ff2c794a600c4fd1273a7902f268757c531e0ee9f18aa58/pooch-1.9.0-py3-none-any.whl
   name: pooch
   version: 1.9.0
@@ -7723,15 +7732,6 @@ packages:
   version: 10.3.7.77
   sha256: a42cd1344297f70b9e39a1e4f467a4e1c10f1da54ff7a85c12197f6c652c8bdf
   requires_python: '>=3'
-- pypi: https://files.pythonhosted.org/packages/74/9a/e1e2724334ffdc2ae86db067e13bd931ae87db82807d99136b295ac78d68/torchcodec-0.15.0-cp314-cp314-macosx_14_0_arm64.whl
-  name: torchcodec
-  version: 0.15.0
-  sha256: 3b81d9d522d74981e97754e43f29c0d1f351e122f16135d390ad00023ff6535d
-  requires_dist:
-  - numpy ; extra == 'dev'
-  - pytest ; extra == 'dev'
-  - pillow ; extra == 'dev'
-  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/76/c6/22c2102bbef14ca6a6cb4c20e42f088e49c5f812be4e160ae57502e325f9/torch-2.13.0-cp314-cp314-manylinux_2_28_x86_64.whl
   name: torch
   version: 2.13.0
@@ -8269,6 +8269,15 @@ packages:
   name: torchaudio
   version: 2.11.0
   sha256: 00e9f71ab9c656f0abdb40c515bd65d4658ab0ad380dee27a2efd7d51dabd3d6
+- pypi: https://files.pythonhosted.org/packages/aa/ae/ba8a4fcc5af759006c156bae38d12aa6bf9635742a8f8175f33ebe37b50e/torchcodec-0.16.0-cp314-cp314-macosx_14_0_arm64.whl
+  name: torchcodec
+  version: 0.16.0
+  sha256: 9fcda10720fcbccae8744b8581080e985f7743cb8b365f7ce2bb6f045e7b84fd
+  requires_dist:
+  - numpy ; extra == 'dev'
+  - pytest ; extra == 'dev'
+  - pillow ; extra == 'dev'
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/ad/88/2dbc37975fffb874418b14380418a1b99cb36f2101fd1d08c54e06ee8c95/cuda_toolkit-12.6.3-py2.py3-none-any.whl
   name: cuda-toolkit
   version: 12.6.3
@@ -8486,15 +8495,6 @@ packages:
   version: 3.23.0
   sha256: f489c4765093fb60e2edafdf223397bc716491b2b69fe74367b70d6999257a5c
   requires_python: '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*'
-- pypi: https://files.pythonhosted.org/packages/cb/95/71aa2910875c806e2979390bfd5bef8b4689218389a79d707ac30582c755/torchcodec-0.15.0-cp314-cp314-win_amd64.whl
-  name: torchcodec
-  version: 0.15.0
-  sha256: 0cd15a402189953ae9a68854690b53acb72c7b9ba4d9bacb18ce9b654069cb16
-  requires_dist:
-  - numpy ; extra == 'dev'
-  - pytest ; extra == 'dev'
-  - pillow ; extra == 'dev'
-  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/d1/c7/a79086a62c98befcdb8349656c6f114e2db3b8b2422f6e25c97a7f2a9a3c/cuda_toolkit-13.0.3.0-py2.py3-none-any.whl
   name: cuda-toolkit
   version: 13.0.3.0
