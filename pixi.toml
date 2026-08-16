@@ -13,7 +13,7 @@ platforms = [
 
 [dependencies]
 python = "~=3.14.0"
-ffmpeg = "~=8.0"
+ffmpeg = "~=9.0"
 
 [pypi-dependencies]
 yohane = { path = ".", editable = true }
