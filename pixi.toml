@@ -12,7 +12,7 @@ platforms = [
 ]
 
 [dependencies]
-python = "~=3.14.0"
+python = "~=3.15.0rc2"
 ffmpeg = "~=9.0"
 
 [pypi-dependencies]
