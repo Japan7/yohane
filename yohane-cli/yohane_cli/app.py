@@ -6,7 +6,9 @@ import typer
 
 from yohane import Yohane
 from yohane_cli.audio import (
+    DEFAULT_FORCED_ALIGNER,
     SeparatorChoice,
+    get_forced_aligner,
     get_separator,
     parse_song_argument,
     save_separated_tracks,
@@ -29,7 +31,7 @@ def generate(
     lyrics_file: Annotated[
         Path | None,
         typer.Argument(
-            help="Text file which contains the lyrics. (Optional: otherwise, a text editor will open.)",
+            help="Text file which contains the lyrics. (Optional: otherwise, a text editor will open)",
         ),
     ] = None,
     separator_choice: Annotated[
@@ -37,21 +39,24 @@ def generate(
         typer.Option(
             "--separator",
             "-s",
-            help="Optional source separator to use.",
+            help=f"Source separator to use. Not recommended with {DEFAULT_FORCED_ALIGNER}.",
         ),
     ] = None,
-    forced_aligner: Annotated[
-        str | None,
+    forced_aligner_str: Annotated[
+        str,
         typer.Option(
             "--forced-aligner",
             "-a",
-            help="Forced aligner (Wav2Vec2-based) model to use. (Default: torchaudio's MMS-FA)",
+            help=(
+                "Forced aligner to use: 'mms-fa' for torchaudio's MMS-FA, or any Wav2Vec2-based HuggingFace model ID."
+            ),
         ),
-    ] = None,
+    ] = DEFAULT_FORCED_ALIGNER,
 ):
     with parse_song_argument(song_file) as (song, output):
         lyrics = parse_lyrics_argument(lyrics_file)
         separator = get_separator(separator_choice)
+        forced_aligner = get_forced_aligner(forced_aligner_str)
 
         yohane = Yohane(separator=separator, forced_aligner=forced_aligner)
 

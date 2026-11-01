@@ -1,6 +1,8 @@
 # yohane
 
-Yohane takes a song and its lyrics, optionally extracts the vocals, splits the syllables, and computes a forced alignment to generate karaoke in an [Aegisub](https://aegisub.org) subtitle file (.ass).
+Yohane takes a song and its lyrics, optionally extracts the vocals, splits the lyrics into syllables, and computes a forced alignment to generate karaoke subtitles in an [Aegisub](https://aegisub.org) subtitle file (.ass).
+
+By default, it now uses our [NextFire/mms-300m-ForcedAligner-karaoke-ja-Latn](https://huggingface.co/NextFire/mms-300m-ForcedAligner-karaoke-ja-Latn) fine-tuned model to produce high-quality alignments for Japanese romaji lyrics.
 
 ## Getting Started
 
@@ -43,29 +45,37 @@ pixi run -e [default|cpu|cu126|cu130] yohane --help
 
 ## Caveats
 
-- Yohane's syllable splitting is only optimized for Japanese lyrics at the moment
-- Syllables at the end of lines are often shortened (*Workaround:* use our [finetuned model](https://huggingface.co/NextFire/mms-300m-ForcedAligner-karaoke-ja-Latn))
-- Forced alignment can't deal with overlapping vocals
-- It is not fully accurate, you should still check and edit the result!
+- Yohane's syllable splitting is currently optimized for Japanese lyrics only.
+- Syllables at the ends of lines are often shortened (this occurs less frequently with our [fine-tuned model](https://huggingface.co/NextFire/mms-300m-ForcedAligner-karaoke-ja-Latn)).
+- Forced alignment cannot handle overlapping vocals.
+- The results are not always fully accurate, so you should still review and edit them!
 
 ## Recommended workflow
 
-1. Get the song and its lyrics
-2. Use the yohane notebook or the CLI locally to generate the karaoke file
+1. Get the song and its lyrics.
+2. Use the Yohane notebook or CLI locally to generate the karaoke file.
 
-In Aegisub:
+In Aegisub
 
-1. Load the .ass and the video
-2. Replace the _Default_ style with your own
-3. Due to the normalization during the process, lines are lowercased and special characters have been removed: use the original lines in comments to fix the timed lines
-4. Subtitle > Select Lines… > check _Comments_ and _Set selection_ > OK and delete the selected lines
-5. Listen to each line and fix their End time
-6. Add a 1s karaoke lead-in to every line
-7. Iterate over each line in karaoke mode and merge/fix syllable timings
+1. Load the `.ass` file and the video.
+2. Replace the _Default_ style with your own.
+3. Due to normalization during processing, lines are lowercased and special characters are removed. Use the original lyrics stored in comment lines to restore the timed lines.
+4. Go to **Subtitle > Select Lines…**, check **Comments** and **Set selection**, then click **OK** and delete the selected lines.
+5. Listen to each line and adjust its end time.
+6. Add a 1-second karaoke lead-in to every line.
+7. Go through each line in karaoke mode and merge/adjust syllable timings as needed.
 
 <img src="https://github.com/user-attachments/assets/614cd8ca-d471-447c-8596-4ac800d690cf" width="25%" >
 
 ## Sample
+
+Using our new [NextFire/mms-300m-ForcedAligner-karaoke-ja-Latn](https://huggingface.co/NextFire/mms-300m-ForcedAligner-karaoke-ja-Latn) fine-tuned model (default):
+
+- **Umamusume: Pretty Derby - Legend Changer** ([2026.10.0](https://github.com/Japan7/yohane/releases/tag/2026.10.0)):
+  [Video](https://www.youtube.com/watch?v=o8PQexPl6Ns),
+  [Output](<samples/ゲーム【ウマ娘 プリティーダービー】ライブ動画「Legend-Changer」ゲームサイズVer. [o8PQexPl6Ns].ass>)
+
+Using vocal-remover and MMS-FA models (`--separator vocal-remover --forced-aligner mms-fa`):
 
 - **CRYCHIC - Haruhikage (THE FIRST TAKE)** ([2025.03.0](https://github.com/Japan7/yohane/releases/tag/2025.03.0)):
   [Video](https://www.youtube.com/watch?v=NJ1tne9u8YM),
@@ -82,3 +92,4 @@ In Aegisub:
 - [Music Source Separation with Hybrid Demucs – Torchaudio documentation](https://pytorch.org/audio/2.1.0/tutorials/hybrid_demucs_tutorial.html)
 - [tsurumeso/vocal-remover](https://github.com/tsurumeso/vocal-remover)
 - [Karaoke Mugen's auto-split.lua](https://docs.karaokes.moe/aegisub/auto-split.lua)
+- [NextFire/mms-300m-ForcedAligner-karaoke-ja-Latn HF model](https://huggingface.co/NextFire/mms-300m-ForcedAligner-karaoke-ja-Latn)

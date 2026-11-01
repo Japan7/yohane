@@ -9,7 +9,6 @@ from yohane.audio import (
     ForcedAligner,
     Separator,
     TorchAudioForcedAligner,
-    Wav2Vec2ForcedAligner,
 )
 from yohane.lyrics import Lyrics
 from yohane.subtitles import make_ass
@@ -22,13 +21,11 @@ class Yohane:
         self,
         *,
         separator: Separator | None,
-        forced_aligner: str | None = None,
+        forced_aligner: ForcedAligner | None = None,
     ):
         self.separator = separator
-        self.forced_aligner: ForcedAligner = (
-            Wav2Vec2ForcedAligner(forced_aligner)
-            if forced_aligner is not None
-            else TorchAudioForcedAligner()
+        self.forced_aligner = (
+            forced_aligner if forced_aligner is not None else TorchAudioForcedAligner()
         )
         self.song: tuple[torch.Tensor, int] | None = None
         self.vocals: tuple[torch.Tensor, int] | None = None
@@ -51,8 +48,7 @@ class Yohane:
     def extract_vocals(self):
         if self.separator is None:
             logger.warning(
-                "Vocals extraction skipped because no separator was provided. "
-                'Use the "--separator" flag to specify one.'
+                "No separator provided (--separator option), skipping vocals extraction."
             )
             return
         logger.info(f"Extracting vocals with {self.separator=}")
